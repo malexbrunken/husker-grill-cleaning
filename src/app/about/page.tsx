@@ -1,22 +1,191 @@
-import {
-  buildPageMetadata,
-  SimplePage,
-} from "@/components/SimplePage";
+import type { Metadata } from "next";
+import { AboutPage } from "@/components/AboutPage";
+import { site } from "@/lib/site";
 
-export const metadata = buildPageMetadata(
-  "About",
-  "About Husker Grill Cleaning — AGSI-certified mobile grill cleaning and repair serving Omaha and Lincoln, Nebraska.",
-  "/about",
-);
+const title = "About Husker Grill Cleaning | AGSI-Certified Service in Omaha & Lincoln";
+const description =
+  "Meet Matthew Brunken and Husker Grill Cleaning — AGSI founding cohort, CGCT & CAGST certified mobile grill cleaning and repair for Omaha and Lincoln, Nebraska. Full disassembly, gas safety, and clean + repair in one visit.";
+const path = "/about";
+const ogImage = "/images/team.webp";
 
-export default function AboutPage() {
+export const metadata: Metadata = {
+  title: {
+    absolute: title,
+  },
+  description,
+  keywords: [
+    "Husker Grill Cleaning",
+    "Matthew Brunken",
+    "AGSI certified grill cleaning",
+    "CAGST",
+    "CGCT",
+    "Omaha grill cleaning",
+    "Lincoln grill cleaning",
+    "Nebraska grill repair",
+    "mobile grill cleaning Omaha",
+    "built-in grill cleaning Nebraska",
+    "American Grill Service Institute",
+  ],
+  alternates: {
+    canonical: path,
+  },
+  openGraph: {
+    type: "profile",
+    locale: "en_US",
+    url: path,
+    siteName: site.name,
+    title,
+    description,
+    images: [
+      {
+        url: ogImage,
+        width: 1024,
+        height: 1008,
+        alt: "Matthew Brunken, founder of Husker Grill Cleaning",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+function AboutJsonLd() {
+  const aboutPage = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${site.domain}${path}#webpage`,
+    url: `${site.domain}${path}`,
+    name: title,
+    description,
+    isPartOf: {
+      "@type": "WebSite",
+      name: site.name,
+      url: site.domain,
+    },
+    about: {
+      "@id": `${site.domain}/#business`,
+    },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: `${site.domain}${ogImage}`,
+    },
+    inLanguage: "en-US",
+  };
+
+  const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${site.domain}${path}#matthew-brunken`,
+    name: "Matthew Brunken",
+    jobTitle: "Founder",
+    description:
+      "Founder of Husker Grill Cleaning. AGSI founding cohort member holding CGCT and CAGST credentials. MBA, University of Nebraska Omaha.",
+    image: `${site.domain}${ogImage}`,
+    url: `${site.domain}${path}`,
+    worksFor: {
+      "@type": "LocalBusiness",
+      "@id": `${site.domain}/#business`,
+      name: site.name,
+    },
+    alumniOf: [
+      {
+        "@type": "CollegeOrUniversity",
+        name: "University of Nebraska Omaha",
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        name: "Liberty University",
+      },
+    ],
+    knowsAbout: [
+      "Grill cleaning",
+      "Grill repair",
+      "Gas safety inspection",
+      "Outdoor kitchen maintenance",
+      "AGSI professional grill service",
+    ],
+    sameAs: [site.social.facebook, site.social.instagram],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Lincoln",
+      addressRegion: "NE",
+      addressCountry: "US",
+    },
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: site.domain,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: `${site.domain}${path}`,
+      },
+    ],
+  };
+
+  const professionalService = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${site.domain}${path}#service`,
+    name: "Husker Grill Cleaning — AGSI-Certified Grill Service",
+    description:
+      "AGSI-certified mobile grill cleaning and repair serving Omaha and Lincoln, Nebraska.",
+    url: `${site.domain}${path}`,
+    telephone: site.phoneTel,
+    email: site.email,
+    image: `${site.domain}${ogImage}`,
+    areaServed: [
+      { "@type": "City", name: "Omaha", containedInPlace: { "@type": "State", name: "Nebraska" } },
+      { "@type": "City", name: "Lincoln", containedInPlace: { "@type": "State", name: "Nebraska" } },
+    ],
+    founder: { "@id": `${site.domain}${path}#matthew-brunken` },
+    parentOrganization: { "@id": `${site.domain}/#business` },
+  };
+
   return (
-    <SimplePage
-      title="About"
-      description="Husker Grill Cleaning is Nebraska's premium mobile grill cleaning and repair company with AGSI-certified technicians."
-      path="/about"
-      heading="About Husker Grill Cleaning"
-      body="Certified technicians. Full disassembly. Clean + repair in one visit."
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPage) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalService) }}
+      />
+    </>
+  );
+}
+
+export default function AboutRoute() {
+  return (
+    <>
+      <AboutJsonLd />
+      <AboutPage />
+    </>
   );
 }
