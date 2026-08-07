@@ -886,15 +886,19 @@
     .location-card h3 { font-family: var(--font-playfair), Georgia, serif; font-size: 2rem; color: #ffffff; margin: 0; }
     .neighborhoods-list { display: flex; flex-wrap: wrap; gap: 12px; }
     .neighborhood-tag {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid var(--glass-border);
-        padding: 10px 20px;
-        border-radius: 100px;
-        font-size: 0.9rem;
-        color: #cbd5e1;
-        transition: all 0.3s ease;
-        cursor: default;
-    }
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+            cursor: default;
+            text-decoration: none;
+        }
+        a.neighborhood-tag {
+            cursor: pointer;
+        }
     .neighborhood-tag:hover { background: rgba(212,175,55,0.15); border-color: #d4af37; color: #f1d57e; transform: scale(1.05); }
     .service-cta {
         text-align: center;
