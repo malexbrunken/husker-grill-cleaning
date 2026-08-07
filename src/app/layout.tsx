@@ -10,6 +10,7 @@ import "@/styles/chrome.css";
 import "@/styles/see-our-work.css";
 import "@/styles/pricing.css";
 import "@/styles/multi-tenant.css";
+import "@/styles/join-our-team.css";
 
 const inter = Inter({
   variable: "--font-inter",
