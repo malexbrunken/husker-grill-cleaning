@@ -260,6 +260,17 @@
   font-weight: 600;
 }
 
+a.oma-tag--link {
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+a.oma-tag--link:hover {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.45);
+  color: #f0d78c;
+}
+
 .oma-areas-note {
   margin: 1.25rem 0 0;
   color: #64748b;

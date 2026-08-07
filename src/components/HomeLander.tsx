@@ -10,6 +10,7 @@ import {
   partnerLogos,
   site,
 } from "@/lib/site";
+import { neighborhoodServiceAreaLinks } from "@/lib/service-areas";
 
 const processSteps = [
   {
@@ -789,11 +790,18 @@ export function HomeLander() {
                   <h3>Omaha Metro</h3>
                 </div>
                 <div className="neighborhoods-list">
-                  {omahaNeighborhoods.map((n) => (
-                    <span className="neighborhood-tag" key={n}>
-                      {n}
-                    </span>
-                  ))}
+                  {omahaNeighborhoods.map((n) => {
+                    const href = neighborhoodServiceAreaLinks[n];
+                    return href ? (
+                      <Link className="neighborhood-tag" key={n} href={href}>
+                        {n}
+                      </Link>
+                    ) : (
+                      <span className="neighborhood-tag" key={n}>
+                        {n}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
               <div className="location-card reveal">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
+import { neighborhoodServiceAreaLinks } from "@/lib/service-areas";
 import { omahaNeighborhoods, site } from "@/lib/site";
 
 const SHOTS = {
@@ -235,11 +236,18 @@ export function OmahaServicesPage() {
             for most—plus custom estates by request.
           </p>
           <div className="oma-tags">
-            {omahaNeighborhoods.map((n) => (
-              <span key={n} className="oma-tag">
-                {n}
-              </span>
-            ))}
+            {omahaNeighborhoods.map((n) => {
+              const href = neighborhoodServiceAreaLinks[n];
+              return href ? (
+                <Link key={n} href={href} className="oma-tag oma-tag--link">
+                  {n}
+                </Link>
+              ) : (
+                <span key={n} className="oma-tag">
+                  {n}
+                </span>
+              );
+            })}
           </div>
           <p className="oma-areas-note">
             Also serving nearby communities and the Lincoln metro.{" "}
