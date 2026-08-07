@@ -17,6 +17,7 @@ import "@/styles/matthew-brunken.css";
 import "@/styles/organic-vs-deep.css";
 import "@/styles/what-grill-cleaning-includes.css";
 import "@/styles/schedule.css";
+import "@/styles/omaha-services.css";
 
 const inter = Inter({
   variable: "--font-inter",

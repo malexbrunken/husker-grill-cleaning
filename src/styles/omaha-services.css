@@ -1,0 +1,606 @@
+/* Omaha city services lander */
+
+.oma-page {
+  background: #05070a;
+  color: #e2e8f0;
+  overflow-x: clip;
+}
+
+.oma-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero */
+.oma-hero {
+  padding: 3.75rem 0 3.25rem;
+  background:
+    radial-gradient(ellipse 55% 60% at 10% 0%, rgba(212, 175, 55, 0.16), transparent 55%),
+    radial-gradient(ellipse 40% 50% at 95% 40%, rgba(212, 175, 55, 0.07), transparent 50%),
+    #05070a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.25rem;
+  align-items: center;
+}
+
+.oma-hero h1 {
+  margin: 0.35rem 0 1rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2rem, 4.2vw, 3.05rem);
+  line-height: 1.12;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.oma-lede,
+.oma-section-lede {
+  margin: 0 0 1.35rem;
+  color: #94a3b8;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.oma-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.oma-hero-perks {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.oma-hero-perks li {
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.08);
+  color: #f0d78c;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.oma-hero-media {
+  position: relative;
+  min-height: 360px;
+}
+
+.oma-hero-main {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+}
+
+.oma-hero-side {
+  position: absolute;
+  width: 48%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 3px solid #05070a;
+  right: -0.5rem;
+  bottom: -1rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Intro */
+.oma-intro {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-intro-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.oma-intro h2,
+.oma-services h2,
+.oma-areas h2,
+.oma-why h2,
+.oma-brands h2,
+.oma-repair h2,
+.oma-faq h2 {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
+  color: #fff;
+  line-height: 1.2;
+}
+
+.oma-intro-copy p {
+  margin: 0 0 1rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.oma-intro-copy p:last-child {
+  margin-bottom: 0;
+}
+
+/* Services */
+.oma-services {
+  padding: 3.5rem 0;
+  background: #0a0d12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.oma-service-card {
+  padding: 1.45rem 1.35rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.oma-service-card:first-child {
+  background: linear-gradient(
+    160deg,
+    rgba(212, 175, 55, 0.14),
+    rgba(212, 175, 55, 0.03)
+  );
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.oma-service-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.25rem;
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.oma-service-card p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.oma-service-card a {
+  color: #d4af37;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.oma-service-card a:hover {
+  color: #f0d78c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Photo strip */
+.oma-strip {
+  padding: 1.75rem 0 2.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-strip-track {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0 1.5rem 0.75rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.oma-strip-track img {
+  flex: 0 0 min(280px, 72vw);
+  height: 190px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  scroll-snap-align: start;
+}
+
+.oma-strip-caption {
+  margin-top: 0.35rem;
+}
+
+.oma-strip-caption a {
+  color: #d4af37;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.oma-strip-caption a:hover {
+  color: #f0d78c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Areas */
+.oma-areas {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.35rem;
+}
+
+.oma-tag {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.oma-areas-note {
+  margin: 1.25rem 0 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.oma-areas-note a {
+  color: #d4af37;
+  font-weight: 700;
+}
+
+/* Why */
+.oma-why {
+  padding: 3.5rem 0;
+  background: #0a0d12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.oma-why-grid article {
+  padding: 1.3rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.oma-why-grid h3 {
+  margin: 0 0 0.45rem;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.oma-why-grid p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+/* Brands */
+.oma-brands {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-brands-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.oma-brands-inner > div > p:not(.eyebrow) {
+  margin: 0.85rem 0 1.25rem;
+  color: #94a3b8;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.oma-brand-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.oma-brand-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.oma-brand-list li {
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* Repair */
+.oma-repair {
+  padding: 3.5rem 0;
+  background: #0a0d12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-repair-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.oma-repair-grid > div > p {
+  margin: 0.85rem 0 1.15rem;
+  color: #94a3b8;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.oma-price-points {
+  list-style: none;
+  margin: 0 0 1.35rem;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.oma-price-points li {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.oma-price-points strong {
+  color: #d4af37;
+  font-size: 1.05rem;
+}
+
+.oma-price-points span {
+  color: #94a3b8;
+  font-size: 0.92rem;
+}
+
+.oma-repair-card {
+  padding: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.oma-repair-photo img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.oma-repair-card h3 {
+  margin: 0;
+  padding: 1.15rem 1.25rem 0.5rem;
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.oma-repair-card > ul {
+  margin: 0;
+  padding: 0 1.25rem 0.75rem 2.4rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.oma-repair-card > ul li {
+  margin-bottom: 0.35rem;
+}
+
+.oma-repair-card > p {
+  margin: 0;
+  padding: 0 1.25rem 1.25rem;
+  color: #94a3b8;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* FAQ */
+.oma-faq {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.oma-faq-list {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 860px;
+  margin-top: 1.35rem;
+}
+
+.oma-faq-item {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+
+.oma-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.15rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.oma-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.oma-faq-toggle {
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #d4af37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.oma-faq-item[open] .oma-faq-toggle {
+  transform: rotate(45deg);
+}
+
+.oma-faq-item[open] {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.oma-faq-item p {
+  margin: 0;
+  padding: 0 1.15rem 1.15rem;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* Closing */
+.oma-closing {
+  padding: 4.25rem 0 4.75rem;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(212, 175, 55, 0.12), transparent 55%),
+    #05070a;
+}
+
+.oma-closing-inner {
+  max-width: 720px;
+  text-align: center;
+}
+
+.oma-closing-inner h2 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+  color: #fff;
+}
+
+.oma-closing-inner > p {
+  margin: 0 auto 1.5rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 48ch;
+}
+
+.oma-closing-inner .oma-hero-actions {
+  justify-content: center;
+}
+
+.oma-closing-contact {
+  margin: 1.35rem 0 0 !important;
+  font-size: 0.98rem !important;
+}
+
+.oma-closing-contact a {
+  color: #d4af37;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.oma-closing-contact a:hover {
+  color: #f0d78c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .oma-hero-grid,
+  .oma-intro-grid,
+  .oma-service-grid,
+  .oma-why-grid,
+  .oma-brands-inner,
+  .oma-repair-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .oma-hero-media {
+    min-height: 0;
+    order: -1;
+  }
+
+  .oma-hero-main {
+    height: 280px;
+  }
+
+  .oma-hero-side {
+    width: 42%;
+    height: 130px;
+    bottom: -0.5rem;
+  }
+
+  .oma-brand-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .oma-hero,
+  .oma-intro,
+  .oma-services,
+  .oma-areas,
+  .oma-why,
+  .oma-brands,
+  .oma-repair,
+  .oma-faq {
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oma-faq-toggle {
+    transition: none;
+  }
+}

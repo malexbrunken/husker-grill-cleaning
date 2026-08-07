@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/organic-grill-cleaning-vs-deep-grill-cleaning",
     "/what-does-grill-cleaning-include",
     "/schedule",
+    "/professional-grill-cleaning-repair-services-in-omaha-nebraska",
   ];
 
   const lastModified = new Date();
@@ -29,7 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             route === "/pricing" ||
             route === "/grill-repairs" ||
             route === "/organic-grill-cleaning-vs-deep-grill-cleaning" ||
-            route === "/what-does-grill-cleaning-include"
+            route === "/what-does-grill-cleaning-include" ||
+            route === "/professional-grill-cleaning-repair-services-in-omaha-nebraska"
           ? 0.9
           : 0.7,
   }));
