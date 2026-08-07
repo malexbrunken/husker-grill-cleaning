@@ -17,19 +17,17 @@ const FREESTANDING_IMAGES = [
 ] as const;
 
 /**
- * Built-in outdoor kitchen examples.
- * Note: the two built-in URLs in the request were duplicates of HG-18 (freestanding smoker);
- * these are verified built-in after-photos from the same Cloudinary gallery.
+ * Built-in outdoor kitchen examples (client-provided).
  */
 const BUILT_IN_IMAGES = [
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504587/HG-1_mm1iki.jpg",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504587/HG-3_vnn8dx.jpg",
     alt: "Built-in outdoor kitchen grill after professional deep cleaning",
     label: "Built-in",
   },
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504588/HG-5_woevtt.jpg",
-    alt: "Built-in Twin Eagles outdoor kitchen grill after professional deep cleaning",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504587/HG-1_mm1iki.jpg",
+    alt: "Built-in outdoor kitchen grill after professional deep cleaning",
     label: "Outdoor kitchen",
   },
 ] as const;
