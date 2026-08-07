@@ -139,6 +139,11 @@ export function AboutPage() {
               Founder · MBA · CAGST · Elite Athlete
             </p>
             <p>
+              <Link href="/matthew-brunken-lincoln-ne" className="about-profile-link">
+                Full personal profile →
+              </Link>
+            </p>
+            <p>
               Matthew Brunken doesn&apos;t just understand grills; he understands the
               engineering of performance. A Lincoln native, Matthew&apos;s journey to
               becoming Nebraska&apos;s premier grill specialist was paved with a unique

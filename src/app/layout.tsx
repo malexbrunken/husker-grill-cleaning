@@ -13,6 +13,7 @@ import "@/styles/multi-tenant.css";
 import "@/styles/join-our-team.css";
 import "@/styles/about.css";
 import "@/styles/grill-repairs.css";
+import "@/styles/matthew-brunken.css";
 
 const inter = Inter({
   variable: "--font-inter",

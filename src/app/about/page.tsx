@@ -84,13 +84,13 @@ function AboutJsonLd() {
   const person = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": `${site.domain}${path}#matthew-brunken`,
+    "@id": `${site.domain}/matthew-brunken-lincoln-ne#person`,
     name: "Matthew Brunken",
     jobTitle: "Founder",
     description:
       "Founder of Husker Grill Cleaning. AGSI founding cohort member holding CGCT and CAGST credentials. MBA, University of Nebraska Omaha.",
     image: ogImage,
-    url: `${site.domain}${path}`,
+    url: `${site.domain}/matthew-brunken-lincoln-ne`,
     worksFor: {
       "@type": "LocalBusiness",
       "@id": `${site.domain}/#business`,
@@ -113,7 +113,14 @@ function AboutJsonLd() {
       "Outdoor kitchen maintenance",
       "AGSI professional grill service",
     ],
-    sameAs: [site.social.facebook, site.social.instagram],
+    sameAs: [
+      `${site.domain}/matthew-brunken-lincoln-ne`,
+      "https://matthewbrunken.org",
+      "https://runalyze.com/athlete/Mbrunken",
+      "https://x.com/matthew_brunken",
+      site.social.facebook,
+      site.social.instagram,
+    ],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Lincoln",
@@ -156,7 +163,7 @@ function AboutJsonLd() {
       { "@type": "City", name: "Omaha", containedInPlace: { "@type": "State", name: "Nebraska" } },
       { "@type": "City", name: "Lincoln", containedInPlace: { "@type": "State", name: "Nebraska" } },
     ],
-    founder: { "@id": `${site.domain}${path}#matthew-brunken` },
+    founder: { "@id": `${site.domain}/matthew-brunken-lincoln-ne#person` },
     parentOrganization: { "@id": `${site.domain}/#business` },
   };
 

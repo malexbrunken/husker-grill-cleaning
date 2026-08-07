@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/join-our-team",
     "/grill-repairs",
+    "/matthew-brunken-lincoln-ne",
     "/schedule-2",
   ];
 

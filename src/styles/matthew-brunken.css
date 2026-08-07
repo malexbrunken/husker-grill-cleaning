@@ -1,0 +1,569 @@
+/* Matthew Brunken person profile — entity SEO lander */
+
+.mb-page {
+  background: #05070a;
+  color: #e2e8f0;
+}
+
+.mb-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero */
+.mb-hero {
+  padding: 4rem 0 3.5rem;
+  background:
+    radial-gradient(ellipse 55% 50% at 15% 20%, rgba(212, 175, 55, 0.12), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 90% 10%, rgba(212, 175, 55, 0.06), transparent 50%),
+    #05070a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mb-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.mb-photo {
+  margin: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+  background: #111;
+}
+
+.mb-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.mb-hero-copy h1 {
+  margin: 0.35rem 0 0.55rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2.6rem, 5.5vw, 3.9rem);
+  line-height: 1.05;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mb-tagline {
+  margin: 0 0 1.1rem;
+  color: #d4af37;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.mb-lede {
+  margin: 0 0 1.5rem;
+  color: #94a3b8;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  max-width: 52ch;
+}
+
+.mb-lede a {
+  color: #f0d78c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mb-lede a:hover {
+  color: #fff;
+}
+
+.mb-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Facts */
+.mb-facts {
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0a0d12;
+}
+
+.mb-facts h2,
+.mb-bio h2,
+.mb-timeline h2,
+.mb-running h2,
+.mb-business h2,
+.mb-presence h2,
+.mb-faq h2 {
+  margin: 0.35rem 0 1.15rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  color: #fff;
+  line-height: 1.2;
+}
+
+.mb-facts-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.mb-facts-grid > div {
+  padding: 1.1rem 1.15rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mb-facts-grid dt {
+  margin: 0 0 0.3rem;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mb-facts-grid dd {
+  margin: 0;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* Bio */
+.mb-bio {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mb-bio-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.mb-prose p {
+  margin: 0 0 1.1rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.mb-prose strong {
+  color: #e2e8f0;
+}
+
+.mb-pillars {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mb-pillars article {
+  padding: 1.15rem 1.2rem;
+  border-radius: 16px;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+}
+
+.mb-pillars h3 {
+  margin: 0 0 0.4rem;
+  color: #f0d78c;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.mb-pillars p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Timeline */
+.mb-timeline {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(ellipse 50% 40% at 100% 0%, rgba(212, 175, 55, 0.06), transparent 55%),
+    #05070a;
+}
+
+.mb-timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.mb-timeline-list li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 1rem;
+  padding: 1.25rem 1.3rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mb-timeline-num {
+  font-family: var(--font-playfair), Georgia, serif;
+  color: #d4af37;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.mb-timeline-list h3 {
+  margin: 0 0 0.35rem;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.mb-timeline-list p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+/* Running */
+.mb-running {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0a0d12;
+}
+
+.mb-running-inner {
+  max-width: 780px;
+}
+
+.mb-running p {
+  margin: 0 0 1rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.mb-running strong {
+  color: #e2e8f0;
+}
+
+.mb-running a {
+  color: #d4af37;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mb-running a:hover {
+  color: #f0d78c;
+}
+
+/* Business */
+.mb-business {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mb-section-lede {
+  margin: 0 0 1.5rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+.mb-biz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.mb-biz-grid article {
+  padding: 1.45rem 1.35rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.mb-biz-grid h3 {
+  margin: 0 0 0.75rem;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.mb-biz-grid ul {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.mb-biz-grid li {
+  margin-bottom: 0.4rem;
+}
+
+.mb-biz-grid p {
+  margin: 0 0 1rem;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.mb-biz-grid strong {
+  color: #e2e8f0;
+}
+
+.mb-biz-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.mb-biz-links a {
+  color: #d4af37;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mb-biz-links a:hover {
+  color: #f0d78c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Presence */
+.mb-presence {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0a0d12;
+}
+
+.mb-presence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.mb-presence-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.2rem 1.15rem;
+  border-radius: 14px;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  text-decoration: none;
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+
+.mb-presence-card:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-2px);
+}
+
+.mb-presence-card strong {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.mb-presence-card span {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* FAQ */
+.mb-faq {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mb-faq-list {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 860px;
+}
+
+.mb-faq-item {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+
+.mb-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.15rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.mb-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.mb-faq-toggle {
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #d4af37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.mb-faq-item[open] .mb-faq-toggle {
+  transform: rotate(45deg);
+}
+
+.mb-faq-item[open] {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.mb-faq-item p {
+  margin: 0;
+  padding: 0 1.15rem 1.15rem;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* Closing */
+.mb-closing {
+  padding: 4.25rem 0 5rem;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(212, 175, 55, 0.1), transparent 55%),
+    #0a0d12;
+}
+
+.mb-closing-inner {
+  max-width: 720px;
+  text-align: center;
+}
+
+.mb-closing-inner h2 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+  color: #fff;
+}
+
+.mb-closing-inner > p {
+  margin: 0 auto 1.5rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 46ch;
+}
+
+.mb-closing-inner .mb-hero-actions {
+  justify-content: center;
+}
+
+.mb-closing-note {
+  margin: 1.35rem 0 0 !important;
+  font-size: 0.95rem !important;
+}
+
+.mb-closing-note a {
+  color: #d4af37;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mb-closing-note a:hover {
+  color: #f0d78c;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .mb-hero-grid,
+  .mb-bio-layout,
+  .mb-biz-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mb-photo {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .mb-hero-copy {
+    text-align: center;
+  }
+
+  .mb-lede {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mb-hero-actions {
+    justify-content: center;
+  }
+
+  .mb-facts-grid,
+  .mb-presence-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .mb-hero {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .mb-facts-grid,
+  .mb-presence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mb-timeline-list li {
+    grid-template-columns: 2.5rem 1fr;
+  }
+
+  .mb-bio,
+  .mb-timeline,
+  .mb-business,
+  .mb-faq {
+    padding: 3rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mb-presence-card,
+  .mb-faq-toggle {
+    transition: none;
+  }
+
+  .mb-presence-card:hover {
+    transform: none;
+  }
+}
