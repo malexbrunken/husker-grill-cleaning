@@ -245,7 +245,11 @@ export function HomeLander() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="husker-progress-section" aria-label="Our process">
+      <section
+        className="husker-progress-section"
+        id="process"
+        aria-label="Our process"
+      >
         <div className="husker-widget-container">
           <div className="husker-header">
             <h2>How It Works</h2>
@@ -285,7 +289,12 @@ export function HomeLander() {
                 {activeStep.images.map((img) => (
                   <div className="img-wrap" key={img.src}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={img.src} alt={img.alt} loading="lazy" />
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      loading="eager"
+                      decoding="async"
+                    />
                   </div>
                 ))}
               </div>
