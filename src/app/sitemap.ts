@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/join-our-team",
     "/grill-repairs",
     "/matthew-brunken-lincoln-ne",
+    "/organic-grill-cleaning-vs-deep-grill-cleaning",
     "/schedule-2",
   ];
 
@@ -23,7 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:
       route === ""
         ? 1
-        : route === "/schedule-2" || route === "/pricing" || route === "/grill-repairs"
+        : route === "/schedule-2" ||
+            route === "/pricing" ||
+            route === "/grill-repairs" ||
+            route === "/organic-grill-cleaning-vs-deep-grill-cleaning"
           ? 0.9
           : 0.7,
   }));
