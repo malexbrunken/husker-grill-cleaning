@@ -436,7 +436,7 @@ export function PricingPage() {
               Schedule Now
             </Link>
             <Link href="/see-our-work" className="btn-outline-light">
-              View 77 Real After Photos
+              View 100+ Real After Photos
             </Link>
           </div>
         </div>
