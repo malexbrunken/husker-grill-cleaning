@@ -15,6 +15,7 @@ import "@/styles/about.css";
 import "@/styles/grill-repairs.css";
 import "@/styles/matthew-brunken.css";
 import "@/styles/organic-vs-deep.css";
+import "@/styles/what-grill-cleaning-includes.css";
 
 const inter = Inter({
   variable: "--font-inter",
