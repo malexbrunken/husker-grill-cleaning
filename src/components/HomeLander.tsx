@@ -284,7 +284,8 @@ export function HomeLander() {
               <div className="image-grid">
                 {activeStep.images.map((img) => (
                   <div className="img-wrap" key={img.src}>
-                    <Image src={img.src} alt={img.alt} width={640} height={420} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img.src} alt={img.alt} loading="lazy" />
                   </div>
                 ))}
               </div>
@@ -571,12 +572,51 @@ export function HomeLander() {
       <div className="reviews-wrapper">
         <section className="reviews-section" aria-label="Customer reviews">
           <div className="reviews-container">
-            <iframe
-              src="https://client.housecallpro.com/reviews/widget/e006cb5a-a17e-4823-bf64-abfe25dc52fb"
-              loading="lazy"
-              title="Customer Reviews"
-              role="region"
-            />
+            <h2 className="reviews-heading">Customer Reviews</h2>
+            <p className="reviews-sub">
+              5-star service from homeowners across Omaha and Lincoln.
+            </p>
+            <div className="reviews-grid">
+              <article className="review-card">
+                <div className="review-stars" aria-label="5 out of 5 stars">
+                  ★★★★★
+                </div>
+                <p className="review-text">
+                  “Great service and work on my Weber propane grill.”
+                </p>
+                <div className="review-author">Brad Hedrick</div>
+              </article>
+              <article className="review-card">
+                <div className="review-stars" aria-label="5 out of 5 stars">
+                  ★★★★★
+                </div>
+                <p className="review-text">
+                  “Very meticulous in cleaning the grill. Every inch was inspected and
+                  cleaned very well… Couldn&apos;t ask for better communication and work.
+                  Excellent job!”
+                </p>
+                <div className="review-author">Teresa Dills</div>
+              </article>
+              <article className="review-card">
+                <div className="review-stars" aria-label="5 out of 5 stars">
+                  ★★★★★
+                </div>
+                <p className="review-text">
+                  “Brennan was great! Great service all around and did a great job on my
+                  grill. Very thorough… I would highly recommend this company.”
+                </p>
+                <div className="review-author">Chris Wraith</div>
+              </article>
+            </div>
+            <p className="reviews-more">
+              <a
+                href={site.social.nicejob}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See more reviews on NiceJob →
+              </a>
+            </p>
           </div>
         </section>
 

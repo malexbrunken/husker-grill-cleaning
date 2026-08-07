@@ -477,6 +477,12 @@
   }
 }
 
+@media (max-width: 900px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 640px) {
   .site-logo-text {
     display: none;
@@ -489,6 +495,14 @@
   .btn-schedule-header {
     padding: 0.75rem 0.95rem;
     font-size: 0.72rem;
+  }
+
+  .img-wrap,
+  .img-wrap img,
+  .img-wrap span,
+  .img-wrap > span {
+    min-height: 180px;
+    height: 180px !important;
   }
 }
 
