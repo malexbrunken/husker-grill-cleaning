@@ -7,7 +7,7 @@ const description =
   "Meet Matthew Brunken and Husker Grill Cleaning — AGSI founding cohort, CGCT & CAGST certified mobile grill cleaning and repair for Omaha and Lincoln, Nebraska. Full disassembly, gas safety, and clean + repair in one visit.";
 const path = "/about";
 const ogImage =
-  "https://res.cloudinary.com/f69kw8ao/image/upload/f_auto,q_auto:good,w_1200,c_fill,g_face/v1786133821/matthew_brunken_omaha_grill_cleaning_f6rhnt.jpg";
+  "https://res.cloudinary.com/f69kw8ao/image/upload/f_auto,q_auto:good,w_1200,c_fill,g_face,ar_4:5/v1786133821/matthew_brunken_omaha_grill_cleaning_f6rhnt.jpg";
 
 export const metadata: Metadata = {
   title: {
