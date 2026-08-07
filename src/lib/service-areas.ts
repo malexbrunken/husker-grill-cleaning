@@ -15,7 +15,7 @@ export const AREA_PRICING = {
   },
   repairWithClean: { amount: 50, label: "Repair labor with deep clean (+ parts)" },
   repairStandalone: { amount: 149, label: "Stand-alone repair visit (+ parts)" },
-  extraLabor: { amount: 35, label: "Extra repair labor per 15 minutes" },
+  extraLaborHourly: { amount: 120, label: "Repair labor after diagnosis (per hour)" },
 } as const;
 
 export type ServiceArea = {

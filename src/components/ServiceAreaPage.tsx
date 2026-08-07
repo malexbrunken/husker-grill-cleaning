@@ -62,7 +62,7 @@ export function buildAreaFaqs(area: ServiceArea) {
     },
     {
       q: `Can you repair my grill in ${city} as well as clean it?`,
-      a: `Yes for cleaning customers—if we clean it, we can repair it. Repair labor added to a scheduled deep clean is ${money(p.repairWithClean.amount)} + parts (freestanding and built-in). Stand-alone repair visits are ${money(p.repairStandalone.amount)} + parts when a technician is available. Extra labor is ${money(p.extraLabor.amount)} per 15 minutes.`,
+      a: `Yes for cleaning customers—if we clean it, we can repair it. Repair labor added to a scheduled deep clean is ${money(p.repairWithClean.amount)} + parts (freestanding and built-in). Stand-alone repair visits are ${money(p.repairStandalone.amount)} + parts when a technician is available (travel, diagnosis, and initial labor window). Additional labor after diagnosis is ${money(p.extraLaborHourly.amount)}/hour. No second trip charge when we return to install ordered parts—just parts and labor.`,
     },
     {
       q: `How long does grill cleaning take in ${city}?`,

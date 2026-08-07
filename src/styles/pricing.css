@@ -83,7 +83,8 @@
   margin-bottom: 2rem;
 }
 
-.price-feature-top h2 {
+.price-feature-top h2,
+.price-feature-top h3 {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   color: #fff;
@@ -303,7 +304,8 @@
   background: rgba(255, 255, 255, 0.025);
 }
 
-.plan-strip-main h2 {
+.plan-strip-main h2,
+.plan-strip-main h3 {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(1.5rem, 2.5vw, 1.9rem);
   color: #fff;
@@ -344,12 +346,15 @@
   flex-direction: column;
 }
 
-.plan-strip-perks h3 {
+.plan-strip-perks h3,
+.plan-strip-perks-title {
   margin: 0 0 0.75rem;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #d4af37;
+  font-weight: 700;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 .plan-strip-perks ul {
@@ -395,7 +400,8 @@
   margin-bottom: 2rem;
 }
 
-.pricing-secondary-header h2 {
+.pricing-secondary-header h2,
+.pricing-secondary-header h3 {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   color: #fff;
@@ -503,7 +509,8 @@
   gap: 2rem !important;
 }
 
-.pricing-repairs-card .repairs-header h2 {
+.pricing-repairs-card .repairs-header h2,
+.pricing-repairs-card .repairs-header h3 {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(1.75rem, 3vw, 2.2rem);
   color: #fff;
@@ -593,5 +600,55 @@
 
   .grill-type-card:hover {
     transform: none;
+  }
+}
+
+/* Homepage lander embed — same offerings as /pricing */
+.lander-pricing {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.lander-pricing .pricing-header {
+  padding: 0 5%;
+  margin-bottom: 28px;
+}
+
+.lander-pricing .pricing-tax-note {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin: 0.75rem auto 0;
+  max-width: 640px;
+}
+
+.lander-pricing .pricing-primary {
+  padding-top: 24px;
+}
+
+.lander-pricing .pricing-repairs {
+  padding-bottom: 32px;
+}
+
+.lander-pricing-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 5% 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lander-pricing-footer .btn-prestige,
+.lander-pricing-footer .btn-outline-light {
+  min-width: 200px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .lander-pricing-footer .btn-prestige,
+  .lander-pricing-footer .btn-outline-light {
+    width: 100%;
   }
 }

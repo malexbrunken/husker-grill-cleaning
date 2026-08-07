@@ -11,6 +11,7 @@ import {
   site,
 } from "@/lib/site";
 import { neighborhoodServiceAreaLinks } from "@/lib/service-areas";
+import { PricingOfferings } from "@/components/PricingOfferings";
 
 const processSteps = [
   {
@@ -308,274 +309,31 @@ export function HomeLander() {
         </div>
       </section>
 
-      {/* PRICING */}
+      {/* PRICING — shared offerings with /pricing (details + style) */}
       <div className="pricing-section-wrapper">
-        <section className="pricing-section" id="pricing" aria-labelledby="pricing-heading">
+        <section className="pricing-section lander-pricing" id="pricing" aria-labelledby="pricing-heading">
           <div className="pricing-header reveal">
             <h2 id="pricing-heading">Affordable Grill Cleaning in Omaha &amp; Lincoln</h2>
             <p className="pricing-subtitle">
-              Comprehensive grill service: deep cleaning, performance tuning, full
-              disassembly, and exterior polish.
+              Same transparent menu as our full pricing page—50-step deep cleans, care
+              plans, multi-grill discounts, and certified repair.
+            </p>
+            <p className="pricing-tax-note">
+              All prices exclude applicable Nebraska sales tax (Tax ID {site.taxId}).
             </p>
           </div>
 
-          <div className="pricing-grid">
-            <article className="p-card reveal">
-              <div className="seasonal-label">A La Carte</div>
-              <h3>One-Time Deep Clean</h3>
-              <div className="price-options">
-                <div className="price-option">
-                  <span className="price-label">Freestanding &amp; Pedestal</span>
-                  <span className="price-main">
-                    $299 <small>+ tax</small>
-                  </span>
-                </div>
-                <div className="price-option">
-                  <span className="price-label">Built-In Grill</span>
-                  <span className="price-main">
-                    $349 <small>+ tax</small>
-                  </span>
-                </div>
-              </div>
-              <div className="repair-note-dark">
-                <strong>Need repairs too?</strong>
-                Add repair labor for <strong>$50 + parts</strong> during a deep clean—same
-                rate for pedestal / cart / freestanding and built-in grills.
-                <br />
-                If we clean it, we can repair it. Repairs are reserved for cleaning
-                customers; when a tech is free we may also take Weber, Traeger, Green
-                Mountain, Yoder, Memphis, Bull, and Napoleon.
-              </div>
-              <ul>
-                <li>
-                  <strong>50-Step Deep Clean:</strong> Complete disassembly, hot bath soak,
-                  and pro-grade steam sanitization.
-                </li>
-                <li>
-                  <strong>Full Grate &amp; Burner Service:</strong> Every component removed,
-                  scrubbed, and restored to factory condition.
-                </li>
-                <li>
-                  <strong>Firebox Deep Clean:</strong> Caustic decarbonization, high-temp
-                  steam flush, and chemical neutralization.
-                </li>
-                <li>
-                  <strong>Valve &amp; Gas Safety:</strong> Orifice clearing, venturi
-                  calibration, and soapy-water leak detection.
-                </li>
-                <li>
-                  <strong>Lid &amp; Exterior Restoration:</strong> Interior scouring,
-                  thermometer cleaning, and stainless polish.
-                </li>
-                <li>
-                  <strong>Performance Tuning:</strong> Blue-flame verification, even heat
-                  distribution test, and component reinstallation.
-                </li>
-              </ul>
-              <Link href={site.bookingPath} className="btn-prestige">
-                Reserve Now
-              </Link>
-            </article>
-
-            <article className="p-card popular reveal" style={{ transitionDelay: "0.1s" }}>
-              <div className="seasonal-label gold">Care Plan</div>
-              <h3>Semi-Annual Care</h3>
-              <span className="price-main">
-                $599 <small>/ yr + tax</small>
-              </span>
-              <p className="price-note">
-                Priced as two deep cleans at standard rates—no membership discount. Plan
-                perks below.
-              </p>
-              <ul>
-                <li>
-                  <strong>2 Full 50-Step Restorations:</strong> Pre-season kickoff and
-                  post-season cleanup for year-round peak performance.
-                </li>
-                <li>
-                  <strong>Complete Component Service:</strong> Every visit includes hot
-                  bath, burner debridement, and flavorizer bar restoration.
-                </li>
-                <li>
-                  <strong>Firebox Deep Clean:</strong> Caustic decarbonization, steam
-                  sanitization, and metal weld fat flushing.
-                </li>
-                <li>
-                  <strong>Full Gas System Service:</strong> Valve orifices, venturi tubes,
-                  igniter calibration, and leak detection.
-                </li>
-                <li>
-                  <strong>Free Grate Cleaning:</strong> One complimentary grate cleaning
-                  anytime during your plan year (48 hours notice required).
-                </li>
-                <li>
-                  <strong>Priority Scheduling:</strong> Preferred booking windows when
-                  peak season fills up.
-                </li>
-              </ul>
-              <Link href={site.bookingPath} className="btn-prestige">
-                Select Plan
-              </Link>
-            </article>
-
-            <article className="p-card reveal" style={{ transitionDelay: "0.2s" }}>
-              <div className="seasonal-label">By Appointment</div>
-              <h3>Maintenance Cleaning</h3>
-              <span className="price-main">
-                $199 <small>/ service + tax</small>
-              </span>
-              <p className="price-note">
-                Available as a <strong>second cleaning of the year</strong> when you only
-                need a touch-up—not a full deep clean. Not available for multi-tenant /
-                apartment community grills.
-              </p>
-              <ul>
-                <li>
-                  <strong>Light Grate &amp; Flavorizer Bar Cleaning:</strong> Quick cleanup
-                  of cooking surfaces.
-                </li>
-                <li>
-                  <strong>Firebox Vacuuming:</strong> Removal of debris and buildup.
-                </li>
-                <li>
-                  <strong>Full Drip Tray &amp; Grease Tray Cleaning:</strong> Complete
-                  cleaning of collection trays.
-                </li>
-                <li>
-                  <strong>Exterior Degreasing:</strong> Hood, face plate, doors, and side
-                  shelves.
-                </li>
-                <li>
-                  <strong>Quick Polish:</strong> Final touch-up for a clean appearance.
-                </li>
-              </ul>
-              <Link href={site.bookingPath} className="btn-prestige">
-                Book Maintenance
-              </Link>
-            </article>
-
-            <article className="p-card reveal" style={{ transitionDelay: "0.15s" }}>
-              <div className="seasonal-label">Multi-Grill</div>
-              <h3>Multi-Grill Discount</h3>
-              <span className="price-main">
-                $50 <small>off each additional grill</small>
-              </span>
-              <ul>
-                <li>
-                  <strong>First Grill Full Price:</strong> Every additional grill on the
-                  same visit is $50 off.
-                </li>
-                <li>
-                  <strong>Same Visit:</strong> All units cleaned in a single appointment.
-                </li>
-                <li>
-                  <strong>Example:</strong> Two freestanding deep cleans = $299 + $249.
-                </li>
-              </ul>
-              <Link href={site.bookingPath} className="btn-prestige">
-                Schedule Multi-Grill
-              </Link>
-            </article>
+          <div className="lander-pricing-body reveal">
+            <PricingOfferings sectionHeading="h3" />
           </div>
 
-          <div className="repairs-card-container reveal">
-            <div className="repairs-card">
-              <div className="repairs-header">
-                <span className="repairs-badge">Certified Repair</span>
-                <h3>
-                  Grill Repair for Cleaning Customers
-                </h3>
-                <p>
-                  <strong>If we clean it, we can repair it.</strong> Repairs are reserved
-                  for our cleaning customers. When a technician is free, we may also take
-                  stand-alone jobs on Weber, Traeger, Green Mountain, Yoder, Memphis, Bull,
-                  and Napoleon.
-                </p>
-              </div>
-              <div className="repairs-features">
-                <div className="repair-feature">
-                  <div className="repair-icon" aria-hidden="true">
-                    🔥
-                  </div>
-                  <div>
-                    <h4>Best Value: Clean + Repair</h4>
-                    <span className="prominent-price">
-                      <span>$50+</span> Repair Add-On
-                    </span>
-                    <p>
-                      Add repair labor to a scheduled deep clean for{" "}
-                      <strong>$50 + parts</strong>—same add-on for freestanding and
-                      built-in grills. Parts are additional.
-                    </p>
-                    <span className="fine-print">
-                      Reserved for cleaning customers. When a tech is free: Weber, Traeger,
-                      Green Mountain, Yoder, Memphis, Bull, and Napoleon.
-                    </span>
-                  </div>
-                </div>
-                <div className="repair-feature">
-                  <div className="repair-icon" aria-hidden="true">
-                    🔧
-                  </div>
-                  <div>
-                    <h4>Stand-Alone Weber / Traeger</h4>
-                    <span className="prominent-price">
-                      <span>$149</span> Service Visit
-                    </span>
-                    <p>
-                      Includes travel, diagnosis, and up to 30 minutes of straightforward
-                      on-site repair labor. Parts are additional.
-                    </p>
-                    <span className="fine-print">
-                      Additional labor billed at $35 per 15 minutes when needed.
-                    </span>
-                  </div>
-                </div>
-                <div className="repair-feature">
-                  <div className="repair-icon" aria-hidden="true">
-                    ⚙️
-                  </div>
-                  <div>
-                    <h4>Full Weber &amp; Traeger Service</h4>
-                    <p>
-                      We repair Weber and Traeger igniters, burners, regulators, augers,
-                      fans, hot rods, RTD probes, wiring, control boards, controllers, and
-                      digital displays.
-                    </p>
-                  </div>
-                </div>
-                <div className="repair-feature">
-                  <div className="repair-icon" aria-hidden="true">
-                    📦
-                  </div>
-                  <div>
-                    <h4>Parts &amp; Return Visits</h4>
-                    <span className="prominent-price">
-                      <span>$99+</span> Return Install
-                    </span>
-                    <p>
-                      If a non-stock part must be ordered, return installation starts at
-                      $99 plus parts. Non-Weber and non-Traeger repairs are limited or
-                      quoted before work begins.
-                    </p>
-                    <span className="fine-print">
-                      Digital controllers, displays, circuit boards, and app/Wi-Fi
-                      troubleshooting are standard service only for Weber and Traeger.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="info-box-dark reveal">
-            <h3>Not Sure Why Your Grill Won’t Light?</h3>
-            <p>
-              Book a <strong>deep clean</strong> when the grill is dirty, slow to heat, or
-              unreliable. Many ignition, low-flame, and heat problems are caused or
-              worsened by grease, blocked burners, dirty firepots, and airflow issues. We
-              diagnose while we clean and give you a clear quote before ordering parts.
-            </p>
+          <div className="lander-pricing-footer reveal">
+            <Link href="/pricing" className="btn-outline-light">
+              Full pricing details
+            </Link>
+            <Link href={site.bookingPath} className="btn-prestige">
+              Schedule Now
+            </Link>
           </div>
         </section>
       </div>
