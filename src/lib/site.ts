@@ -19,6 +19,9 @@ export const site = {
     nicejob: "https://nicejob.com/husker-grill-cleaning",
   },
   bookingPath: "/schedule",
+  /** Housecall Pro online booking (opens in new tab). */
+  bookingUrl:
+    "https://book.housecallpro.com/book/Husker-Grill-Cleaning/39dfd680a1014e25a85a1f719cf79526?v2=true",
   geo: { latitude: 41.2565, longitude: -95.9345 },
   taxId: "15883655",
 } as const;
