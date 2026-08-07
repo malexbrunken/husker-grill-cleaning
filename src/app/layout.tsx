@@ -9,6 +9,7 @@ import "@/styles/lander.css";
 import "@/styles/chrome.css";
 import "@/styles/see-our-work.css";
 import "@/styles/pricing.css";
+import "@/styles/multi-tenant.css";
 
 const inter = Inter({
   variable: "--font-inter",

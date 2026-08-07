@@ -1,22 +1,12 @@
-import {
-  buildPageMetadata,
-  SimplePage,
-} from "@/components/SimplePage";
+import { buildPageMetadata } from "@/components/SimplePage";
+import { MultiTenantPage } from "@/components/MultiTenantPage";
 
 export const metadata = buildPageMetadata(
-  "Multi-Tenant Grill Cleaning",
-  "Multi-tenant apartment and townhome grill cleaning for property managers and HOAs in Omaha and Lincoln, Nebraska.",
+  "Multi-Tenant Apartment Townhome Grill Cleaning",
+  "Multi-tenant apartment, townhome, and HOA built-in grill cleaning for property managers in Omaha and Lincoln, Nebraska. $349 + tax per built-in grill with free repair estimate.",
   "/multi-tenant-apartment-townhome-grill-cleaning",
 );
 
-export default function MultiTenantPage() {
-  return (
-    <SimplePage
-      title="Multi-Tenant Grill Cleaning"
-      description="Bulk scheduling and multi-grill discounts for apartments, townhomes, HOAs, and property managers."
-      path="/multi-tenant-apartment-townhome-grill-cleaning"
-      heading="Multi-Tenant & Property Manager Service"
-      body="Reliable grill cleaning programs for apartments, townhomes, HOAs, and managed communities."
-    />
-  );
+export default function MultiTenantRoute() {
+  return <MultiTenantPage />;
 }
