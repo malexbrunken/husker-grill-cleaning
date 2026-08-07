@@ -567,6 +567,10 @@
             filter: grayscale(0%) brightness(1);
             opacity: 1;
         }
+
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+    .marquee:hover .marquee-content { animation-play-state: paused; }
+
     @media (prefers-reduced-motion: reduce) {
         .marquee-content { animation: none; overflow-x: auto; scrollbar-width: thin; }
         .marquee-content::-webkit-scrollbar { height: 4px; }
