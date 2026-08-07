@@ -1,22 +1,12 @@
-import {
-  buildPageMetadata,
-  SimplePage,
-} from "@/components/SimplePage";
+import { buildPageMetadata } from "@/components/SimplePage";
+import { PricingPage } from "@/components/PricingPage";
 
 export const metadata = buildPageMetadata(
   "Pricing",
-  "Husker Grill Cleaning pricing for one-time deep cleans, semi-annual care, maintenance cleaning, and Weber/Traeger repair in Omaha and Lincoln.",
+  "Husker Grill Cleaning pricing for Omaha & Lincoln: one-time deep cleans ($299 freestanding / $349 built-in), semi-annual care, maintenance, multi-grill discounts, and certified repair.",
   "/pricing",
 );
 
-export default function PricingPage() {
-  return (
-    <SimplePage
-      title="Pricing"
-      description="Full pricing details live on the homepage pricing section. This route is preserved for SEO and existing backlinks."
-      path="/pricing"
-      heading="Grill Cleaning Pricing"
-      body="Transparent pricing for deep cleans, membership care, maintenance, and repair add-ons."
-    />
-  );
+export default function PricingRoute() {
+  return <PricingPage />;
 }

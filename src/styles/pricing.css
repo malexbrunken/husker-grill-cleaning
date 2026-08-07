@@ -1,0 +1,556 @@
+/* Pricing page — onyx + gold brand system (matches lander / chrome) */
+
+.pricing-page {
+  background: #05070a;
+  color: #e2e8f0;
+}
+
+.pricing-page-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.pricing-page-hero {
+  padding: 96px 0 56px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212, 175, 55, 0.12), transparent 55%),
+    linear-gradient(180deg, #0a0f18 0%, #05070a 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  text-align: center;
+}
+
+.pricing-page-hero h1 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  color: #fff;
+  margin: 0.75rem 0 1rem;
+  line-height: 1.15;
+}
+
+.pricing-page-lede {
+  max-width: 720px;
+  margin: 0 auto 0.75rem;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.pricing-page-tax-note {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin: 0 auto 1.75rem;
+}
+
+.pricing-page-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.pricing-page-hero-actions .btn-prestige,
+.pricing-page-hero-actions .btn-outline-light {
+  min-width: 200px;
+}
+
+/* Primary deep clean */
+.pricing-primary {
+  padding: 72px 0 40px;
+}
+
+.price-feature-card {
+  background: var(--glass, rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 48px);
+  background-image: linear-gradient(
+    180deg,
+    rgba(212, 175, 55, 0.07) 0%,
+    rgba(5, 7, 10, 0.4) 40%,
+    rgba(5, 7, 10, 0.9) 100%
+  );
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.price-feature-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.price-feature-top h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  color: #fff;
+  margin: 0.85rem 0 0.75rem;
+}
+
+.price-feature-intro {
+  max-width: 56ch;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.price-feature-cta-top {
+  flex-shrink: 0;
+}
+
+/* Grill type cards with photos */
+.grill-type-pricing {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.grill-type-card {
+  background: rgba(5, 7, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.grill-type-card:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  transform: translateY(-3px);
+}
+
+.grill-type-media {
+  aspect-ratio: 4 / 3;
+  background: #1a1f2a;
+  overflow: hidden;
+}
+
+.grill-type-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.grill-type-body {
+  padding: 1.25rem 1.35rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.grill-type-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4af37;
+}
+
+.grill-type-body h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #fff;
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.grill-type-help {
+  margin: 0.25rem 0 0.5rem;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.grill-type-body .price-main {
+  margin: 0.5rem 0 0;
+}
+
+/* Repair note inside feature card */
+.price-feature-card .repair-note-dark {
+  margin: 0 0 1.75rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #cbd5e1;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.price-feature-card .repair-note-dark strong {
+  color: #fff;
+}
+
+.repair-note-fine {
+  display: block;
+  margin-top: 0.65rem;
+  font-size: 0.88rem;
+  color: #94a3b8;
+}
+
+.price-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1.5rem;
+}
+
+.price-feature-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.price-feature-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 12px;
+  height: 2px;
+  background: linear-gradient(90deg, #d4af37, #f0d78c);
+}
+
+.price-feature-list strong {
+  color: #fff;
+}
+
+.price-feature-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: center;
+}
+
+.price-feature-footer .btn-prestige {
+  min-width: 200px;
+}
+
+.price-feature-footer .muted-copy {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  max-width: 40ch;
+}
+
+/* Semi-annual plan strip — supporting, not equal to deep clean */
+.pricing-plan-strip {
+  padding: 24px 0 48px;
+}
+
+.plan-strip {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.plan-strip-main h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+  color: #fff;
+  margin: 0.75rem 0 0.75rem;
+}
+
+.plan-strip-main p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.plan-strip-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.5rem !important;
+}
+
+.price-main.inline {
+  display: inline-block;
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.plan-strip-equiv {
+  font-size: 0.88rem;
+  color: #94a3b8;
+}
+
+.plan-strip-perks {
+  padding: 1.25rem 1.35rem;
+  border-radius: 14px;
+  background: rgba(5, 7, 10, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-strip-perks h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d4af37;
+}
+
+.plan-strip-perks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+
+.plan-strip-perks li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.plan-strip-perks li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #d4af37;
+  font-weight: 700;
+}
+
+.plan-strip-perks strong {
+  color: #fff;
+}
+
+.plan-strip-perks .btn-outline-light {
+  align-self: flex-start;
+  text-align: center;
+}
+
+/* Secondary compact cards */
+.pricing-secondary {
+  padding: 32px 0 64px;
+}
+
+.pricing-secondary-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pricing-secondary-header h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: #fff;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.pricing-secondary-header p {
+  max-width: 540px;
+  margin: 0 auto;
+  color: #94a3b8;
+}
+
+.secondary-price-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.secondary-price-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease;
+}
+
+.secondary-price-card:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.secondary-price-card h3 {
+  margin: 0.85rem 0 0.35rem;
+  font-size: 1.35rem;
+  color: #fff;
+}
+
+.price-main.compact {
+  font-size: 2rem;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.secondary-price-card .price-note {
+  margin: 0 0 1rem;
+}
+
+.secondary-price-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+
+.secondary-price-card li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.55rem;
+  color: #94a3b8;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.secondary-price-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 2px;
+  background: rgba(212, 175, 55, 0.7);
+}
+
+.secondary-price-card .btn-outline-light {
+  text-align: center;
+}
+
+.secondary-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.text-link-gold {
+  color: #d4af37;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.text-link-gold:hover {
+  text-decoration: underline;
+}
+
+/* Repairs block */
+.pricing-repairs {
+  padding: 8px 0 72px;
+}
+
+.pricing-repairs-card {
+  /* reuses .repairs-card from lander.css when present; reinforce layout */
+  grid-template-columns: 1fr !important;
+  gap: 2rem !important;
+}
+
+.pricing-repairs-card .repairs-header h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.75rem, 3vw, 2.2rem);
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pricing-repairs-card .repair-feature h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pricing-repairs-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pricing-repairs-cta .btn-prestige,
+.pricing-repairs-cta .btn-outline-light {
+  min-width: 200px;
+  text-align: center;
+}
+
+/* Closing CTA */
+.pricing-closing {
+  padding: 72px 0 100px;
+  background: linear-gradient(180deg, #05070a 0%, #0a0f18 50%, #05070a 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  text-align: center;
+}
+
+.pricing-closing-inner h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+  color: #fff;
+  margin: 0 0 0.85rem;
+}
+
+.pricing-closing-inner > p {
+  max-width: 560px;
+  margin: 0 auto 1.75rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grill-type-pricing,
+  .plan-strip,
+  .secondary-price-grid,
+  .price-feature-list {
+    grid-template-columns: 1fr;
+  }
+
+  .price-feature-cta-top {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pricing-page-hero {
+    padding: 72px 0 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-page-hero-actions .btn-prestige,
+  .pricing-page-hero-actions .btn-outline-light,
+  .pricing-repairs-cta .btn-prestige,
+  .pricing-repairs-cta .btn-outline-light {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grill-type-card,
+  .secondary-price-card {
+    transition: none;
+  }
+
+  .grill-type-card:hover {
+    transform: none;
+  }
+}

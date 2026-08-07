@@ -337,11 +337,12 @@ export function HomeLander() {
                 </div>
               </div>
               <div className="repair-note-dark">
-                <strong>Need Weber or Traeger repairs too?</strong>
-                Add same-visit repair labor to a deep clean: <strong>$69 + parts</strong>
+                <strong>Need repairs too?</strong>
+                Pedestal / cart / freestanding: add <strong>$50 + parts</strong> during a
+                deep clean. Built-in repair packages from <strong>$399 + parts</strong>.
                 <br />
-                Great for igniters, regulators, burners, hot rods, augers, fans, control
-                boards, and “grill will not light” issues.
+                We repair current cleaning customers, or these brands: Weber, Traeger,
+                Green Mountain, Yoder, Memphis, Bull, and Napoleon.
               </div>
               <ul>
                 <li>
@@ -375,11 +376,15 @@ export function HomeLander() {
             </article>
 
             <article className="p-card popular reveal" style={{ transitionDelay: "0.1s" }}>
-              <div className="seasonal-label gold">Most Popular</div>
+              <div className="seasonal-label gold">Care Plan</div>
               <h3>Semi-Annual Care</h3>
               <span className="price-main">
                 $599 <small>/ yr + tax</small>
               </span>
+              <p className="price-note">
+                Priced as two deep cleans at standard rates—no membership discount. Plan
+                perks below.
+              </p>
               <ul>
                 <li>
                   <strong>2 Full 50-Step Restorations:</strong> Pre-season kickoff and
@@ -398,12 +403,12 @@ export function HomeLander() {
                   igniter calibration, and leak detection.
                 </li>
                 <li>
-                  <strong>Exterior Polish &amp; Protection:</strong> Stainless steel
-                  restoration, lid interior, and drip tray detailing.
-                </li>
-                <li>
                   <strong>Free Grate Cleaning:</strong> One complimentary grate cleaning
                   anytime during your plan year (48 hours notice required).
+                </li>
+                <li>
+                  <strong>Priority Scheduling:</strong> Preferred booking windows when
+                  peak season fills up.
                 </li>
               </ul>
               <Link href={site.bookingPath} className="btn-prestige">
@@ -497,16 +502,16 @@ export function HomeLander() {
                   <div>
                     <h4>Best Value: Clean + Repair</h4>
                     <span className="prominent-price">
-                      <span>$69+</span> Repair Add-On
+                      <span>$50+</span> Freestanding Add-On
                     </span>
                     <p>
-                      Add repair labor to a scheduled deep clean for Weber and Traeger
-                      issues. Parts are additional.
+                      Add repair labor to a scheduled deep clean on pedestal, cart, or
+                      freestanding grills. Parts are additional. Built-in packages from
+                      $399 + parts.
                     </p>
                     <span className="fine-print">
-                      Ideal when the grill will not light, will not get hot, flares up, or
-                      needs a regulator, igniter, burner, hot rod, auger, fan, controller,
-                      or display.
+                      Current cleaning customers, or Weber, Traeger, Green Mountain,
+                      Yoder, Memphis, Bull, and Napoleon.
                     </span>
                   </div>
                 </div>

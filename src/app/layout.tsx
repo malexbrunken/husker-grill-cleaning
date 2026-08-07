@@ -8,6 +8,7 @@ import "./globals.css";
 import "@/styles/lander.css";
 import "@/styles/chrome.css";
 import "@/styles/see-our-work.css";
+import "@/styles/pricing.css";
 
 const inter = Inter({
   variable: "--font-inter",
