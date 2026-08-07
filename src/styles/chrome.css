@@ -1,0 +1,581 @@
+/* Site chrome — header/footer + a11y helpers layered on the lander design system */
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 1000;
+  background: #d4af37;
+  color: #05070a;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(5, 7, 10, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #fff;
+  min-width: 0;
+}
+
+.site-logo-img {
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: #111;
+}
+
+.site-logo-text {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+.site-logo-text span {
+  font-size: 0.78rem;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4af37;
+}
+
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.desktop-nav a,
+.nav-dropdown-trigger {
+  color: #e8edf2;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem 0;
+}
+
+.desktop-nav a:hover,
+.nav-dropdown-trigger:hover,
+.desktop-nav a:focus-visible,
+.nav-dropdown-trigger:focus-visible {
+  color: #d4af37;
+  outline: none;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-dropdown-trigger .chevron {
+  font-size: 0.7rem;
+  color: #d4af37;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  left: 0;
+  min-width: 240px;
+  background: #0c1018;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.nav-dropdown-menu a {
+  padding: 0.7rem 0.85rem;
+  border-radius: 8px;
+  color: #e8edf2;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+  background: rgba(212, 175, 55, 0.12);
+  color: #f1d57e;
+  outline: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-phone {
+  display: none;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.header-phone:hover,
+.header-phone:focus-visible {
+  color: #d4af37;
+  outline: none;
+}
+
+.btn-schedule-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #d4af37 0%, #f1d57e 50%, #b8860b 100%);
+  color: #05070a !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  border: none;
+  white-space: nowrap;
+}
+
+.btn-schedule-header:hover,
+.btn-schedule-header:focus-visible {
+  filter: brightness(1.08);
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.mobile-menu-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #f5f7fa;
+}
+
+.mobile-nav {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #05070a;
+  padding: 1rem 1.25rem 1.5rem;
+}
+
+.mobile-nav nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mobile-nav a {
+  color: #e8edf2;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.85rem 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 1.05rem;
+}
+
+.mobile-nav a:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+.mobile-nav .mobile-cta {
+  margin-top: 0.75rem;
+  text-align: center;
+  border: none;
+}
+
+.site-footer {
+  background: #030507;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  padding: 3.5rem 5% 2rem;
+}
+
+.site-footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 2rem;
+}
+
+.footer-heading {
+  font-family: var(--font-playfair), Georgia, serif;
+  color: #fff;
+  font-size: 1.15rem;
+  margin: 0 0 0.85rem;
+  font-weight: 700;
+}
+
+.footer-heading a {
+  color: #d4af37;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.footer-heading a:hover,
+.footer-heading a:focus-visible,
+.footer-copy a:hover,
+.footer-copy a:focus-visible,
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: #f1d57e;
+  outline: none;
+  text-decoration: underline;
+}
+
+.footer-copy {
+  margin: 0 0 0.55rem;
+  line-height: 1.65;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.footer-copy a,
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.site-footer-bottom {
+  max-width: 1200px;
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.site-footer-bottom p {
+  margin: 0.35rem 0;
+}
+
+.site-footer-bottom strong {
+  color: #cbd5e1;
+}
+
+/* Extra lander helpers not always present in legacy CSS */
+.home-lander {
+  background: #05070a;
+  color: #fff;
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.hero-btn {
+  display: inline-flex !important;
+  width: auto !important;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 18px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 100px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.btn-outline-light:hover,
+.btn-outline-light:focus-visible {
+  border-color: #d4af37;
+  color: #d4af37;
+  outline: none;
+}
+
+.showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price-note {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  letter-spacing: 8px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.eyebrow.muted {
+  color: #64748b;
+}
+
+.eyebrow.gold {
+  color: #d4af37;
+}
+
+.closing-note {
+  margin-top: 40px;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.faq-question {
+  list-style: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+.btn-prestige:focus-visible,
+.btn-prestige-sm:focus-visible,
+.btn-schedule:focus-visible,
+.quick-action-btn:focus-visible,
+.husker-tab:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Larger tap targets for 55+ users */
+.quick-action-btn,
+.btn-prestige,
+.btn-schedule,
+.btn-prestige-sm,
+.husker-tab,
+.faq-question {
+  min-height: 48px;
+}
+
+.neighborhood-tag,
+.standard-box,
+.pro-card,
+.p-card,
+.comparison-card,
+.location-card {
+  font-size: 1rem;
+}
+
+.service-standards h3,
+.standard-box h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.cost-comparison-text h3 {
+  margin: 0 0 0.5rem;
+  color: #fff;
+  font-size: 1.35rem;
+}
+
+@media (min-width: 960px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+  }
+
+  .header-phone {
+    display: inline;
+  }
+
+  .site-logo-text {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-logo-text {
+    display: none;
+  }
+
+  .site-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-schedule-header {
+    padding: 0.75rem 0.95rem;
+    font-size: 0.72rem;
+  }
+}
+
+.simple-page {
+  background: radial-gradient(circle at top, #111827 0%, #05070a 65%);
+  color: #fff;
+  padding: 5rem 5% 6rem;
+  min-height: 60vh;
+}
+
+.simple-page-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.simple-page h1 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.simple-page .lede {
+  color: #cbd5e1;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  margin: 0 0 1rem;
+  max-width: 42rem;
+}
+
+.simple-page .muted-copy {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.simple-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.path-note {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.path-note code {
+  color: #d4af37;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.schedule-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.schedule-card {
+  display: block;
+  text-decoration: none;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 16px;
+  padding: 1.4rem 1.25rem;
+  color: #fff;
+  transition: 0.25s ease;
+}
+
+.schedule-card:hover,
+.schedule-card:focus-visible {
+  border-color: #d4af37;
+  transform: translateY(-3px);
+  outline: none;
+}
+
+.schedule-label {
+  display: block;
+  color: #d4af37;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+}
+
+.schedule-card strong {
+  font-size: 1.15rem;
+}
