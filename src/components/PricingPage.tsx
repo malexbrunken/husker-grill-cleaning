@@ -187,10 +187,8 @@ export function PricingPage() {
             <div className="repair-note-dark">
               <strong>Need repairs during your deep clean?</strong>
               <br />
-              Pedestal / cart / freestanding: add <strong>$50 + parts</strong>
-              <br />
-              Built-in repair packages start at <strong>$399 + parts</strong> (quoted on
-              site after diagnosis).
+              Add repair labor for <strong>$50 + parts</strong>—same rate for pedestal /
+              cart / freestanding <em>and</em> built-in grills when done with your clean.
               <span className="repair-note-fine">
                 If we clean it, we can repair it. Repairs are reserved for our cleaning
                 customers. When a technician is free, we may also take stand-alone repair
@@ -370,12 +368,12 @@ export function PricingPage() {
                 <div>
                   <h3>Best value: clean + repair</h3>
                   <span className="prominent-price">
-                    <span>$50+</span> freestanding add-on
+                    <span>$50+</span> repair add-on
                   </span>
                   <p>
-                    Add repair labor to a scheduled deep clean on pedestal, cart, or
-                    freestanding grills. Parts extra. Built-in repair packages from $399 +
-                    parts.
+                    Add repair labor to a scheduled deep clean for{" "}
+                    <strong>$50 + parts</strong>—same add-on for freestanding and built-in
+                    grills. Parts are extra.
                   </p>
                 </div>
               </div>

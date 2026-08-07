@@ -338,11 +338,12 @@ export function HomeLander() {
               </div>
               <div className="repair-note-dark">
                 <strong>Need repairs too?</strong>
-                Pedestal / cart / freestanding: add <strong>$50 + parts</strong> during a
-                deep clean. Built-in repair packages from <strong>$399 + parts</strong>.
+                Add repair labor for <strong>$50 + parts</strong> during a deep clean—same
+                rate for pedestal / cart / freestanding and built-in grills.
                 <br />
-                We repair current cleaning customers, or these brands: Weber, Traeger,
-                Green Mountain, Yoder, Memphis, Bull, and Napoleon.
+                If we clean it, we can repair it. Repairs are reserved for cleaning
+                customers; when a tech is free we may also take Weber, Traeger, Green
+                Mountain, Yoder, Memphis, Bull, and Napoleon.
               </div>
               <ul>
                 <li>
@@ -498,16 +499,16 @@ export function HomeLander() {
                   <div>
                     <h4>Best Value: Clean + Repair</h4>
                     <span className="prominent-price">
-                      <span>$50+</span> Freestanding Add-On
+                      <span>$50+</span> Repair Add-On
                     </span>
                     <p>
-                      Add repair labor to a scheduled deep clean on pedestal, cart, or
-                      freestanding grills. Parts are additional. Built-in packages from
-                      $399 + parts.
+                      Add repair labor to a scheduled deep clean for{" "}
+                      <strong>$50 + parts</strong>—same add-on for freestanding and
+                      built-in grills. Parts are additional.
                     </p>
                     <span className="fine-print">
-                      Current cleaning customers, or Weber, Traeger, Green Mountain,
-                      Yoder, Memphis, Bull, and Napoleon.
+                      Reserved for cleaning customers. When a tech is free: Weber, Traeger,
+                      Green Mountain, Yoder, Memphis, Bull, and Napoleon.
                     </span>
                   </div>
                 </div>
