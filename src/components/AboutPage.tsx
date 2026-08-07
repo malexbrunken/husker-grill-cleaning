@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
@@ -109,13 +108,14 @@ export function AboutPage() {
       <section className="about-founder" aria-labelledby="about-founder-title">
         <div className="about-inner about-founder-grid">
           <figure className="about-founder-photo">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/team.webp"
               alt="Matthew Brunken, founder of Husker Grill Cleaning and AGSI-certified grill technician in Omaha and Lincoln, Nebraska"
               width={1024}
               height={1008}
-              priority
-              sizes="(max-width: 800px) 90vw, 420px"
+              loading="eager"
+              decoding="async"
             />
             <figcaption>AGSI Founding Cohort</figcaption>
           </figure>
@@ -182,12 +182,14 @@ export function AboutPage() {
       <section className="about-agsi" aria-labelledby="about-agsi-title">
         <div className="about-inner about-agsi-inner">
           <div className="about-agsi-badge">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/agsi-cert.webp"
               alt="American Grill Service Institute certification badge"
               width={220}
               height={220}
-              sizes="160px"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className="about-agsi-copy">
