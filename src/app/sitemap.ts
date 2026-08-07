@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/schedule",
     "/professional-grill-cleaning-repair-services-in-omaha-nebraska",
     "/elkhorn-nebraska-grill-cleaning",
+    "/valley-nebraska-grill-cleaning",
   ];
 
   const lastModified = new Date();
@@ -33,7 +34,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             route === "/organic-grill-cleaning-vs-deep-grill-cleaning" ||
             route === "/what-does-grill-cleaning-include" ||
             route === "/professional-grill-cleaning-repair-services-in-omaha-nebraska" ||
-            route === "/elkhorn-nebraska-grill-cleaning"
+            route === "/elkhorn-nebraska-grill-cleaning" ||
+            route === "/valley-nebraska-grill-cleaning"
           ? 0.9
           : 0.7,
   }));

@@ -73,6 +73,38 @@ export const serviceAreas: readonly ServiceArea[] = [
       "mobile grill cleaning near Elkhorn",
     ],
   },
+  {
+    slug: "valley-nebraska-grill-cleaning",
+    city: "Valley",
+    region: "NE",
+    regionName: "Nebraska",
+    metro: "Omaha",
+    postalCode: "68064",
+    geo: { latitude: 41.3128, longitude: -96.3464 },
+    nearby: [
+      "Lake Allure",
+      "Bluewater",
+      "Sandpit Lake",
+      "Elkhorn",
+      "Waterloo",
+      "Yutan",
+      "Leshara",
+      "Platte River corridor",
+      "West Dodge / Hwy 275 corridor",
+    ],
+    localBlurb:
+      "Valley sits on the west edge of the Omaha metro—acreage homes, lake communities, and river-corridor properties where freestanding smokers, pellet grills, and outdoor kitchens work hard all season. We bring the full 50-step deep clean and same-visit repair options on-site so you don’t haul a grill into town.",
+    keywordExtras: [
+      "grill cleaning Valley NE",
+      "how much is grill cleaning in Valley Nebraska",
+      "Valley Nebraska grill cleaning cost",
+      "mobile grill cleaning Valley NE",
+      "built-in grill cleaning Valley",
+      "Weber grill cleaning Valley NE",
+      "Traeger cleaning Valley Nebraska",
+      "lake house grill cleaning Valley NE",
+    ],
+  },
 ] as const;
 
 export function getServiceArea(slug: string): ServiceArea | undefined {
@@ -95,4 +127,24 @@ export function serviceAreaDescription(area: ServiceArea): string {
 /** Map neighborhood display names → service-area slugs for internal links. */
 export const neighborhoodServiceAreaLinks: Record<string, string> = {
   Elkhorn: "/elkhorn-nebraska-grill-cleaning",
+  Valley: "/valley-nebraska-grill-cleaning",
+  "Valley, NE": "/valley-nebraska-grill-cleaning",
 };
+
+/** Resolve a nearby/tag label to a service-area path when one exists. */
+export function serviceAreaHrefForLabel(label: string): string | undefined {
+  const direct = neighborhoodServiceAreaLinks[label];
+  if (direct) return direct;
+
+  const normalized = label.trim().toLowerCase();
+  const match = serviceAreas.find((a) => {
+    const city = a.city.toLowerCase();
+    return (
+      normalized === city ||
+      normalized === `${city}, ne` ||
+      normalized === `${city}, ${a.region.toLowerCase()}` ||
+      normalized === `${city} nebraska`
+    );
+  });
+  return match ? serviceAreaPath(match) : undefined;
+}

@@ -3,6 +3,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import {
   AREA_PRICING,
   type ServiceArea,
+  serviceAreaHrefForLabel,
   serviceAreaPath,
 } from "@/lib/service-areas";
 import { site } from "@/lib/site";
@@ -335,11 +336,18 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
           </p>
           <div className="sa-tags">
             <span className="sa-tag sa-tag--active">{area.city}</span>
-            {area.nearby.map((n) => (
-              <span key={n} className="sa-tag">
-                {n}
-              </span>
-            ))}
+            {area.nearby.map((n) => {
+              const href = serviceAreaHrefForLabel(n);
+              return href ? (
+                <Link key={n} href={href} className="sa-tag sa-tag--link">
+                  {n}
+                </Link>
+              ) : (
+                <span key={n} className="sa-tag">
+                  {n}
+                </span>
+              );
+            })}
           </div>
           {area.metro === "Omaha" ? (
             <p className="sa-nearby-note">
