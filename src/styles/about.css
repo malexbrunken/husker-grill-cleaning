@@ -105,8 +105,10 @@
 .about-founder-photo img {
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 5;
   display: block;
   object-fit: cover;
+  object-position: center top;
 }
 
 .about-founder-photo figcaption {

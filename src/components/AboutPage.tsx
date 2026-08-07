@@ -1,5 +1,9 @@
 import Link from "next/link";
+import { cloudinaryUrl } from "@/lib/cloudinary";
 import { site } from "@/lib/site";
+
+const FOUNDER_PHOTO =
+  "https://res.cloudinary.com/f69kw8ao/image/upload/v1786133821/matthew_brunken_omaha_grill_cleaning_f6rhnt.jpg";
 
 const CREDENTIALS = [
   {
@@ -110,10 +114,12 @@ export function AboutPage() {
           <figure className="about-founder-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/team.webp"
+              src={cloudinaryUrl(FOUNDER_PHOTO, 900, "thumb")}
+              srcSet={`${cloudinaryUrl(FOUNDER_PHOTO, 480, "thumb")} 480w, ${cloudinaryUrl(FOUNDER_PHOTO, 900, "thumb")} 900w`}
+              sizes="(max-width: 800px) 90vw, 420px"
               alt="Matthew Brunken, founder of Husker Grill Cleaning and AGSI-certified grill technician in Omaha and Lincoln, Nebraska"
-              width={1024}
-              height={1008}
+              width={900}
+              height={1125}
               loading="eager"
               decoding="async"
             />
