@@ -2,20 +2,74 @@ import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { site } from "@/lib/site";
 
-const PROOF_IMAGES = [
+/** Real multi-tenant / amenity grill jobs (not residential). */
+const MULTI_TENANT_IMAGES = [
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504587/HG-3_vnn8dx.jpg",
-    alt: "Built-in multi-tenant grill after professional deep cleaning",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504601/HG-76_lsnocc.jpg",
+    alt: "Multi-tenant amenity grill after professional deep cleaning",
   },
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1786130093/HG-81_Coyote_built-in_glnv0t.jpg",
-    alt: "Coyote built-in grill cleaned for a community outdoor kitchen",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504600/HG-68_k6hq9z.jpg",
+    alt: "Community built-in grill cleaned for a multi-tenant property",
   },
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504587/HG-1_mm1iki.jpg",
-    alt: "Built-in outdoor kitchen grill restored to showroom condition",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504600/HG-65_b38qzq.jpg",
+    alt: "Apartment community grill after Husker Grill Cleaning service",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504599/HG-60_aft7gh.jpg",
+    alt: "HOA outdoor kitchen grill restored after deep clean",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504597/HG-53_qw7opx.jpg",
+    alt: "Multi-family property built-in grill after cleaning",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504596/HG-47_zlj3nr.jpg",
+    alt: "Townhome community grill after professional restoration",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504594/HG-41_ugrr7d.jpg",
+    alt: "Multi-tenant amenity grill cleaned and polished",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504588/HG-10_xvcaxo.jpg",
+    alt: "Property manager built-in grill after deep clean",
   },
 ] as const;
+
+function MultiTenantMarquee({
+  images,
+  direction = "left",
+}: {
+  images: readonly { src: string; alt: string }[];
+  direction?: "left" | "right";
+}) {
+  // Duplicate sequence for seamless CSS loop (translate -50%).
+  const sequence = [...images, ...images];
+  return (
+    <div
+      className={`mt-marquee ${direction === "right" ? "mt-marquee-right" : "mt-marquee-left"}`}
+      aria-hidden="true"
+    >
+      <div className="mt-marquee-track">
+        {sequence.map((img, i) => (
+          <figure key={`${img.src}-${i}`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={cloudinaryUrl(img.src, 620, "thumb")}
+              alt=""
+              width={620}
+              height={465}
+              loading={i < 4 ? "eager" : "lazy"}
+              decoding="async"
+            />
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const TRUST_PILLS = [
   {
@@ -179,56 +233,50 @@ export function MultiTenantPage() {
     <div className="mt-page">
       {/* Hero */}
       <section className="mt-hero" aria-labelledby="mt-hero-title">
-        <div className="mt-inner mt-hero-grid">
-          <div className="mt-hero-copy">
-            <p className="eyebrow gold">Built-In Grill Specialists</p>
-            <h1 id="mt-hero-title">
-              Nebraska&apos;s Most Experienced Multi-Tenant Built-In Grill Cleaning
-              Service
-            </h1>
-            <p className="mt-lede">
-              Trusted by property managers, HOAs, and apartment communities across Omaha
-              and Lincoln. We clean what other companies won&apos;t touch—built-in grills
-              in multi-tenant environments, fully disassembled and restored to showroom
-              condition.
+        <div className="mt-inner mt-hero-copy">
+          <p className="eyebrow gold">Built-In Grill Specialists</p>
+          <h1 id="mt-hero-title">
+            Nebraska&apos;s Most Experienced Multi-Tenant Built-In Grill Cleaning Service
+          </h1>
+          <p className="mt-lede">
+            Trusted by property managers, HOAs, and apartment communities across Omaha and
+            Lincoln. We clean what other companies won&apos;t touch—built-in grills in
+            multi-tenant environments, fully disassembled and restored to showroom
+            condition.
+          </p>
+
+          <div className="mt-price-chip" aria-label="Multi-tenant pricing">
+            <p className="mt-price-chip-amount">
+              $349 <small>+ tax</small>
             </p>
-
-            <div className="mt-price-chip" aria-label="Multi-tenant pricing">
-              <p className="mt-price-chip-amount">
-                $349 <small>+ tax</small>
-              </p>
-              <div>
-                <strong>Per built-in grill</strong>
-                <span>Multi-tenant &amp; HOA pricing · Free repair estimate included</span>
-              </div>
-            </div>
-
-            <div className="mt-hero-actions">
-              <Link href={site.bookingPath} className="btn-prestige">
-                Schedule a Consultation
-              </Link>
-              <a href={`mailto:${site.email}`} className="btn-outline-light">
-                Email {site.email}
-              </a>
+            <div>
+              <strong>Per built-in grill</strong>
+              <span>Multi-tenant &amp; HOA pricing · Free repair estimate included</span>
             </div>
           </div>
 
-          <div className="mt-hero-gallery" aria-label="Built-in grill results">
-            {PROOF_IMAGES.map((img, i) => (
-              <figure key={img.src} className={`mt-hero-shot mt-hero-shot-${i + 1}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={cloudinaryUrl(img.src, 800, "thumb")}
-                  srcSet={`${cloudinaryUrl(img.src, 480, "thumb")} 480w, ${cloudinaryUrl(img.src, 800, "thumb")} 800w`}
-                  sizes="(max-width: 900px) 90vw, 420px"
-                  alt={img.alt}
-                  width={800}
-                  height={600}
-                  loading={i === 0 ? "eager" : "lazy"}
-                />
-              </figure>
-            ))}
+          <div className="mt-hero-actions">
+            <Link href={site.bookingPath} className="btn-prestige">
+              Schedule a Consultation
+            </Link>
+            <a href={`mailto:${site.email}`} className="btn-outline-light">
+              Email {site.email}
+            </a>
           </div>
+        </div>
+
+        <div
+          className="mt-marquee-band"
+          aria-label="Multi-tenant grill cleaning results from real apartment, townhome, and HOA jobs"
+        >
+          <p className="mt-marquee-label">
+            Real multi-tenant jobs · Omaha &amp; Lincoln communities
+          </p>
+          <MultiTenantMarquee images={MULTI_TENANT_IMAGES} direction="left" />
+          <MultiTenantMarquee
+            images={[...MULTI_TENANT_IMAGES].reverse()}
+            direction="right"
+          />
         </div>
       </section>
 
