@@ -1,0 +1,634 @@
+/* Grill repairs landing page — SEO lander, not in primary nav */
+
+.rep-page {
+  background: #05070a;
+  color: #e2e8f0;
+}
+
+.rep-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero */
+.rep-hero {
+  padding: 4.5rem 0 3.5rem;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(212, 175, 55, 0.14), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 85% 30%, rgba(212, 175, 55, 0.05), transparent 50%),
+    #05070a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rep-hero-inner {
+  max-width: 860px;
+  text-align: center;
+}
+
+.rep-hero h1 {
+  margin: 0.45rem 0 1.1rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2.1rem, 4.8vw, 3.35rem);
+  line-height: 1.12;
+  color: #fff;
+  font-weight: 700;
+}
+
+.rep-lede {
+  margin: 0 auto 1.6rem;
+  color: #94a3b8;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  max-width: 62ch;
+}
+
+.rep-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  justify-content: center;
+}
+
+.rep-hero-stats {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.rep-hero-stats li {
+  padding: 1rem 0.75rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rep-hero-stats strong {
+  color: #f0d78c;
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.rep-hero-stats span {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Value band */
+.rep-value {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0a0d12;
+}
+
+.rep-value-inner {
+  max-width: 760px;
+  text-align: center;
+}
+
+.rep-value h2,
+.rep-specialists h2,
+.rep-pricing h2,
+.rep-boundaries h2,
+.rep-brands h2,
+.rep-faq h2 {
+  margin: 0.4rem 0 1rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  color: #fff;
+  line-height: 1.2;
+}
+
+.rep-value p,
+.rep-section-lede {
+  margin: 0 0 1rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.rep-section-lede strong,
+.rep-value-price strong {
+  color: #e2e8f0;
+}
+
+.rep-value-price {
+  margin: 0.5rem 0 1.5rem !important;
+  color: #f0d78c !important;
+  font-size: 1.15rem !important;
+}
+
+/* Specialists */
+.rep-specialists {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rep-chips {
+  list-style: none;
+  margin: 1.5rem 0 1.75rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.rep-chips li {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.08);
+  color: #f0d78c;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rep-cert-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.rep-cert-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.15rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rep-cert-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.rep-cert-card strong {
+  display: block;
+  color: #fff;
+  font-size: 0.98rem;
+  margin-bottom: 0.25rem;
+}
+
+.rep-cert-card span {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* Pricing */
+.rep-pricing {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(ellipse 50% 40% at 0% 0%, rgba(212, 175, 55, 0.06), transparent 55%),
+    #05070a;
+}
+
+.rep-price-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0 1.25rem;
+}
+
+.rep-price-card {
+  position: relative;
+  padding: 1.5rem 1.25rem 1.35rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.rep-price-card:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  transform: translateY(-2px);
+}
+
+.rep-price-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.16);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #f0d78c;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rep-price-icon {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.rep-price-amount {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 2.1rem;
+  color: #f0d78c;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rep-price-card h3 {
+  margin: 0 0 0.55rem;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.rep-price-card p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.rep-policy-card {
+  margin: 0 0 1.5rem;
+  padding: 1.35rem 1.4rem;
+  border-radius: 16px;
+  background: rgba(212, 175, 55, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.rep-policy-card h3 {
+  margin: 0 0 0.55rem;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.rep-policy-card p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.rep-price-table-wrap {
+  padding: 1.5rem 1.4rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rep-price-table-wrap > h3 {
+  margin: 0 0 0.5rem;
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.rep-price-table-wrap > p {
+  margin: 0 0 1rem;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.rep-price-table {
+  margin: 0;
+  display: grid;
+  gap: 0;
+}
+
+.rep-price-table > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  align-items: baseline;
+}
+
+.rep-price-table dt {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.rep-price-table dd {
+  margin: 0;
+  color: #f0d78c;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.rep-price-note {
+  margin: 1rem 0 0 !important;
+  font-style: italic;
+  color: #64748b !important;
+  font-size: 0.9rem !important;
+}
+
+/* Boundaries */
+.rep-boundaries {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rep-boundary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.rep-boundary-card {
+  padding: 1.5rem 1.35rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.rep-boundary-card.is-full {
+  border-color: rgba(212, 175, 55, 0.28);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.rep-boundary-card h3 {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rep-boundary-card h3 span {
+  color: #d4af37;
+}
+
+.rep-boundary-card ul {
+  margin: 0 0 1rem;
+  padding: 0 0 0 1.1rem;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.rep-boundary-card li {
+  margin-bottom: 0.65rem;
+}
+
+.rep-boundary-card li strong {
+  color: #e2e8f0;
+}
+
+.rep-boundary-note {
+  margin: 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.rep-boundary-note strong {
+  color: #f0d78c;
+}
+
+/* Brands */
+.rep-brands {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0a0d12;
+}
+
+.rep-brand-heading {
+  margin: 1.5rem 0 0.85rem;
+  color: #f0d78c;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.rep-brand-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.rep-brand-grid li {
+  padding: 0.85rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  color: #fff;
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.rep-brand-grid.is-muted li {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.09);
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+/* FAQ */
+.rep-faq {
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rep-faq-group {
+  margin-top: 1.75rem;
+}
+
+.rep-faq-section {
+  margin: 0 0 0.75rem;
+  color: #f0d78c;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.rep-faq-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.rep-faq-item {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+
+.rep-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.15rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.rep-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.rep-faq-toggle {
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #d4af37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.rep-faq-item[open] .rep-faq-toggle {
+  transform: rotate(45deg);
+}
+
+.rep-faq-item[open] {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.rep-faq-item p {
+  margin: 0;
+  padding: 0 1.15rem 1.15rem;
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* Closing */
+.rep-closing {
+  padding: 4.25rem 0 5rem;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(212, 175, 55, 0.1), transparent 55%),
+    #0a0d12;
+}
+
+.rep-closing-inner {
+  max-width: 760px;
+  text-align: center;
+}
+
+.rep-closing-inner h2 {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  color: #fff;
+  line-height: 1.2;
+}
+
+.rep-closing-inner > p {
+  margin: 0 auto 1.5rem;
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.rep-closing-inner a {
+  color: #d4af37;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.rep-closing-inner a:hover {
+  color: #f0d78c;
+}
+
+.rep-closing-links {
+  margin: 1.35rem 0 0 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .rep-price-cards,
+  .rep-boundary-grid,
+  .rep-cert-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rep-brand-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rep-price-table > div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .rep-price-table dd {
+    text-align: left;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 600px) {
+  .rep-hero {
+    padding: 3.25rem 0 2.75rem;
+  }
+
+  .rep-hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .rep-specialists,
+  .rep-pricing,
+  .rep-boundaries,
+  .rep-brands,
+  .rep-faq {
+    padding: 3rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rep-price-card,
+  .rep-faq-toggle {
+    transition: none;
+  }
+
+  .rep-price-card:hover {
+    transform: none;
+  }
+}

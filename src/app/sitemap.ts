@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/multi-tenant-apartment-townhome-grill-cleaning",
     "/about",
     "/join-our-team",
+    "/grill-repairs",
     "/schedule-2",
   ];
 
@@ -18,6 +19,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${site.domain}${route}`,
     lastModified,
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/schedule-2" || route === "/pricing" ? 0.9 : 0.7,
+    priority:
+      route === ""
+        ? 1
+        : route === "/schedule-2" || route === "/pricing" || route === "/grill-repairs"
+          ? 0.9
+          : 0.7,
   }));
 }
