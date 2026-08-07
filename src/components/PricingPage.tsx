@@ -2,12 +2,40 @@ import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { site } from "@/lib/site";
 
-const FREESTANDING_IMG =
-  "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504590/HG-21_jrw9fs.jpg";
-const BUILT_IN_IMG =
-  "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504587/HG-1_mm1iki.jpg";
+/** Pedestal / cart / freestanding — grill + smoker (client-provided). */
+const FREESTANDING_IMAGES = [
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504599/HG-59_vjcixc.png",
+    alt: "Freestanding pedestal or cart gas grill after professional deep cleaning",
+    label: "Grill",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504590/HG-18_ibsizc.jpg",
+    alt: "Freestanding smoker after professional deep cleaning",
+    label: "Smoker",
+  },
+] as const;
 
-const REPAIR_BRANDS = [
+/**
+ * Built-in outdoor kitchen examples.
+ * Note: the two built-in URLs in the request were duplicates of HG-18 (freestanding smoker);
+ * these are verified built-in after-photos from the same Cloudinary gallery.
+ */
+const BUILT_IN_IMAGES = [
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504587/HG-1_mm1iki.jpg",
+    alt: "Built-in outdoor kitchen grill after professional deep cleaning",
+    label: "Built-in",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504588/HG-5_woevtt.jpg",
+    alt: "Built-in Twin Eagles outdoor kitchen grill after professional deep cleaning",
+    label: "Outdoor kitchen",
+  },
+] as const;
+
+/** Brands we can also take when a tech is free (still prefer cleaning customers). */
+const PRIORITY_REPAIR_BRANDS = [
   "Weber",
   "Traeger",
   "Green Mountain",
@@ -44,6 +72,59 @@ const DEEP_CLEAN_FEATURES = [
   },
 ] as const;
 
+type TypeImage = {
+  src: string;
+  alt: string;
+  label: string;
+};
+
+function GrillTypeCard({
+  title,
+  help,
+  price,
+  images,
+  scheduleLabel,
+}: {
+  title: string;
+  help: string;
+  price: string;
+  images: readonly TypeImage[];
+  scheduleLabel: string;
+}) {
+  return (
+    <div className="grill-type-card">
+      <div className="grill-type-media-grid" aria-hidden={false}>
+        {images.map((img) => (
+          <figure key={img.src} className="grill-type-shot">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={cloudinaryUrl(img.src, 700, "thumb")}
+              srcSet={`${cloudinaryUrl(img.src, 480, "thumb")} 480w, ${cloudinaryUrl(img.src, 700, "thumb")} 700w`}
+              sizes="(max-width: 700px) 45vw, 210px"
+              alt={img.alt}
+              width={700}
+              height={525}
+              loading="eager"
+            />
+            <figcaption>{img.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div className="grill-type-body">
+        <p className="grill-type-kicker">Looks like this</p>
+        <h3>{title}</h3>
+        <p className="grill-type-help">{help}</p>
+        <p className="price-main">
+          {price} <small>+ tax</small>
+        </p>
+        <Link href={site.bookingPath} className="btn-prestige grill-type-cta">
+          {scheduleLabel}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export function PricingPage() {
   return (
     <div className="pricing-page">
@@ -79,72 +160,30 @@ export function PricingPage() {
           <article className="price-feature-card">
             <div className="price-feature-top">
               <div>
-                <span className="seasonal-label gold">Main Service</span>
                 <h2 id="deep-clean-heading">One-Time Deep Clean</h2>
                 <p className="price-feature-intro">
                   Our flagship service. Full disassembly, hot bath, steam, firebox
-                  restoration, gas safety check, and exterior polish—typically ~3 hours
-                  on site.
+                  restoration, gas safety check, and exterior polish—typically ~3 hours on
+                  site. Pick the grill type that matches yours.
                 </p>
               </div>
-              <Link href={site.bookingPath} className="btn-prestige price-feature-cta-top">
-                Reserve Deep Clean
-              </Link>
             </div>
 
-            <div className="grill-type-pricing" role="list">
-              <div className="grill-type-card" role="listitem">
-                <div className="grill-type-media">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={cloudinaryUrl(FREESTANDING_IMG, 900, "thumb")}
-                    srcSet={`${cloudinaryUrl(FREESTANDING_IMG, 600, "thumb")} 600w, ${cloudinaryUrl(FREESTANDING_IMG, 900, "thumb")} 900w`}
-                    sizes="(max-width: 700px) 100vw, 420px"
-                    alt="Freestanding cart-style gas grill after professional deep cleaning"
-                    width={900}
-                    height={675}
-                    loading="eager"
-                  />
-                </div>
-                <div className="grill-type-body">
-                  <p className="grill-type-kicker">Looks like this</p>
-                  <h3>Pedestal / Cart / Freestanding</h3>
-                  <p className="grill-type-help">
-                    A complete grill that stands on its own cart, legs, or pedestal—not
-                    built into a counter. Side shelves and a rolling or fixed base are
-                    common.
-                  </p>
-                  <p className="price-main">
-                    $299 <small>+ tax</small>
-                  </p>
-                </div>
-              </div>
-
-              <div className="grill-type-card" role="listitem">
-                <div className="grill-type-media">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={cloudinaryUrl(BUILT_IN_IMG, 900, "thumb")}
-                    srcSet={`${cloudinaryUrl(BUILT_IN_IMG, 600, "thumb")} 600w, ${cloudinaryUrl(BUILT_IN_IMG, 900, "thumb")} 900w`}
-                    sizes="(max-width: 700px) 100vw, 420px"
-                    alt="Built-in outdoor kitchen grill after professional deep cleaning"
-                    width={900}
-                    height={675}
-                    loading="eager"
-                  />
-                </div>
-                <div className="grill-type-body">
-                  <p className="grill-type-kicker">Looks like this</p>
-                  <h3>Built-In Grill</h3>
-                  <p className="grill-type-help">
-                    Dropped into an outdoor kitchen island or counter with surrounding
-                    stone, granite, or cabinetry. Often part of a larger outdoor kitchen.
-                  </p>
-                  <p className="price-main">
-                    $349 <small>+ tax</small>
-                  </p>
-                </div>
-              </div>
+            <div className="grill-type-pricing">
+              <GrillTypeCard
+                title="Pedestal / Cart / Freestanding"
+                help="A complete grill or smoker that stands on its own cart, legs, or pedestal—not built into a counter. Includes freestanding gas grills and freestanding smokers."
+                price="$299"
+                images={FREESTANDING_IMAGES}
+                scheduleLabel="Schedule Freestanding Clean"
+              />
+              <GrillTypeCard
+                title="Built-In Grill"
+                help="Dropped into an outdoor kitchen island or counter with surrounding stone, granite, or cabinetry. About half of the grills we clean are built-ins."
+                price="$349"
+                images={BUILT_IN_IMAGES}
+                scheduleLabel="Schedule Built-In Clean"
+              />
             </div>
 
             <div className="repair-note-dark">
@@ -155,8 +194,9 @@ export function PricingPage() {
               Built-in repair packages start at <strong>$399 + parts</strong> (quoted on
               site after diagnosis).
               <span className="repair-note-fine">
-                We only repair grills for current cleaning customers, or these brands:{" "}
-                {REPAIR_BRANDS.join(", ")}.
+                If we clean it, we can repair it. Repairs are reserved for our cleaning
+                customers. When a technician is free, we may also take stand-alone repair
+                jobs on {PRIORITY_REPAIR_BRANDS.join(", ")}.
               </span>
             </div>
 
@@ -168,20 +208,15 @@ export function PricingPage() {
               ))}
             </ul>
 
-            <div className="price-feature-footer">
-              <Link href={site.bookingPath} className="btn-prestige">
-                Reserve Now
-              </Link>
-              <p className="muted-copy">
-                Not sure which type you have? Send a photo when you book—we&apos;ll
-                confirm before we arrive.
-              </p>
-            </div>
+            <p className="price-feature-footnote muted-copy">
+              Not sure which type you have? Send a photo when you book—we&apos;ll confirm
+              before we arrive.
+            </p>
           </article>
         </div>
       </section>
 
-      {/* SEMI-ANNUAL — supporting plan, not equal card */}
+      {/* SEMI-ANNUAL — supporting plan */}
       <section
         className="pricing-plan-strip"
         aria-labelledby="semi-annual-heading"
@@ -226,11 +261,8 @@ export function PricingPage() {
         </div>
       </section>
 
-      {/* Secondary services — compact */}
-      <section
-        className="pricing-secondary"
-        aria-labelledby="more-services-heading"
-      >
+      {/* Secondary services */}
+      <section className="pricing-secondary" aria-labelledby="more-services-heading">
         <div className="pricing-page-inner">
           <div className="pricing-secondary-header">
             <p className="eyebrow gold">Add-on &amp; specialty</p>
@@ -249,8 +281,12 @@ export function PricingPage() {
                 $199 <small>+ tax</small>
               </p>
               <p className="price-note">
-                Same price for all grill types. Available only if we&apos;ve deep-cleaned
-                your grill in the past 12 months.
+                Available as a <strong>second cleaning of the year</strong> when you only
+                need a touch-up—not a full deep clean. Same price for freestanding and
+                built-in residential grills.
+              </p>
+              <p className="price-note price-note-warn">
+                Not available for multi-tenant / apartment community grills.
               </p>
               <ul>
                 <li>Light grate &amp; flavorizer bar cleaning</li>
@@ -268,20 +304,21 @@ export function PricingPage() {
               <span className="seasonal-label">Multi-Grill</span>
               <h3>Multi-Grill Discount</h3>
               <p className="price-main compact">
-                Custom <small>/ at scheduling</small>
+                $50 <small>off each additional grill</small>
               </p>
               <p className="price-note">
-                Bundle multiple units on the same visit for competitive combined pricing.
+                First grill is full price. Every additional grill on the{" "}
+                <strong>same visit</strong> is <strong>$50 off</strong>.
               </p>
               <ul>
-                <li>Multiple units, one appointment</li>
-                <li>Quote based on count and size</li>
-                <li>Ideal for estates &amp; outdoor kitchens</li>
-                <li>Also available for multi-tenant properties</li>
+                <li>Example: two freestanding deep cleans = $299 + $249</li>
+                <li>Applies to deep cleans booked together</li>
+                <li>Ideal for estates &amp; outdoor kitchens with multiple units</li>
+                <li>Multi-tenant communities: see our property programs</li>
               </ul>
               <div className="secondary-card-actions">
                 <Link href={site.bookingPath} className="btn-outline-light">
-                  Get Custom Quote
+                  Schedule Multi-Grill
                 </Link>
                 <Link
                   href="/multi-tenant-apartment-townhome-grill-cleaning"
@@ -303,8 +340,9 @@ export function PricingPage() {
               <span className="repairs-badge">Certified Repair</span>
               <h2 id="repairs-heading">Grill Repair Services</h2>
               <p>
-                Diagnostics and repair by certified technicians. No prepayment for
-                parts—we handle ordering and installation after your approval.
+                <strong>If we clean it, we can repair it.</strong> Diagnostics and repair
+                by certified technicians. No prepayment for parts—we handle ordering and
+                installation after your approval.
               </p>
             </div>
 
@@ -316,12 +354,13 @@ export function PricingPage() {
                 <div>
                   <h3>Who we repair</h3>
                   <p>
-                    Current cleaning customers, <strong>or</strong> these brands:{" "}
-                    {REPAIR_BRANDS.join(", ")}.
+                    <strong>Repairs are reserved for our cleaning customers.</strong> We
+                    repair every brand we clean—gas, pellet, smoker, and built-in—when
+                    you&apos;re on our cleaning schedule.
                   </p>
                   <span className="fine-print">
-                    Other brands: limited to cleaning-related performance issues, or
-                    quoted case by case.
+                    If a technician is free, we may also accept stand-alone repair work on{" "}
+                    {PRIORITY_REPAIR_BRANDS.join(", ")}.
                   </span>
                 </div>
               </div>
@@ -388,7 +427,7 @@ export function PricingPage() {
         </div>
       </section>
 
-      {/* Value / CTA */}
+      {/* Closing */}
       <section className="pricing-closing" aria-labelledby="pricing-closing-heading">
         <div className="pricing-page-inner pricing-closing-inner">
           <h2 id="pricing-closing-heading">Ready for a grill that looks new again?</h2>

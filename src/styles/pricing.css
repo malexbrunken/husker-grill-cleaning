@@ -125,17 +125,42 @@
   transform: translateY(-3px);
 }
 
-.grill-type-media {
-  aspect-ratio: 4 / 3;
-  background: #1a1f2a;
-  overflow: hidden;
+.grill-type-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  background: #0a0f18;
 }
 
-.grill-type-media img {
+.grill-type-shot {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #1a1f2a;
+}
+
+.grill-type-shot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.grill-type-shot figcaption {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(5, 7, 10, 0.78);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #f0d78c;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .grill-type-body {
@@ -171,7 +196,23 @@
 }
 
 .grill-type-body .price-main {
+  margin: 0.5rem 0 1rem;
+}
+
+.grill-type-cta {
+  text-align: center;
+  width: 100%;
+}
+
+.price-feature-footnote {
   margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+.price-note-warn {
+  color: #f0d78c !important;
+  border-left: 2px solid rgba(212, 175, 55, 0.55);
+  padding-left: 0.75rem;
 }
 
 /* Repair note inside feature card */

@@ -423,13 +423,11 @@ export function HomeLander() {
                 $199 <small>/ service + tax</small>
               </span>
               <p className="price-note">
-                Same price for all grill types — freestanding, pedestal, or built-in.
+                Available as a <strong>second cleaning of the year</strong> when you only
+                need a touch-up—not a full deep clean. Not available for multi-tenant /
+                apartment community grills.
               </p>
               <ul>
-                <li>
-                  <strong>For Recent Deep Clean Clients:</strong> Available only if
-                  you&apos;ve had a deep clean through us in the past 12 months.
-                </li>
                 <li>
                   <strong>Light Grate &amp; Flavorizer Bar Cleaning:</strong> Quick cleanup
                   of cooking surfaces.
@@ -458,25 +456,22 @@ export function HomeLander() {
               <div className="seasonal-label">Multi-Grill</div>
               <h3>Multi-Grill Discount</h3>
               <span className="price-main">
-                Custom <small>/ priced at scheduling</small>
+                $50 <small>off each additional grill</small>
               </span>
               <ul>
                 <li>
-                  <strong>Multiple Units:</strong> Have more than one grill? We offer
-                  competitive bundled pricing when multiple units are serviced in the same
-                  visit.
+                  <strong>First Grill Full Price:</strong> Every additional grill on the
+                  same visit is $50 off.
                 </li>
                 <li>
-                  <strong>Same Visit Service:</strong> All units cleaned in a single
-                  appointment for maximum convenience.
+                  <strong>Same Visit:</strong> All units cleaned in a single appointment.
                 </li>
                 <li>
-                  <strong>Custom Quote:</strong> Pricing is provided at scheduling based on
-                  the number and size of your grills.
+                  <strong>Example:</strong> Two freestanding deep cleans = $299 + $249.
                 </li>
               </ul>
               <Link href={site.bookingPath} className="btn-prestige">
-                Get Custom Quote
+                Schedule Multi-Grill
               </Link>
             </article>
           </div>
@@ -484,14 +479,15 @@ export function HomeLander() {
           <div className="repairs-card-container reveal">
             <div className="repairs-card">
               <div className="repairs-header">
-                <span className="repairs-badge">Weber &amp; Traeger Repair</span>
+                <span className="repairs-badge">Certified Repair</span>
                 <h3>
-                  Weber Repair, Traeger Repair &amp; “Grill Will Not Light” Service
+                  Grill Repair for Cleaning Customers
                 </h3>
                 <p>
-                  Full-service Weber gas grill repair and Traeger pellet grill repair in
-                  Omaha and Lincoln. For other brands, we focus on common mechanical,
-                  gas-flow, ignition, and cleaning-related performance issues.
+                  <strong>If we clean it, we can repair it.</strong> Repairs are reserved
+                  for our cleaning customers. When a technician is free, we may also take
+                  stand-alone jobs on Weber, Traeger, Green Mountain, Yoder, Memphis, Bull,
+                  and Napoleon.
                 </p>
               </div>
               <div className="repairs-features">
