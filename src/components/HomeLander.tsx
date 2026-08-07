@@ -19,11 +19,11 @@ const processSteps = [
       "Competitors stop at the surface. We go deep under the grates to eliminate the grease and carbon buildup that causes flare-ups and foul tastes.",
     images: [
       {
-        src: "/images/process/dirty-1.webp",
+        src: "/images/process/dirty-1.jpg",
         alt: "Grease and carbon buildup inside a grill before deep cleaning",
       },
       {
-        src: "/images/process/dirty-2.webp",
+        src: "/images/process/dirty-2.jpg",
         alt: "Dirty grill grates and interior before professional cleaning",
       },
     ],
@@ -35,11 +35,11 @@ const processSteps = [
       "Our trained repair technicians perform a full disassembly. Every burner and component is removed to clean the firebox down to the bare metal.",
     images: [
       {
-        src: "/images/process/strip-1.webp",
+        src: "/images/process/strip-1.jpg",
         alt: "Grill fully disassembled during professional service",
       },
       {
-        src: "/images/process/strip-2.webp",
+        src: "/images/process/strip-2.jpg",
         alt: "Components removed for hot bath and steam cleaning",
       },
     ],
@@ -51,11 +51,11 @@ const processSteps = [
       "Reassembled, precision-tuned, and polished to a showroom shine. We don't just clean it; we perform a full safety inspection for total peace of mind.",
     images: [
       {
-        src: "/images/process/final-1.webp",
+        src: "/images/process/final-1.jpg",
         alt: "Professionally deep-cleaned grill interior and cooking grates",
       },
       {
-        src: "/images/process/final-2.webp",
+        src: "/images/process/final-2.jpg",
         alt: "Restored stainless grill after Husker Grill Cleaning service",
       },
     ],
