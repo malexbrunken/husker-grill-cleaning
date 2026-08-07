@@ -188,7 +188,7 @@ export function AboutPage() {
               alt="American Grill Service Institute certification badge"
               width={220}
               height={220}
-              loading="lazy"
+              loading="eager"
               decoding="async"
             />
           </div>
