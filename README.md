@@ -27,7 +27,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `/multi-tenant-apartment-townhome-grill-cleaning` | Multi-tenant |
 | `/about` | About |
 | `/join-our-team` | Careers |
-| `/schedule-2` | Booking / contact |
+| `/schedule` | Booking / contact |
+| `/schedule-2` | 301 → `/schedule` (legacy Squarespace path) |
 
 ## Deploy
 
@@ -40,4 +41,4 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - Homepage content/pricing matches the live Squarespace lander (Jul 2026).
 - Housecall Pro reviews iframe retained on home.
-- Online scheduler widget can replace the `/schedule-2` call/email cards when ready.
+- Online scheduler widget can replace the `/schedule` call/email cards when ready.

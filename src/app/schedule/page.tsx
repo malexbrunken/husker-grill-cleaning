@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Schedule Grill Cleaning",
   description:
     "Schedule professional mobile grill cleaning or repair with Husker Grill Cleaning in Omaha and Lincoln, Nebraska.",
-  alternates: { canonical: "/schedule-2" },
+  alternates: { canonical: "/schedule" },
 };
 
 export default function SchedulePage() {
@@ -30,13 +30,10 @@ export default function SchedulePage() {
           </a>
         </div>
         <div className="simple-page-actions">
-          <Link href="/#pricing" className="btn-outline-light">
+          <Link href="/pricing" className="btn-outline-light">
             Review Pricing
           </Link>
         </div>
-        <p className="path-note">
-          URL preserved for redirects: <code>/schedule-2</code>
-        </p>
       </div>
     </section>
   );

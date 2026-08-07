@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/matthew-brunken-lincoln-ne",
     "/organic-grill-cleaning-vs-deep-grill-cleaning",
     "/what-does-grill-cleaning-include",
-    "/schedule-2",
+    "/schedule",
   ];
 
   const lastModified = new Date();
@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:
       route === ""
         ? 1
-        : route === "/schedule-2" ||
+        : route === "/schedule" ||
             route === "/pricing" ||
             route === "/grill-repairs" ||
             route === "/organic-grill-cleaning-vs-deep-grill-cleaning" ||
