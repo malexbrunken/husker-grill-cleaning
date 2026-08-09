@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { brandPath, getGrillBrandByName, grillBrands } from "@/lib/grill-brands";
 import { site } from "@/lib/site";
 
 /** Brands we take stand-alone when a tech is free; full electronics on Weber/Traeger. */
@@ -410,34 +411,49 @@ export function GrillRepairsPage() {
 
       {/* Brands */}
       <section className="rep-brands" aria-labelledby="rep-brands-title">
-        <div className="rep-inner">
-          <p className="eyebrow gold">Service Area Brands</p>
-          <h2 id="rep-brands-title">
-            Weber &amp; Traeger Repair Specialists Serving Omaha, Lincoln &amp; Council
-            Bluffs
-          </h2>
-          <p className="rep-section-lede">
-            Full-service repair for Weber and Traeger. Cleaning plus limited repair or
-            performance restoration for other brands—especially for cleaning customers.
-          </p>
+              <div className="rep-inner">
+                <p className="eyebrow gold">Brands</p>
+                <h2 id="rep-brands-title">
+                  Grill brands we clean &amp; repair in Omaha &amp; Lincoln
+                </h2>
+                <p className="rep-section-lede">
+                  Dedicated brand pages target common problems (for example, Weber grill not
+                  igniting) with Omaha and Lincoln long-tails. Weber and Traeger remain our
+                  primary full-service electronic repair brands; other listed brands get deep
+                  cleaning plus mechanical repair—especially for cleaning customers.
+                </p>
 
-          <h3 className="rep-brand-heading">Preferred full-service repair brands</h3>
-          <ul className="rep-brand-grid">
-            {PREFERRED_MODELS.map((brand) => (
-              <li key={brand}>{brand}</li>
-            ))}
-          </ul>
+                <h3 className="rep-brand-heading">Brand service guides</h3>
+                <ul className="rep-brand-grid rep-brand-grid--links">
+                  {grillBrands.map((brand) => (
+                    <li key={brand.slug}>
+                      <Link href={brandPath(brand)}>{brand.name}</Link>
+                    </li>
+                  ))}
+                </ul>
 
-          <h3 className="rep-brand-heading">
-            Other brands: cleaning + limited repairs by quote
-          </h3>
-          <ul className="rep-brand-grid is-muted">
-            {OTHER_BRANDS.map((brand) => (
-              <li key={brand}>{brand}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
+                <h3 className="rep-brand-heading">Preferred full-service models</h3>
+                <ul className="rep-brand-grid">
+                  {PREFERRED_MODELS.map((brand) => (
+                    <li key={brand}>{brand}</li>
+                  ))}
+                </ul>
+
+                <h3 className="rep-brand-heading">
+                  Also cleaned: other popular brands (limited electronics)
+                </h3>
+                <ul className="rep-brand-grid is-muted">
+                  {OTHER_BRANDS.map((name) => {
+                    const page = getGrillBrandByName(name);
+                    return (
+                      <li key={name}>
+                        {page ? <Link href={brandPath(page)}>{name}</Link> : name}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </section>
 
       {/* FAQ */}
       <section className="rep-faq" aria-labelledby="rep-faq-title" id="faq">

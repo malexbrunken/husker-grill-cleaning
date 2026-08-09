@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { grillBrandSlugs } from "@/lib/grill-brands";
 import { serviceAreaSlugs } from "@/lib/service-areas";
 import { site } from "@/lib/site";
 
@@ -10,6 +11,7 @@ const HIGH_PRIORITY = new Set([
   "/what-does-grill-cleaning-include",
   "/professional-grill-cleaning-repair-services-in-omaha-nebraska",
   ...serviceAreaSlugs().map((s) => `/${s}`),
+  ...grillBrandSlugs().map((s) => `/${s}`),
 ]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -27,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/schedule",
     "/professional-grill-cleaning-repair-services-in-omaha-nebraska",
     ...serviceAreaSlugs().map((s) => `/${s}`),
+    ...grillBrandSlugs().map((s) => `/${s}`),
   ];
 
   const lastModified = new Date();

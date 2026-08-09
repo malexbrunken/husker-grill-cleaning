@@ -457,6 +457,25 @@
   font-weight: 600;
 }
 
+.rep-brand-grid a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.rep-brand-grid a:hover {
+  color: #f0d78c;
+}
+
+.rep-brand-grid--links li {
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.rep-brand-grid--links li:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  background: rgba(212, 175, 55, 0.14);
+}
+
 /* FAQ */
 .rep-faq {
   padding: 4rem 0;
