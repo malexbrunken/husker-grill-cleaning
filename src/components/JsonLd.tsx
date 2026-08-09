@@ -1,5 +1,6 @@
 import { faqs, site } from "@/lib/site";
 
+/** Sitewide LocalBusiness + WebSite — safe on every page. */
 export function JsonLd() {
   const localBusiness = {
     "@context": "https://schema.org",
@@ -65,35 +66,26 @@ export function JsonLd() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Weber and Traeger Repair Add-On",
+            name: "Repair Labor Add-On with Deep Clean",
+            description:
+              "Repair labor added to a scheduled deep clean; $50 + parts (parts extra)",
           },
-          price: "69",
+          price: "50",
           priceCurrency: "USD",
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Stand-Alone Weber and Traeger Repair Visit",
+            name: "Stand-Alone Repair Visit",
+            description:
+              "Stand-alone repair service visit; $149 trip charge, parts and additional labor extra",
           },
           price: "149",
           priceCurrency: "USD",
         },
       ],
     },
-  };
-
-  const faqPage = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
   };
 
   const website = {
@@ -115,12 +107,34 @@ export function JsonLd() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(website) }}
       />
     </>
+  );
+}
+
+/**
+ * Homepage-only FAQ schema (avoids duplicate FAQPage graphs on
+ * schedule / repairs / brand / city pages that already emit their own).
+ */
+export function HomeFaqJsonLd() {
+  const faqPage = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
+    />
   );
 }

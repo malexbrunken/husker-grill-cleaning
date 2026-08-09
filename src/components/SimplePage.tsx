@@ -9,19 +9,45 @@ type Props = {
   body: string;
 };
 
+/**
+ * Shared metadata for simpler marketing pages.
+ * Always sets page-specific OG + Twitter so they do not inherit the homepage card.
+ */
 export function buildPageMetadata(
   title: string,
   description: string,
   path: string,
 ): Metadata {
+  const fullTitle = `${title} | ${site.name}`;
+  const ogImage = {
+    url: "/images/hero.webp",
+    width: 1200,
+    height: 630,
+    alt: `${title} — ${site.name}`,
+  } as const;
+
   return {
     title,
     description,
     alternates: { canonical: path },
     openGraph: {
-      title: `${title} | ${site.name}`,
+      type: "website",
+      locale: "en_US",
+      siteName: site.name,
+      title: fullTitle,
       description,
       url: path,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      images: ["/images/hero.webp"],
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
