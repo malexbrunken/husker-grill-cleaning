@@ -3,7 +3,6 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 
 type Props = {
-  title: string;
   description: string;
   path: string;
   heading: string;
@@ -27,7 +26,7 @@ export function buildPageMetadata(
   };
 }
 
-export function SimplePage({ title, description, path, heading, body }: Props) {
+export function SimplePage({ description, path, heading, body }: Props) {
   return (
     <section className="simple-page">
       <div className="simple-page-inner">

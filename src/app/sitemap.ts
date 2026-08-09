@@ -1,5 +1,16 @@
 import type { MetadataRoute } from "next";
+import { serviceAreaSlugs } from "@/lib/service-areas";
 import { site } from "@/lib/site";
+
+const HIGH_PRIORITY = new Set([
+  "/schedule",
+  "/pricing",
+  "/grill-repairs",
+  "/organic-grill-cleaning-vs-deep-grill-cleaning",
+  "/what-does-grill-cleaning-include",
+  "/professional-grill-cleaning-repair-services-in-omaha-nebraska",
+  ...serviceAreaSlugs().map((s) => `/${s}`),
+]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -15,8 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/what-does-grill-cleaning-include",
     "/schedule",
     "/professional-grill-cleaning-repair-services-in-omaha-nebraska",
-    "/elkhorn-nebraska-grill-cleaning",
-    "/valley-nebraska-grill-cleaning",
+    ...serviceAreaSlugs().map((s) => `/${s}`),
   ];
 
   const lastModified = new Date();
@@ -25,18 +35,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${site.domain}${route}`,
     lastModified,
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority:
-      route === ""
-        ? 1
-        : route === "/schedule" ||
-            route === "/pricing" ||
-            route === "/grill-repairs" ||
-            route === "/organic-grill-cleaning-vs-deep-grill-cleaning" ||
-            route === "/what-does-grill-cleaning-include" ||
-            route === "/professional-grill-cleaning-repair-services-in-omaha-nebraska" ||
-            route === "/elkhorn-nebraska-grill-cleaning" ||
-            route === "/valley-nebraska-grill-cleaning"
-          ? 0.9
-          : 0.7,
+    priority: route === "" ? 1 : HIGH_PRIORITY.has(route) ? 0.9 : 0.7,
   }));
 }

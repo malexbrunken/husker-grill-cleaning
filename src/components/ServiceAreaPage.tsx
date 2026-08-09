@@ -3,6 +3,7 @@ import { cloudinaryUrl } from "@/lib/cloudinary";
 import {
   AREA_PRICING,
   type ServiceArea,
+  metroHubPath,
   serviceAreaHrefForLabel,
   serviceAreaPath,
 } from "@/lib/service-areas";
@@ -354,6 +355,16 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
               Also see our{" "}
               <Link href="/professional-grill-cleaning-repair-services-in-omaha-nebraska">
                 Omaha metro grill cleaning &amp; repair overview
+              </Link>
+              .
+            </p>
+          ) : null}
+          {area.metro === "Lincoln" &&
+          metroHubPath("Lincoln") !== serviceAreaPath(area) ? (
+            <p className="sa-nearby-note">
+              Also see our{" "}
+              <Link href="/lincoln-nebraska-grill-cleaning">
+                Lincoln metro grill cleaning overview
               </Link>
               .
             </p>

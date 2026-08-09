@@ -6,16 +6,27 @@ import {
 } from "@/components/ServiceAreaPage";
 import {
   getServiceArea,
+  metroHubPath,
   serviceAreaDescription,
   serviceAreaPath,
+  serviceAreaSlugs,
   serviceAreaTitle,
 } from "@/lib/service-areas";
 import { site } from "@/lib/site";
 
-const SLUG = "elkhorn-nebraska-grill-cleaning";
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
 
-export function generateMetadata(): Metadata {
-  const area = getServiceArea(SLUG);
+export function generateStaticParams() {
+  return serviceAreaSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const area = getServiceArea(slug);
   if (!area) return {};
 
   const title = serviceAreaTitle(area);
@@ -26,6 +37,7 @@ export function generateMetadata(): Metadata {
     `grill cleaning ${area.city} ${area.region}`,
     `how much is grill cleaning in ${area.city}`,
     `how much is grill cleaning in ${area.city} NE`,
+    `how much is grill cleaning in ${area.city} Nebraska`,
     `${area.city} Nebraska grill cleaning`,
     `mobile grill cleaning ${area.city}`,
     `built-in grill cleaning ${area.city}`,
@@ -72,8 +84,8 @@ export function generateMetadata(): Metadata {
   };
 }
 
-function AreaJsonLd() {
-  const area = getServiceArea(SLUG);
+function AreaJsonLd({ slug }: { slug: string }) {
+  const area = getServiceArea(slug);
   if (!area) return null;
 
   const path = serviceAreaPath(area);
@@ -81,6 +93,8 @@ function AreaJsonLd() {
   const title = serviceAreaTitle(area);
   const description = serviceAreaDescription(area);
   const faqs = buildAreaFaqs(area);
+  const hub = metroHubPath(area.metro);
+  const isMetroHub = hub === path;
 
   const webPage = {
     "@context": "https://schema.org",
@@ -164,29 +178,46 @@ function AreaJsonLd() {
     ],
   };
 
+  const crumbs: Array<{
+    "@type": "ListItem";
+    position: number;
+    name: string;
+    item: string;
+  }> = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: site.domain,
+    },
+  ];
+
+  if (hub && !isMetroHub) {
+    crumbs.push({
+      "@type": "ListItem",
+      position: 2,
+      name: `${area.metro} Metro`,
+      item: `${site.domain}${hub}`,
+    });
+    crumbs.push({
+      "@type": "ListItem",
+      position: 3,
+      name: `${area.city} Grill Cleaning`,
+      item: pageUrl,
+    });
+  } else {
+    crumbs.push({
+      "@type": "ListItem",
+      position: 2,
+      name: `${area.city} Grill Cleaning`,
+      item: pageUrl,
+    });
+  }
+
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: site.domain,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: `${area.metro} Metro`,
-        item: `${site.domain}/professional-grill-cleaning-repair-services-in-omaha-nebraska`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: `${area.city} Grill Cleaning`,
-        item: pageUrl,
-      },
-    ],
+    itemListElement: crumbs,
   };
 
   const faqPage = {
@@ -224,13 +255,14 @@ function AreaJsonLd() {
   );
 }
 
-export default function ElkhornGrillCleaningPage() {
-  const area = getServiceArea(SLUG);
+export default async function ServiceAreaSlugPage({ params }: PageProps) {
+  const { slug } = await params;
+  const area = getServiceArea(slug);
   if (!area) notFound();
 
   return (
     <>
-      <AreaJsonLd />
+      <AreaJsonLd slug={slug} />
       <ServiceAreaPage area={area} />
     </>
   );
