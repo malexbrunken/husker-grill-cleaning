@@ -18,6 +18,9 @@ export const site = {
     instagram: "https://www.instagram.com/huskergrillcleaning",
     nicejob: "https://nicejob.com/husker-grill-cleaning",
   },
+  /** Meta (Facebook) Pixel ID — base PageView via MetaPixel in root layout. */
+  metaPixelId: "1536317344128995",
+
   bookingPath: "/schedule",
   /** Housecall Pro online booking (opens in new tab). */
   bookingUrl:

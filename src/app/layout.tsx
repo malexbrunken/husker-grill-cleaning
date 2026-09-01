@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import { MetaPixel } from "@/components/MetaPixel";
 import { site } from "@/lib/site";
 import "./globals.css";
 import "@/styles/lander.css";
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col site-body">
+        <MetaPixel />
         <JsonLd />
         <Header />
         <main id="main-content" className="flex-1">
