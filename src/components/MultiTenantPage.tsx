@@ -5,24 +5,52 @@ import { site } from "@/lib/site";
 /** Real multi-tenant / amenity grill jobs (not residential). */
 const MULTI_TENANT_IMAGES = [
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504601/HG-76_lsnocc.jpg",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1789495280/multi_tenant_1_s8gknd.webp",
     alt: "Multi-tenant amenity grill after professional deep cleaning",
   },
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504600/HG-68_k6hq9z.jpg",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1789495280/multi_tenant_2_carf3b.webp",
     alt: "Community built-in grill cleaned for a multi-tenant property",
   },
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504600/HG-65_b38qzq.jpg",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1789495280/multi_tenant_3_divcku.webp",
     alt: "Apartment community grill after Husker Grill Cleaning service",
   },
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504599/HG-60_aft7gh.jpg",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1789495280/multi_tenant_4_amsktf.webp",
     alt: "HOA outdoor kitchen grill restored after deep clean",
   },
   {
-    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504597/HG-53_qw7opx.jpg",
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1789495281/multi_tenant_5_a5jthi.webp",
     alt: "Multi-family property built-in grill after cleaning",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1789495281/multi_tenant_6_stjee3.webp",
+    alt: "Townhome community grill after professional restoration",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1789495281/multi_tenant_7_exyegt.webp",
+    alt: "Multi-tenant amenity grill cleaned and polished",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504601/HG-76_lsnocc.jpg",
+    alt: "Property manager built-in grill after deep clean",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504600/HG-68_k6hq9z.jpg",
+    alt: "Apartment complex outdoor grill after professional cleaning",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504600/HG-65_b38qzq.jpg",
+    alt: "Community grill station after Husker multi-tenant service",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504599/HG-60_aft7gh.jpg",
+    alt: "HOA built-in grill restored after deep clean",
+  },
+  {
+    src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504597/HG-53_qw7opx.jpg",
+    alt: "Multi-family amenity grill after full disassembly clean",
   },
   {
     src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504596/HG-47_zlj3nr.jpg",
@@ -30,11 +58,11 @@ const MULTI_TENANT_IMAGES = [
   },
   {
     src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504594/HG-41_ugrr7d.jpg",
-    alt: "Multi-tenant amenity grill cleaned and polished",
+    alt: "Multi-tenant grill cleaned and polished on site",
   },
   {
     src: "https://res.cloudinary.com/f69kw8ao/image/upload/v1785504588/HG-10_xvcaxo.jpg",
-    alt: "Property manager built-in grill after deep clean",
+    alt: "Built-in community grill after deep clean for property managers",
   },
 ] as const;
 
