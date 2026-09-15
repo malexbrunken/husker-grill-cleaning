@@ -313,7 +313,7 @@ export function SeeOurWork() {
           </div>
           <div className="hgc-proof-row" aria-label="Gallery highlights">
             <div>
-              <strong>100+</strong>
+              <strong>Over 100</strong>
               <span>real completed-work photos</span>
             </div>
             <div>
