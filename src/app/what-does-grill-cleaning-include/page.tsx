@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { WhatGrillCleaningIncludesPage } from "@/components/WhatGrillCleaningIncludesPage";
-import { site } from "@/lib/site";
+import { documentTitle } from "@/lib/seo";
+import { businessId, site } from "@/lib/site";
 
 const path = "/what-does-grill-cleaning-include";
-const title =
-  "What Does Grill Cleaning Include? | 50-Step Process — Husker Grill Cleaning";
+const title = documentTitle("What Grill Cleaning Includes");
 const description =
   "Exactly what a professional grill deep clean includes: 50 AGSI-style steps from safety setup and full disassembly to firebox decarbonization, gas system service, leak testing, and polish. Omaha & Lincoln.";
 
@@ -154,11 +154,7 @@ function ProcessJsonLd() {
     about: {
       "@type": "Service",
       name: "50-Step Grill Deep Cleaning",
-      provider: {
-        "@type": "LocalBusiness",
-        name: site.name,
-        url: site.domain,
-      },
+      provider: { "@id": businessId },
     },
   };
 

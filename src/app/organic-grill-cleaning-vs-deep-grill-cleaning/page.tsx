@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { ORGANIC_FAQS, OrganicVsDeepPage } from "@/components/OrganicVsDeepPage";
+import { documentTitle } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 const path = "/organic-grill-cleaning-vs-deep-grill-cleaning";
-const title =
-  "Organic Grill Cleaning Myth — Husker Grill Cleaning in Omaha & Lincoln";
+const title = documentTitle("Organic vs Deep Grill Cleaning");
 const description =
   "Is “organic” grill cleaning better? Why baked-on grease and carbon need disassembly, mechanical work, steam, and selective chemistry—not just a label. Compare organic-only vs results-first deep cleaning in Omaha & Lincoln.";
 

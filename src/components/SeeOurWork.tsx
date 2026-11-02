@@ -34,9 +34,11 @@ function shuffleArray<T>(items: T[]): T[] {
 
 function MarqueeTrack({
   urls,
+  alts,
   indexes,
 }: {
   urls: string[];
+  alts: string[];
   indexes: readonly number[];
 }) {
   const sequence = [...indexes, ...indexes];
@@ -45,11 +47,13 @@ function MarqueeTrack({
       {sequence.map((imageIndex, position) => {
         const src = urls[imageIndex];
         if (!src) return null;
+        const duplicate = position >= indexes.length;
         return (
           <figure key={`${imageIndex}-${position}`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              alt=""
+              alt={duplicate ? "" : (alts[imageIndex] ?? "")}
+              aria-hidden={duplicate ? true : undefined}
               loading={position < 3 ? "eager" : "lazy"}
               decoding="async"
               src={cloudinaryUrl(src, 620, "thumb")}
@@ -65,6 +69,10 @@ export function SeeOurWork() {
   const items = galleryData as GalleryItem[];
   const count = items.length;
   const urls = useMemo(() => items.map((item) => item.src), [items]);
+  const alts = useMemo(
+    () => items.map((item, index) => item.alt || galleryAlt(index)),
+    [items],
+  );
 
   const [order, setOrder] = useState<OrderedItem[]>(() =>
     items.map((item, originalIndex) => ({ ...item, originalIndex })),
@@ -284,7 +292,7 @@ export function SeeOurWork() {
         <div className="hgc-hero-noise" aria-hidden="true" />
 
         <div className="hgc-marquee hgc-marquee-top" aria-hidden="true">
-          <MarqueeTrack urls={urls} indexes={MARQUEE_TOP_INDEXES} />
+          <MarqueeTrack urls={urls} alts={alts} indexes={MARQUEE_TOP_INDEXES} />
         </div>
 
         <div className="hgc-hero-copy">
@@ -328,7 +336,7 @@ export function SeeOurWork() {
         </div>
 
         <div className="hgc-marquee hgc-marquee-bottom" aria-hidden="true">
-          <MarqueeTrack urls={urls} indexes={MARQUEE_BOTTOM_INDEXES} />
+          <MarqueeTrack urls={urls} alts={alts} indexes={MARQUEE_BOTTOM_INDEXES} />
         </div>
 
         <a

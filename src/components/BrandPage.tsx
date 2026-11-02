@@ -8,7 +8,7 @@ import {
   grillBrands,
   type GrillBrand,
 } from "@/lib/grill-brands";
-import { site } from "@/lib/site";
+import { repairCoverageSummary, repairPricingDescription, repairRateSummary, site } from "@/lib/site";
 
 const CITIES = ["Omaha", "Lincoln"] as const;
 
@@ -56,12 +56,12 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
 
             <ul className="bp-hero-stats">
               <li>
-                <strong>${BRAND_PRICING.repairWithClean}+</strong>
-                <span>Repair with clean</span>
+                <strong>${BRAND_PRICING.diagnosticAndTrip}</strong>
+                <span>Diagnostic and trip</span>
               </li>
               <li>
-                <strong>${BRAND_PRICING.repairStandalone}</strong>
-                <span>Stand-alone visit</span>
+                <strong>${BRAND_PRICING.intervalPrice}</strong>
+                <span>Per {BRAND_PRICING.intervalMinutes} min after</span>
               </li>
               <li>
                 <strong>${BRAND_PRICING.freestandingDeep}</strong>
@@ -124,9 +124,7 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
             <li>
               <strong>Price anchors:</strong> Deep clean from $
               {BRAND_PRICING.freestandingDeep} freestanding / $
-              {BRAND_PRICING.builtInDeep} built-in; repair with clean $
-              {BRAND_PRICING.repairWithClean} + parts; stand-alone $
-              {BRAND_PRICING.repairStandalone} + parts.
+              {BRAND_PRICING.builtInDeep} built-in. {repairRateSummary()}
             </li>
             <li>
               <strong>Rule of thumb:</strong> If we clean it, we can repair it
@@ -245,10 +243,7 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
               explain findings in plain language before any paid parts work.
             </li>
             <li>
-              <strong>Repair with quoted parts.</strong> Cleaning customers: $
-              {BRAND_PRICING.repairWithClean} labor + parts when completed same
-              visit. Additional diagnosis labor billed at $
-              {BRAND_PRICING.laborHourly}/hour after the included window.
+              <strong>Repair with quoted parts.</strong> {repairPricingDescription()}
             </li>
           </ol>
         </div>
@@ -282,16 +277,22 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
                   <td>${BRAND_PRICING.builtInDeep}</td>
                 </tr>
                 <tr>
-                  <td>Repair labor with deep clean</td>
-                  <td>${BRAND_PRICING.repairWithClean} + parts</td>
+                  <td>
+                    Diagnostic and trip charge (includes up to{" "}
+                    {BRAND_PRICING.includedMinutes} minutes if the part is on hand)
+                  </td>
+                  <td>${BRAND_PRICING.diagnosticAndTrip}</td>
                 </tr>
                 <tr>
-                  <td>Stand-alone repair visit</td>
-                  <td>${BRAND_PRICING.repairStandalone} + parts</td>
+                  <td>
+                    Additional labor after that, per {BRAND_PRICING.intervalMinutes}{" "}
+                    minutes
+                  </td>
+                  <td>${BRAND_PRICING.intervalPrice}</td>
                 </tr>
                 <tr>
-                  <td>Additional repair labor after diagnosis</td>
-                  <td>${BRAND_PRICING.laborHourly}/hour</td>
+                  <td>{repairCoverageSummary()}</td>
+                  <td>${BRAND_PRICING.diagnosticAndTrip} + part</td>
                 </tr>
               </tbody>
             </table>

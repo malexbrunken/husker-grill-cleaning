@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { documentTitle } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 type Props = {
@@ -18,7 +19,7 @@ export function buildPageMetadata(
   description: string,
   path: string,
 ): Metadata {
-  const fullTitle = `${title} | ${site.name}`;
+  const fullTitle = documentTitle(title);
   const ogImage = {
     url: "/images/hero.webp",
     width: 1200,
@@ -27,7 +28,7 @@ export function buildPageMetadata(
   } as const;
 
   return {
-    title,
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical: path },
     openGraph: {

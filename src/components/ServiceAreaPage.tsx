@@ -7,7 +7,7 @@ import {
   serviceAreaHrefForLabel,
   serviceAreaPath,
 } from "@/lib/service-areas";
-import { site } from "@/lib/site";
+import { formatPlace, repairCoverageSummary, repairPricing, repairRateSummary, site } from "@/lib/site";
 
 const PROOF = [
   {
@@ -64,7 +64,7 @@ export function buildAreaFaqs(area: ServiceArea) {
     },
     {
       q: `Can you repair my grill in ${city} as well as clean it?`,
-      a: `Yes for cleaning customers—if we clean it, we can repair it. Repair labor added to a scheduled deep clean is ${money(p.repairWithClean.amount)} + parts (freestanding and built-in). Stand-alone repair visits are ${money(p.repairStandalone.amount)} + parts when a technician is available (travel, diagnosis, and initial labor window). Additional labor after diagnosis is ${money(p.extraLaborHourly.amount)}/hour. No second trip charge when we return to install ordered parts—just parts and labor.`,
+      a: `Yes for cleaning customers—if we clean it, we can repair it. ${repairRateSummary()} ${repairCoverageSummary()}`,
     },
     {
       q: `How long does grill cleaning take in ${city}?`,
@@ -80,7 +80,7 @@ export function buildAreaFaqs(area: ServiceArea) {
 export function ServiceAreaPage({ area }: { area: ServiceArea }) {
   const faqs = buildAreaFaqs(area);
   const p = AREA_PRICING;
-  const cityLine = `${area.city}, ${area.region}`;
+  const cityLine = formatPlace(area.city, area.region);
   const path = serviceAreaPath(area);
 
   return (
@@ -92,9 +92,7 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
             <p className="eyebrow gold">
               Service area · {area.metro} metro
             </p>
-            <h1>
-              Grill Cleaning in {area.city}, {area.region}
-            </h1>
+            <h1>{`Grill Cleaning in ${cityLine}`}</h1>
             <p className="sa-lede">
               Professional mobile grill cleaning and repair for homeowners in{" "}
               {cityLine}—50-step deep cleans, clear local pricing, and same-visit
@@ -118,22 +116,22 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
                 <span>Built-in deep clean</span>
               </li>
               <li>
-                <strong>{money(p.repairWithClean.amount)}+</strong>
-                <span>Repair with cleaning</span>
+                <strong>{money(p.repairDiagnostic.amount)}</strong>
+                <span>Diagnostic and trip</span>
               </li>
             </ul>
           </div>
-          <div className="sa-hero-media" aria-hidden="true">
+          <div className="sa-hero-media">
             <img
               src={img(PROOF[0].src, 900)}
-              alt=""
+              alt={PROOF[0].alt}
               width={900}
               height={700}
               className="sa-hero-main"
             />
             <img
               src={img(PROOF[2].src, 480)}
-              alt=""
+              alt={PROOF[2].alt}
               width={480}
               height={360}
               className="sa-hero-side"
@@ -174,7 +172,7 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
         <div className="sa-inner">
           <p className="eyebrow gold">Local pricing</p>
           <h2 id="sa-pricing-title">
-            How much is grill cleaning in {area.city}, {area.region}?
+            {`How much is grill cleaning in ${cityLine}?`}
           </h2>
           <p className="sa-section-lede">
             Transparent rates for {cityLine}. Same menu as the rest of our core service
@@ -241,12 +239,17 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
               <span>each additional grill on the same visit (first grill full price)</span>
             </div>
             <div>
-              <strong>{money(p.repairWithClean.amount)} + parts</strong>
-              <span>repair labor when added to a deep clean in {area.city}</span>
+              <strong>{money(p.repairDiagnostic.amount)}</strong>
+              <span>
+                diagnostic and trip charge, including up to {repairPricing.includedMinutes}{" "}
+                minutes if the part is on hand
+              </span>
             </div>
             <div>
-              <strong>{money(p.repairStandalone.amount)} + parts</strong>
-              <span>stand-alone repair visit when a technician is available</span>
+              <strong>
+                {money(p.repairInterval.amount)} / {repairPricing.intervalMinutes} min
+              </strong>
+              <span>after the included time</span>
             </div>
           </div>
 
@@ -286,9 +289,8 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
             <article>
               <h3>Grill repair</h3>
               <p>
-                Ignition, low flame, regulators, burners, and many Weber / Traeger issues.
-                Best value: repair during the deep clean for {money(p.repairWithClean.amount)}{" "}
-                + parts.
+                Ignition, low flame, regulators, burners, and many Weber / Traeger issues.{" "}
+                {repairRateSummary()}
               </p>
               <Link href="/grill-repairs">Repair guide →</Link>
             </article>

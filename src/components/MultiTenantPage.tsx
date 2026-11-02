@@ -86,7 +86,8 @@ function MultiTenantMarquee({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={cloudinaryUrl(img.src, 620, "thumb")}
-              alt=""
+              alt={i < images.length ? img.alt : ""}
+              aria-hidden={i >= images.length ? true : undefined}
               width={620}
               height={465}
               loading={i < 4 ? "eager" : "lazy"}

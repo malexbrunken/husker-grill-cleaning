@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { neighborhoodServiceAreaLinks } from "@/lib/service-areas";
-import { omahaNeighborhoods, site } from "@/lib/site";
+import { repairCoverageSummary, repairPricing, repairRateSummary, omahaNeighborhoods, site } from "@/lib/site";
 
 const SHOTS = {
   heroMain:
@@ -41,7 +41,7 @@ const SERVICES = [
   },
   {
     title: "Grill Repair",
-    body: "If we clean it, we can repair it. Add repair labor to a deep clean for $50 + parts, or book a stand-alone visit when a technician is available.",
+    body: `If we clean it, we can repair it. ${repairRateSummary()}`,
     href: "/grill-repairs",
     cta: "Repair details",
   },
@@ -102,7 +102,7 @@ export const OMAHA_FAQS = [
   },
   {
     q: "Can you repair my grill in Omaha as well as clean it?",
-    a: "Yes for cleaning customers—if we clean it, we can repair it. Repair labor added to a scheduled deep clean is $50 + parts for freestanding and built-in units. Stand-alone repair visits are $149 + parts when a technician is available. We prioritize Weber, Traeger, Green Mountain, Yoder, Memphis, Bull, and Napoleon for stand-alone work.",
+    a: `Yes for cleaning customers—if we clean it, we can repair it. ${repairRateSummary()} ${repairCoverageSummary()} We prioritize Weber, Traeger, Green Mountain, Yoder, Memphis, Bull, and Napoleon.`,
   },
   {
     q: "Do I need to be home for Omaha grill cleaning?",
@@ -141,17 +141,17 @@ export function OmahaServicesPage() {
               <li>Pay after service</li>
             </ul>
           </div>
-          <div className="oma-hero-media" aria-hidden="true">
+          <div className="oma-hero-media">
             <img
               src={img(SHOTS.heroMain, 900)}
-              alt=""
+              alt="Freestanding grill after professional deep cleaning in Omaha"
               width={900}
               height={700}
               className="oma-hero-main"
             />
             <img
               src={img(SHOTS.heroSide, 480)}
-              alt=""
+              alt="Smoker after professional deep cleaning in Omaha"
               width={480}
               height={360}
               className="oma-hero-side"
@@ -215,7 +215,12 @@ export function OmahaServicesPage() {
             <img
               key={`${src}-${i}`}
               src={img(src, 640)}
-              alt=""
+              alt={
+                i < SHOTS.strip.length
+                  ? `Completed Omaha grill cleaning result ${i + 1}`
+                  : ""
+              }
+              aria-hidden={i >= SHOTS.strip.length ? true : undefined}
               width={640}
               height={420}
               loading={i > 2 ? "lazy" : undefined}
@@ -312,16 +317,24 @@ export function OmahaServicesPage() {
             </p>
             <ul className="oma-price-points">
               <li>
-                <strong>$50 + parts</strong>
-                <span>Repair labor with a scheduled deep clean</span>
+                <strong>${repairPricing.diagnosticAndTrip}</strong>
+                <span>
+                  Diagnostic and trip charge, including up to {repairPricing.includedMinutes}{" "}
+                  minutes if the part is on hand
+                </span>
               </li>
               <li>
-                <strong>$149 + parts</strong>
-                <span>Stand-alone visit when a tech is available</span>
+                <strong>
+                  ${repairPricing.intervalPrice} / {repairPricing.intervalMinutes} min
+                </strong>
+                <span>Additional labor after the included time</span>
               </li>
               <li>
-                <strong>$35 / 15 min</strong>
-                <span>Additional repair labor beyond the included window</span>
+                <strong>${repairPricing.diagnosticAndTrip} + part</strong>
+                <span>
+                  Regulator replacement, Traeger or Green Mountain hot rod, and Weber igniter
+                  module
+                </span>
               </li>
             </ul>
             <Link href="/grill-repairs" className="btn-prestige">

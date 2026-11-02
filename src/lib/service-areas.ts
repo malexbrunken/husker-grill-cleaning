@@ -1,8 +1,9 @@
-import { site } from "@/lib/site";
+import { documentTitle } from "@/lib/seo";
+import { repairPricing, site } from "@/lib/site";
 
 /**
- * Shared pricing used on every local service-area lander.
- * Keep in sync with /pricing.
+ * Shared cleaning prices used on every local service-area lander.
+ * Repair rates come from repairPricing in site.ts.
  */
 export const AREA_PRICING = {
   freestandingDeep: { amount: 299, label: "Freestanding / pedestal deep clean" },
@@ -13,9 +14,14 @@ export const AREA_PRICING = {
     amount: 50,
     label: "Off each additional grill on the same visit",
   },
-  repairWithClean: { amount: 50, label: "Repair labor with deep clean (+ parts)" },
-  repairStandalone: { amount: 149, label: "Stand-alone repair visit (+ parts)" },
-  extraLaborHourly: { amount: 120, label: "Repair labor after diagnosis (per hour)" },
+  repairDiagnostic: {
+    amount: repairPricing.diagnosticAndTrip,
+    label: "Diagnostic and trip charge",
+  },
+  repairInterval: {
+    amount: repairPricing.intervalPrice,
+    label: `Each additional ${repairPricing.intervalMinutes} minutes`,
+  },
 } as const;
 
 export type ServiceArea = {
@@ -29,9 +35,7 @@ export type ServiceArea = {
   regionName: string;
   /** Metro umbrella for internal links */
   metro: "Omaha" | "Lincoln" | "Council Bluffs";
-  /** Postal code representative of the area (schema) */
-  postalCode: string;
-  /** lat/lng for LocalBusiness area */
+  /** lat/lng for the community (not a street address) */
   geo: { latitude: number; longitude: number };
   /** Optional communities / HOAs called out on the page */
   nearby: readonly string[];
@@ -62,7 +66,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Omaha",
-    postalCode: "68022",
     geo: { latitude: 41.2864, longitude: -96.2342 },
     nearby: [
       "Skyline Ranches",
@@ -85,7 +88,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Omaha",
-    postalCode: "68064",
     geo: { latitude: 41.3128, longitude: -96.3464 },
     nearby: [
       "Lake Allure",
@@ -111,7 +113,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Omaha",
-    postalCode: "68028",
     geo: { latitude: 41.1406, longitude: -96.2397 },
     nearby: [
       "The Ridges",
@@ -134,7 +135,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Lincoln",
-    postalCode: "68508",
     geo: { latitude: 40.8136, longitude: -96.7026 },
     nearby: [
       "Firethorn",
@@ -162,7 +162,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Omaha",
-    postalCode: "68046",
     geo: { latitude: 41.1544, longitude: -96.0422 },
     nearby: [
       "La Vista",
@@ -184,7 +183,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Omaha",
-    postalCode: "68128",
     geo: { latitude: 41.1836, longitude: -96.0311 },
     nearby: [
       "Papillion",
@@ -209,7 +207,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Omaha",
-    postalCode: "68003",
     geo: { latitude: 41.0392, longitude: -96.3683 },
     nearby: [
       "Ashland",
@@ -238,7 +235,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Omaha",
-    postalCode: "68005",
     geo: { latitude: 41.1544, longitude: -95.9146 },
     nearby: [
       "Papillion",
@@ -263,7 +259,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Lincoln",
-    postalCode: "68462",
     geo: { latitude: 40.9167, longitude: -96.5281 },
     nearby: [
       "Lincoln",
@@ -284,7 +279,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Lincoln",
-    postalCode: "68372",
     geo: { latitude: 40.62, longitude: -96.6311 },
     nearby: [
       "Roca",
@@ -305,7 +299,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Lincoln",
-    postalCode: "68430",
     geo: { latitude: 40.6572, longitude: -96.6606 },
     nearby: [
       "Hickman",
@@ -325,7 +318,6 @@ export const serviceAreas: readonly ServiceArea[] = [
     region: "NE",
     regionName: "Nebraska",
     metro: "Lincoln",
-    postalCode: "68428",
     geo: { latitude: 40.9567, longitude: -96.7825 },
     nearby: [
       "Lincoln",
@@ -342,6 +334,52 @@ export const serviceAreas: readonly ServiceArea[] = [
   },
 ] as const;
 
+export type ServedCity = {
+  name: string;
+  regionName: string;
+  href: string;
+};
+
+const OMAHA_HUB = "/professional-grill-cleaning-repair-services-in-omaha-nebraska";
+
+/** One link per existing service-area page, plus the Omaha hub. */
+export function serviceAreaLinks(): { name: string; href: string }[] {
+  return [
+    { name: "Omaha", href: OMAHA_HUB },
+    ...serviceAreas.map((area) => ({
+      name: area.city,
+      href: serviceAreaPath(area),
+    })),
+  ];
+}
+
+/**
+ * Every served city for LocalBusiness.areaServed.
+ * Ashland and Greenwood are separate cities that share one page.
+ */
+export function servedCities(): ServedCity[] {
+  const cities: ServedCity[] = [
+    { name: "Omaha", regionName: "Nebraska", href: OMAHA_HUB },
+  ];
+  for (const area of serviceAreas) {
+    const href = serviceAreaPath(area);
+    if (area.city === "Ashland-Greenwood") {
+      cities.push(
+        { name: "Ashland", regionName: area.regionName, href },
+        { name: "Greenwood", regionName: area.regionName, href },
+      );
+    } else {
+      cities.push({ name: area.city, regionName: area.regionName, href });
+    }
+  }
+  const seen = new Set<string>();
+  return cities.filter((city) => {
+    if (seen.has(city.name)) return false;
+    seen.add(city.name);
+    return true;
+  });
+}
+
 export function getServiceArea(slug: string): ServiceArea | undefined {
   return serviceAreas.find((a) => a.slug === slug);
 }
@@ -355,7 +393,7 @@ export function serviceAreaSlugs(): string[] {
 }
 
 export function serviceAreaTitle(area: ServiceArea): string {
-  return `Grill Cleaning in ${area.city}, ${area.region} | Pricing & Mobile Service | ${site.name}`;
+  return documentTitle(`${area.city}, ${area.region} Grill Cleaning`);
 }
 
 export function serviceAreaDescription(area: ServiceArea): string {

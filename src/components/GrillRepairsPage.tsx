@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { brandPath, getGrillBrandByName, grillBrands } from "@/lib/grill-brands";
-import { site } from "@/lib/site";
+import { repairCoverageSummary, repairPricing, repairRateSummary, site } from "@/lib/site";
 
 /** Brands we take stand-alone when a tech is free; full electronics on Weber/Traeger. */
 export const PRIORITY_REPAIR_BRANDS = [
@@ -14,9 +14,9 @@ export const PRIORITY_REPAIR_BRANDS = [
 ] as const;
 
 const HERO_STATS = [
-  { value: "$50+", label: "Repair with cleaning" },
-  { value: "$149", label: "Stand-alone visit" },
-  { value: "Full", label: "Weber & Traeger service" },
+  { value: `$${repairPricing.diagnosticAndTrip}`, label: "Diagnostic and trip" },
+  { value: `${repairPricing.includedMinutes} min`, label: "Included if the part is on hand" },
+  { value: `$${repairPricing.intervalPrice}`, label: `Per ${repairPricing.intervalMinutes} minutes after` },
 ] as const;
 
 const SERVICE_CHIPS = [
@@ -30,17 +30,17 @@ const SERVICE_CHIPS = [
 
 const PRICE_CARDS = [
   {
-    icon: "🧼",
-    price: "$50+",
-    title: "Repair with Deep Clean",
-    body: "Add repair labor to a scheduled deep clean for $50 + parts—same add-on for freestanding and built-in grills when completed in the same visit.",
-    badge: "Best Value",
+    icon: "🔧",
+    price: `$${repairPricing.diagnosticAndTrip}`,
+    title: "Diagnostic and Trip",
+    body: repairRateSummary(),
+    badge: null,
   },
   {
-    icon: "🔧",
-    price: "$149",
-    title: "Stand-Alone Service Visit",
-    body: "Travel, diagnosis, and up to 30 minutes of straightforward on-site repair labor when a technician is available. Parts additional.",
+    icon: "⏱️",
+    price: `$${repairPricing.intervalPrice}`,
+    title: `Per ${repairPricing.intervalMinutes} Minutes`,
+    body: `After the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, labor is $${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes}-minute interval when the part is on hand.`,
     badge: null,
   },
   {
@@ -53,9 +53,18 @@ const PRICE_CARDS = [
 ] as const;
 
 const PRICE_ROWS = [
-  { label: "Repair added to scheduled deep clean", value: "$50 + parts" },
-  { label: "Stand-alone repair visit (when tech available)", value: "$149 + parts" },
-  { label: "Additional repair labor", value: "$35 / 15 min" },
+  {
+    label: "Diagnostic and trip charge",
+    value: `$${repairPricing.diagnosticAndTrip} (up to ${repairPricing.includedMinutes} minutes if the part is on hand)`,
+  },
+  {
+    label: "Additional repair labor",
+    value: `$${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes} minutes`,
+  },
+  {
+    label: "Regulator, Traeger or Green Mountain hot rod, Weber igniter module",
+    value: `$${repairPricing.diagnosticAndTrip} plus the part`,
+  },
   { label: "Return installation when a part must be sourced", value: "from $99 + parts" },
   { label: "Other-brand repair evaluation", value: "by quote" },
   { label: "Travel within core service area", value: "included" },
@@ -161,7 +170,7 @@ export const REPAIR_FAQS = [
     items: [
       {
         q: "Should I schedule cleaning and repair together?",
-        a: "Usually, yes—especially if the grill is more than a few seasons old or has heavy buildup. Many ignition, low-flame, flare-up, and heat problems are caused or worsened by grease, blocked ports, debris, corrosion, and restricted airflow. When repair is performed during a deep clean, the grill is already open and accessible, which saves labor and usually gives a better result. That is why repair labor added to a scheduled deep clean is $50 + parts, compared with a $149 stand-alone repair visit when a technician is available.",
+        a: `Usually, yes—especially if the grill is more than a few seasons old or has heavy buildup. Many ignition, low-flame, flare-up, and heat problems are caused or worsened by grease, blocked ports, debris, corrosion, and restricted airflow. When repair is performed during a deep clean, the grill is already open and accessible. ${repairRateSummary()} ${repairCoverageSummary()}`,
       },
       {
         q: "Do you repair non-Weber or non-Traeger grills?",
@@ -228,8 +237,7 @@ export function GrillRepairsPage() {
             grill is already disassembled, safer to diagnose, and easier to restore.
           </p>
           <p className="rep-value-price">
-            Repair labor added to a scheduled deep clean is{" "}
-            <strong>$50 + parts</strong>—same rate for freestanding and built-in grills.
+            {repairRateSummary()} {repairCoverageSummary()}
           </p>
           <div className="rep-hero-actions">
             <Link href={site.bookingPath} className="btn-prestige">

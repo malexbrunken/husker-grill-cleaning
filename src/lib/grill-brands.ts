@@ -1,4 +1,10 @@
-import { site } from "@/lib/site";
+import { documentTitle } from "@/lib/seo";
+import {
+  repairPricing,
+  repairPricingDescription,
+  repairRateSummary,
+  site,
+} from "@/lib/site";
 
 /**
  * Grill brand SEO series — problem + local long-tails for Omaha & Lincoln.
@@ -11,9 +17,10 @@ import { site } from "@/lib/site";
 export const BRAND_PRICING = {
   freestandingDeep: 299,
   builtInDeep: 349,
-  repairWithClean: 50,
-  repairStandalone: 149,
-  laborHourly: 120,
+  diagnosticAndTrip: repairPricing.diagnosticAndTrip,
+  includedMinutes: repairPricing.includedMinutes,
+  intervalMinutes: repairPricing.intervalMinutes,
+  intervalPrice: repairPricing.intervalPrice,
 } as const;
 
 export type BrandProblem = {
@@ -65,12 +72,12 @@ export function brandPath(brand: GrillBrand): string {
 }
 
 export function brandTitle(brand: GrillBrand): string {
-  return `${brand.name} Grill Cleaning & Repair in Omaha & Lincoln | ${site.name}`;
+  return documentTitle(`${brand.name} Grill Cleaning & Repair`);
 }
 
 export function brandDescription(brand: GrillBrand): string {
   const top = brand.problems[0]?.symptom ?? "won't start";
-  return `${brand.name} grill cleaning and repair in Omaha and Lincoln, NE. ${top} and other common issues diagnosed on-site. Deep clean from $${BRAND_PRICING.freestandingDeep}; repair with clean $${BRAND_PRICING.repairWithClean}+parts. Call ${site.phoneDisplay}.`;
+  return `${brand.name} grill cleaning and repair in Omaha and Lincoln, NE. ${top} and other common issues diagnosed on-site. Deep clean from $${BRAND_PRICING.freestandingDeep}. ${repairRateSummary()} Call ${site.phoneDisplay}.`;
 }
 
 export function brandDirectAnswer(brand: GrillBrand): string {
@@ -83,7 +90,7 @@ export function brandDirectAnswer(brand: GrillBrand): string {
           ? `We specialize in mobile deep cleaning and mechanical service for ${brand.name} built-in and freestanding grills`
           : `We deep-clean ${brand.name} grills and fix common mechanical issues during the same visit when possible`;
 
-  return `If your ${brand.name} grill is not working in Omaha or Lincoln, Nebraska, ${site.name} comes to you. ${level}. Cleaning customers can add repair labor for $${BRAND_PRICING.repairWithClean} + parts; stand-alone repair visits are $${BRAND_PRICING.repairStandalone} + parts when a technician is available.`;
+  return `If your ${brand.name} grill is not working in Omaha or Lincoln, Nebraska, ${site.name} comes to you. ${level}. ${repairPricingDescription()}`;
 }
 
 export function brandLongTails(brand: GrillBrand): string[] {
@@ -134,12 +141,12 @@ export function buildBrandFaqs(brand: GrillBrand): BrandFaq[] {
     {
       q: `Why is my ${n} grill not igniting in Omaha or Lincoln?`,
       a: p0
-        ? `Common causes include ${p0.causes.slice(0, 3).join(", ")}. ${site.name} diagnoses ${n} ignition problems on-site across the Omaha and Lincoln metros and can often repair them during a deep clean for $${BRAND_PRICING.repairWithClean} + parts.`
+        ? `Common causes include ${p0.causes.slice(0, 3).join(", ")}. ${site.name} diagnoses ${n} ignition problems on-site across the Omaha and Lincoln metros. ${repairRateSummary()}`
         : `Ignition failures on ${n} grills are usually dirty electrodes, weak spark modules, gas flow issues, or failed igniters. We diagnose on-site in Omaha and Lincoln.`,
     },
     {
       q: `Do you repair ${n} grills in Omaha and Lincoln, NE?`,
-      a: `Yes. ${site.name} offers mobile ${n} grill cleaning and repair throughout Omaha and Lincoln. Repair labor added to a deep clean is $${BRAND_PRICING.repairWithClean} + parts; stand-alone visits are $${BRAND_PRICING.repairStandalone} + parts when scheduling allows.`,
+      a: `Yes. ${site.name} offers mobile ${n} grill cleaning and repair throughout Omaha and Lincoln. ${repairPricingDescription()}`,
     },
     {
       q: `How much does ${n} grill cleaning cost in Nebraska?`,
