@@ -9,10 +9,44 @@ export const site = {
   description:
     "Nebraska's premier mobile grill cleaning and repair service. Professional 50-step deep cleaning, maintenance cleaning, full-service Weber repair, full-service Traeger repair, and grill will not light service in Omaha and Lincoln metros.",
   tagline: "Professional Grill Cleaning in Omaha and Lincoln",
-  locations: [
-    { city: "Lincoln", region: "NE", postalCode: "68522" },
-    { city: "Omaha", region: "NE", postalCode: "68022" },
-  ],
+  /** Service-area business: no public street address and no ZIP published. */
+  hours: {
+    display: "Mon-Fri 9am-6pm",
+    callsAnswered: "Calls answered 7 days a week",
+    /** schema.org openingHours */
+    openingHours: "Mo-Fr 09:00-18:00",
+    opens: "09:00",
+    closes: "18:00",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+    ] as const,
+  },
+  /**
+   * Google review totals for LocalBusiness.aggregateRating.
+   * Update reviewCount as the Google total grows. Do not blend Facebook, Yelp, or other sites into this count.
+   */
+  googleReviews: {
+    ratingValue: 5,
+    bestRating: 5,
+    reviewCount: 97,
+  },
+  google: {
+    cid: "6804432358231856931",
+    profileUrl: "https://www.google.com/maps?cid=6804432358231856931",
+    /**
+     * Opens this profile's Google reviews. Built from the CID because a Place ID
+     * short link is not published. Swap for the GBP "ask for reviews" URL if one is issued.
+     */
+    reviewUrl:
+      "https://www.google.com/maps?cid=6804432358231856931&hl=en#lrd=0x0:0x5e6e332daa955723,3",
+    /** Service-area embed. No street query, so the map is not pinned to an address. */
+    embedUrl:
+      "https://maps.google.com/maps?cid=6804432358231856931&hl=en&z=9&output=embed",
+  },
   social: {
     facebook: "https://www.facebook.com/huskergrillcleaning",
     instagram: "https://www.instagram.com/huskergrillcleaning",
@@ -25,9 +59,47 @@ export const site = {
   /** Housecall Pro online booking (opens in new tab). */
   bookingUrl:
     "https://book.housecallpro.com/book/Husker-Grill-Cleaning/39dfd680a1014e25a85a1f719cf79526?v2=true",
+  /** Omaha-metro center for service-area schema. Not a street address. */
   geo: { latitude: 41.2565, longitude: -95.9345 },
   taxId: "15883655",
 } as const;
+
+/** Single LocalBusiness node referenced across the site. */
+export const businessId = `${site.domain}/#business`;
+
+/**
+ * Repair pricing — single source of truth.
+ * Diagnostic and trip charge includes up to 30 minutes when the part is on hand.
+ */
+export const repairPricing = {
+  diagnosticAndTrip: 149,
+  includedMinutes: 30,
+  intervalMinutes: 15,
+  intervalPrice: 30,
+  coveredByDiagnosticPlusPart: [
+    "regulator replacement",
+    "hot rod replacement on Traeger or Green Mountain Grills",
+    "igniter module replacement on Weber",
+  ],
+} as const;
+
+export function repairRateSummary(): string {
+  const p = repairPricing;
+  return `$${p.diagnosticAndTrip} diagnostic and trip charge, includes up to ${p.includedMinutes} minutes of work if the part is on hand; after that $${p.intervalPrice} per ${p.intervalMinutes}-minute interval.`;
+}
+
+export function repairCoverageSummary(): string {
+  return `Regulator replacement, hot rod replacement on Traeger or Green Mountain Grills, and igniter module replacement on Weber are covered by the $${repairPricing.diagnosticAndTrip} plus only the part cost.`;
+}
+
+export function repairPricingDescription(): string {
+  return `${repairRateSummary()} ${repairCoverageSummary()}`;
+}
+
+/** "Gretna, NE" — trims so a trailing space on the city cannot render as "Gretna , NE". */
+export function formatPlace(city: string, region: string): string {
+  return `${city.trim().replace(/\s+,/g, ",")}, ${region.trim()}`;
+}
 
 export const navLinks = [
   { href: "/", label: "Home" },

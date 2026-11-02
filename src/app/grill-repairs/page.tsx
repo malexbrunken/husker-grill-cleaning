@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { GrillRepairsPage, REPAIR_FAQS } from "@/components/GrillRepairsPage";
-import { site } from "@/lib/site";
+import { documentTitle } from "@/lib/seo";
+import {
+  businessId,
+  repairPricing,
+  repairPricingDescription,
+  repairRateSummary,
+  site,
+} from "@/lib/site";
 
 const path = "/grill-repairs";
-const title =
-  "Weber & Traeger Grill Repair in Omaha & Lincoln | Husker Grill Cleaning";
+const title = documentTitle("Weber & Traeger Grill Repair");
 const description =
-  "Weber grill repair and Traeger pellet grill repair in Omaha and Lincoln. Fix grills that will not light, low flame, igniters, regulators, burners, hot rods, and control boards. Best value: $50 + parts repair with a deep clean.";
+  `Weber and Traeger grill repair in Omaha and Lincoln for grills that will not light, low flame, igniters, regulators, and hot rods. ${repairRateSummary()}`;
 
 export const metadata: Metadata = {
   title: {
@@ -83,13 +89,7 @@ function RepairJsonLd() {
     name: "Weber and Traeger Grill Repair",
     serviceType: "Grill repair",
     description,
-    provider: {
-      "@type": "LocalBusiness",
-      "@id": `${site.domain}/#business`,
-      name: site.name,
-      telephone: site.phoneTel,
-      email: site.email,
-    },
+    provider: { "@id": businessId },
     areaServed: [
       { "@type": "City", name: "Omaha", containedInPlace: { "@type": "State", name: "Nebraska" } },
       { "@type": "City", name: "Lincoln", containedInPlace: { "@type": "State", name: "Nebraska" } },
@@ -98,18 +98,17 @@ function RepairJsonLd() {
     offers: [
       {
         "@type": "Offer",
-        name: "Repair with deep clean",
-        price: "50",
+        name: "Grill repair diagnostic and trip",
+        price: String(repairPricing.diagnosticAndTrip),
         priceCurrency: "USD",
-        description: "Repair labor added to a scheduled deep clean, plus parts.",
+        description: repairPricingDescription(),
       },
       {
         "@type": "Offer",
-        name: "Stand-alone repair visit",
-        price: "149",
+        name: "Additional grill repair labor",
+        price: String(repairPricing.intervalPrice),
         priceCurrency: "USD",
-        description:
-          "Stand-alone service visit including travel, diagnosis, and initial on-site labor. Parts additional.",
+        description: `After the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, $${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes} minutes when the part is on hand.`,
       },
     ],
     brand: [{ "@type": "Brand", name: "Weber" }, { "@type": "Brand", name: "Traeger" }],

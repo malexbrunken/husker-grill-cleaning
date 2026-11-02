@@ -5,10 +5,11 @@ import {
   MatthewBrunkenPage,
   matthewPhotoUrl,
 } from "@/components/MatthewBrunkenPage";
-import { site } from "@/lib/site";
+import { documentTitle } from "@/lib/seo";
+import { businessId, site } from "@/lib/site";
 
 const path = "/matthew-brunken-lincoln-ne";
-const title = "Matthew Brunken | Lincoln NE Entrepreneur, Runner & AGSI Grill Technician";
+const title = documentTitle("Matthew Brunken, Lincoln NE");
 const description =
   "Matthew Brunken of Lincoln, Nebraska — founder of Husker Grill Cleaning, AGSI founding cohort (CGCT & CAGST), competitive distance runner (3× BRIN champion), and cross country coach. Bio, credentials, and how to connect.";
 const ogImage = matthewPhotoUrl(1200);
@@ -108,12 +109,7 @@ function MatthewJsonLd() {
       "Cross Country Coach",
       "Competitive Distance Runner",
     ],
-    worksFor: {
-      "@type": "LocalBusiness",
-      "@id": `${site.domain}/#business`,
-      name: site.name,
-      url: site.domain,
-    },
+    worksFor: { "@id": businessId },
     founder: {
       "@type": "Organization",
       name: site.legalName,

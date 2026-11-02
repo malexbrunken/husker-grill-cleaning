@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { AboutPage } from "@/components/AboutPage";
-import { site } from "@/lib/site";
+import { documentTitle } from "@/lib/seo";
+import { businessId, site } from "@/lib/site";
 
-const title = "About Husker Grill Cleaning | AGSI-Certified Service in Omaha & Lincoln";
+const title = documentTitle("About Our Grill Service");
 const description =
   "Meet Matthew Brunken and Husker Grill Cleaning — AGSI founding cohort, CGCT & CAGST certified mobile grill cleaning and repair for Omaha and Lincoln, Nebraska. Full disassembly, gas safety, and clean + repair in one visit.";
 const path = "/about";
@@ -91,11 +92,7 @@ function AboutJsonLd() {
       "Founder of Husker Grill Cleaning. AGSI founding cohort member holding CGCT and CAGST credentials. MBA, University of Nebraska Omaha.",
     image: ogImage,
     url: `${site.domain}/matthew-brunken-lincoln-ne`,
-    worksFor: {
-      "@type": "LocalBusiness",
-      "@id": `${site.domain}/#business`,
-      name: site.name,
-    },
+    worksFor: { "@id": businessId },
     alumniOf: [
       {
         "@type": "CollegeOrUniversity",
@@ -150,21 +147,14 @@ function AboutJsonLd() {
 
   const professionalService = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Service",
     "@id": `${site.domain}${path}#service`,
-    name: "Husker Grill Cleaning — AGSI-Certified Grill Service",
+    name: "AGSI-Certified Grill Cleaning and Repair",
     description:
       "AGSI-certified mobile grill cleaning and repair serving Omaha and Lincoln, Nebraska.",
     url: `${site.domain}${path}`,
-    telephone: site.phoneTel,
-    email: site.email,
-    image: ogImage,
-    areaServed: [
-      { "@type": "City", name: "Omaha", containedInPlace: { "@type": "State", name: "Nebraska" } },
-      { "@type": "City", name: "Lincoln", containedInPlace: { "@type": "State", name: "Nebraska" } },
-    ],
-    founder: { "@id": `${site.domain}/matthew-brunken-lincoln-ne#person` },
-    parentOrganization: { "@id": `${site.domain}/#business` },
+    provider: { "@id": businessId },
+    serviceType: "Grill cleaning and repair",
   };
 
   return (

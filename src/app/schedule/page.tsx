@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { SCHEDULE_FAQS, SchedulePage } from "@/components/SchedulePage";
+import { documentTitle } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 const path = "/schedule";
-const title = "Schedule | Book Your Grill Service Today — Husker Grill Cleaning";
+const title = documentTitle("Schedule Grill Cleaning");
 const description =
   "Reserve your Husker Grill Cleaning appointment online via Housecall Pro, call (402) 672-6272, or email photos. No payment due today. No one needs to be home. Omaha & Lincoln.";
 

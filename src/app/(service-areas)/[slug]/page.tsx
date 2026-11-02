@@ -23,7 +23,7 @@ import {
   serviceAreaSlugs,
   serviceAreaTitle,
 } from "@/lib/service-areas";
-import { site } from "@/lib/site";
+import { businessId, repairPricing, repairPricingDescription, site } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -192,12 +192,7 @@ function AreaJsonLd({ slug }: { slug: string }) {
             name: `Grill Cleaning in ${area.city}, ${area.region}`,
             serviceType: "Mobile grill cleaning and repair",
             description,
-            provider: {
-              "@type": "LocalBusiness",
-              name: site.name,
-              telephone: site.phoneTel,
-              url: site.domain,
-            },
+            provider: { "@id": businessId },
             areaServed: [
               { "@type": "City", name: area.city },
               { "@type": "City", name: area.metro },
@@ -291,25 +286,7 @@ function BrandJsonLd({ slug }: { slug: string }) {
     name: `${brand.name} Grill Cleaning and Repair`,
     serviceType: `${brand.name} mobile grill cleaning and repair`,
     description: direct,
-    provider: {
-      "@type": "LocalBusiness",
-      name: site.name,
-      telephone: site.phoneTel,
-      email: site.email,
-      url: site.domain,
-      areaServed: [
-        {
-          "@type": "City",
-          name: "Omaha",
-          containedInPlace: { "@type": "State", name: "Nebraska" },
-        },
-        {
-          "@type": "City",
-          name: "Lincoln",
-          containedInPlace: { "@type": "State", name: "Nebraska" },
-        },
-      ],
-    },
+    provider: { "@id": businessId },
     areaServed: [
       { "@type": "City", name: "Omaha" },
       { "@type": "City", name: "Lincoln" },
@@ -335,18 +312,18 @@ function BrandJsonLd({ slug }: { slug: string }) {
       },
       {
         "@type": "Offer",
-        name: `${brand.name} repair with deep clean`,
-        price: "50",
+        name: `${brand.name} repair diagnostic and trip`,
+        price: String(repairPricing.diagnosticAndTrip),
         priceCurrency: "USD",
-        description: "Repair labor with deep clean; parts extra",
+        description: repairPricingDescription(),
         url: pageUrl,
       },
       {
         "@type": "Offer",
-        name: `${brand.name} stand-alone repair visit`,
-        price: "149",
+        name: `${brand.name} additional repair labor`,
+        price: String(repairPricing.intervalPrice),
         priceCurrency: "USD",
-        description: "Stand-alone repair visit; parts extra",
+        description: `After the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, $${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes} minutes when the part is on hand.`,
         url: pageUrl,
       },
     ],
@@ -381,7 +358,7 @@ function BrandJsonLd({ slug }: { slug: string }) {
         "@type": "HowToStep",
         position: 4,
         name: "Repair with quoted parts",
-        text: "Complete agreed repairs; cleaning customers pay $50 labor plus parts for same-visit repair work when applicable.",
+        text: `Complete agreed repairs. ${repairPricingDescription()}`,
       },
     ],
   };

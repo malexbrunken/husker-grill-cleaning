@@ -1,11 +1,18 @@
-import { faqs, site } from "@/lib/site";
+import { servedCities } from "@/lib/service-areas";
+import {
+  businessId,
+  faqs,
+  repairPricing,
+  repairPricingDescription,
+  site,
+} from "@/lib/site";
 
 /** Sitewide LocalBusiness + WebSite — safe on every page. */
 export function JsonLd() {
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `${site.domain}/#business`,
+    "@id": businessId,
     name: site.name,
     description: site.description,
     url: site.domain,
@@ -13,27 +20,36 @@ export function JsonLd() {
     email: site.email,
     image: `${site.domain}/images/hero.webp`,
     priceRange: "$$",
-    openingHours: "Mo-Fr 08:00-18:00, Sa 09:00-17:00",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Omaha",
-      addressRegion: "NE",
-      addressCountry: "US",
-    },
+    openingHours: site.hours.openingHours,
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [...site.hours.dayOfWeek],
+        opens: site.hours.opens,
+        closes: site.hours.closes,
+      },
+    ],
     geo: {
       "@type": "GeoCoordinates",
       latitude: site.geo.latitude,
       longitude: site.geo.longitude,
     },
-    areaServed: [
-      { "@type": "City", name: "Omaha" },
-      { "@type": "City", name: "Lincoln" },
+    areaServed: servedCities().map((city) => ({
+      "@type": "City",
+      name: city.name,
+      containedInPlace: { "@type": "State", name: city.regionName },
+    })),
+    sameAs: [
+      site.google.profileUrl,
+      site.social.facebook,
+      site.social.instagram,
+      site.social.nicejob,
     ],
-    sameAs: [site.social.facebook, site.social.instagram, site.social.nicejob],
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "150",
+      ratingValue: site.googleReviews.ratingValue,
+      bestRating: site.googleReviews.bestRating,
+      reviewCount: site.googleReviews.reviewCount,
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -66,23 +82,27 @@ export function JsonLd() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Repair Labor Add-On with Deep Clean",
-            description:
-              "Repair labor added to a scheduled deep clean; $50 + parts (parts extra)",
+            name: "Grill repair diagnostic and trip",
+            description: repairPricingDescription(),
           },
-          price: "50",
+          price: String(repairPricing.diagnosticAndTrip),
           priceCurrency: "USD",
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Stand-Alone Repair Visit",
-            description:
-              "Stand-alone repair service visit; $149 trip charge, parts and additional labor extra",
+            name: "Additional grill repair labor",
+            description: `Charged after the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, when the part is on hand.`,
           },
-          price: "149",
+          price: String(repairPricing.intervalPrice),
           priceCurrency: "USD",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: String(repairPricing.intervalPrice),
+            priceCurrency: "USD",
+            unitText: `${repairPricing.intervalMinutes} minutes`,
+          },
         },
       ],
     },
