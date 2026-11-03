@@ -16,7 +16,12 @@ export function BrandPricingCard({ model }: { model: BrandPricingCardModel }) {
       <ul className="bp-price-clean">
         {model.cleaning.map((item) => (
           <li key={item.name}>
-            <span>{item.name}</span>
+            <span>
+              {item.name}
+              {item.detail ? (
+                <span className="bp-price-detail">{item.detail}</span>
+              ) : null}
+            </span>
             <strong>
               ${item.amount} <small>+ tax</small>
             </strong>

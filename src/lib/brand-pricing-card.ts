@@ -1,22 +1,28 @@
-import { BRAND_PRICING } from "@/lib/grill-brands";
+import { BRAND_PRICING, WEBER_OVERSIZE_CLEAN } from "@/lib/grill-brands";
+import { AREA_PRICING } from "@/lib/service-areas";
 import { repairPricing } from "@/lib/site";
 
 /**
- * Cleaning amounts come from BRAND_PRICING, the same $299 freestanding and
- * $349 built-in figures shown on /pricing. Repair amounts come from repairPricing.
+ * Freestanding and maintenance amounts come from the shared price tables
+ * (BRAND_PRICING and AREA_PRICING), which match the figures on /pricing.
+ * Repair amounts come from repairPricing.
  *
- * The $50 same-visit add-on is Weber-only: it applies when a Weber cleaning
- * is booked for that visit. Traeger and Green Mountain can opt in later by
- * adding an entry to CARD_BRANDS.
+ * Weber has no built-in line. The oversize amount is owner-confirmed for
+ * Weber grills with 6 or more knobs or burners. The $50 same-visit add-on
+ * applies only when a Weber cleaning is booked for that visit.
+ * Traeger and Green Mountain can opt in later by adding an entry to CARD_BRANDS.
  */
 const WEBER_SAME_VISIT_REPAIR_ADDON = 50;
 
+export type CleaningPriceLine = {
+  name: string;
+  amount: number;
+  detail?: string;
+};
+
 export type BrandPricingCardModel = {
   brandName: string;
-  cleaning: readonly {
-    name: string;
-    amount: number;
-  }[];
+  cleaning: readonly CleaningPriceLine[];
   diagnosticAmount: number;
   includedMinutes: number;
   intervalMinutes: number;
@@ -28,8 +34,34 @@ export type BrandPricingCardModel = {
   } | null;
 };
 
-const CARD_BRANDS: Record<string, Omit<BrandPricingCardModel, "brandName" | "cleaning" | "diagnosticAmount" | "includedMinutes" | "intervalMinutes" | "intervalPrice">> = {
+const CARD_BRANDS: Record<
+  string,
+  Omit<
+    BrandPricingCardModel,
+    | "brandName"
+    | "diagnosticAmount"
+    | "includedMinutes"
+    | "intervalMinutes"
+    | "intervalPrice"
+  >
+> = {
   Weber: {
+    cleaning: [
+      {
+        name: "Freestanding deep clean",
+        amount: BRAND_PRICING.freestandingDeep,
+      },
+      {
+        name: "Maintenance cleaning",
+        amount: AREA_PRICING.maintenance.amount,
+        detail: "Second or later cleaning within the same year",
+      },
+      {
+        name: "Oversize grill",
+        amount: WEBER_OVERSIZE_CLEAN,
+        detail: "6+ knobs/burners",
+      },
+    ],
     coveredRepairs: [
       "regulator replacement",
       "Weber igniter module replacement",
@@ -50,16 +82,7 @@ export function getBrandPricingCard(brand: {
 
   return {
     brandName: brand.name,
-    cleaning: [
-      {
-        name: "Freestanding deep clean",
-        amount: BRAND_PRICING.freestandingDeep,
-      },
-      {
-        name: "Built-in deep clean",
-        amount: BRAND_PRICING.builtInDeep,
-      },
-    ],
+    cleaning: extra.cleaning,
     diagnosticAmount: repairPricing.diagnosticAndTrip,
     includedMinutes: repairPricing.includedMinutes,
     intervalMinutes: repairPricing.intervalMinutes,
@@ -97,7 +120,9 @@ export function brandPricingCardOffers(
     priceCurrency: "USD",
     url: pageUrl,
     availability: "https://schema.org/InStock",
-    description: `${item.name} for a ${model.brandName}. Price excludes tax.`,
+    description: item.detail
+      ? `${item.name} for a ${model.brandName} (${item.detail}). Price excludes tax.`
+      : `${item.name} for a ${model.brandName}. Price excludes tax.`,
     priceSpecification: unitPrice(item.amount, item.name, {
       valueAddedTaxIncluded: false,
     }),
