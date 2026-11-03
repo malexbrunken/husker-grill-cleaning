@@ -177,9 +177,17 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
               same visit after cleaning blocked ports and testing ignition.
             </li>
             <li>
-              <strong>Price anchors:</strong> Deep clean from $
-              {BRAND_PRICING.freestandingDeep} freestanding / $
-              {BRAND_PRICING.builtInDeep} built-in. {repairRateSummary()}
+              <strong>Price anchors:</strong>{" "}
+              {pricingCard
+                ? pricingCard.cleaning
+                    .map((item) =>
+                      item.detail
+                        ? `${item.name} (${item.detail}) $${item.amount}`
+                        : `${item.name} $${item.amount}`,
+                    )
+                    .join(". ")
+                : `Deep clean from $${BRAND_PRICING.freestandingDeep} freestanding / $${BRAND_PRICING.builtInDeep} built-in`}
+              . {repairRateSummary()}
             </li>
             <li>
               <strong>Rule of thumb:</strong> If we clean it, we can repair it
@@ -323,14 +331,28 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Freestanding {brand.name} deep clean</td>
-                  <td>${BRAND_PRICING.freestandingDeep}</td>
-                </tr>
-                <tr>
-                  <td>Built-in {brand.name} deep clean</td>
-                  <td>${BRAND_PRICING.builtInDeep}</td>
-                </tr>
+                {pricingCard ? (
+                  pricingCard.cleaning.map((item) => (
+                    <tr key={item.name}>
+                      <td>
+                        {item.name}
+                        {item.detail ? ` (${item.detail})` : ""}
+                      </td>
+                      <td>${item.amount}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <>
+                    <tr>
+                      <td>Freestanding {brand.name} deep clean</td>
+                      <td>${BRAND_PRICING.freestandingDeep}</td>
+                    </tr>
+                    <tr>
+                      <td>Built-in {brand.name} deep clean</td>
+                      <td>${BRAND_PRICING.builtInDeep}</td>
+                    </tr>
+                  </>
+                )}
                 <tr>
                   <td>
                     Diagnostic and trip charge (includes up to{" "}

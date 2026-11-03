@@ -1,4 +1,5 @@
 import { documentTitle } from "@/lib/seo";
+import { AREA_PRICING } from "@/lib/service-areas";
 import {
   repairPricing,
   repairPricingDescription,
@@ -13,6 +14,9 @@ import {
  *
  * Keep repair pricing aligned with /pricing and AREA_PRICING.
  */
+
+/** Owner-confirmed price for a Weber with 6 or more knobs or burners. */
+export const WEBER_OVERSIZE_CLEAN = 329;
 
 export const BRAND_PRICING = {
   freestandingDeep: 299,
@@ -150,7 +154,10 @@ export function buildBrandFaqs(brand: GrillBrand): BrandFaq[] {
     },
     {
       q: `How much does ${n} grill cleaning cost in Nebraska?`,
-      a: `Freestanding ${n} deep cleans start at $${BRAND_PRICING.freestandingDeep}. Built-in ${n} outdoor kitchen cleans start at $${BRAND_PRICING.builtInDeep}. Multi-grill visits receive $50 off each additional grill. Pricing is the same in Omaha and Lincoln.`,
+      a:
+        n === "Weber"
+          ? `Freestanding Weber deep cleans are $${BRAND_PRICING.freestandingDeep}. Maintenance cleaning, a second or later cleaning within the same year, is $${AREA_PRICING.maintenance.amount}. Oversize Weber grills with 6 or more knobs or burners are $${WEBER_OVERSIZE_CLEAN}. Weber does not make built-in grills. Multi-grill visits receive $50 off each additional grill.`
+          : `Freestanding ${n} deep cleans start at $${BRAND_PRICING.freestandingDeep}. Built-in ${n} outdoor kitchen cleans start at $${BRAND_PRICING.builtInDeep}. Multi-grill visits receive $50 off each additional grill. Pricing is the same in Omaha and Lincoln.`,
     },
     {
       q: `What ${n} models do you service?`,
