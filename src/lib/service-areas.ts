@@ -30,11 +30,11 @@ export type ServiceArea = {
   /** Short place name for H1/copy: "Elkhorn" */
   city: string;
   /** State abbreviation */
-  region: "NE" | "IA";
+  region: "NE";
   /** Full state name */
   regionName: string;
   /** Metro umbrella for internal links */
-  metro: "Omaha" | "Lincoln" | "Council Bluffs";
+  metro: "Omaha" | "Lincoln";
   /** lat/lng for the community (not a street address) */
   geo: { latitude: number; longitude: number };
   /** Optional communities / HOAs called out on the page */
@@ -244,7 +244,6 @@ export const serviceAreas: readonly ServiceArea[] = [
       "Fontenelle Hills",
       "Bellevue Loop",
       "Missouri River corridor",
-      "Council Bluffs edge",
     ],
     localBlurb:
       "Bellevue’s mix of established neighborhoods, newer builds, and Offutt-area homes means gas grills, pellet cookers, and built-ins that work year-round. Husker Grill Cleaning brings the 50-step deep clean and repair options on-site across Bellevue and eastern Sarpy County.",

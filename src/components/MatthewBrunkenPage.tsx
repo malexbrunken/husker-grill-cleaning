@@ -78,7 +78,7 @@ export const MATTHEW_FAQS = [
   },
   {
     q: "Where is Matthew Brunken from?",
-    a: "Matthew Brunken is from Malcolm, Nebraska, and is based in Lincoln, Nebraska. Through Husker Grill Cleaning he also works extensively across the Omaha metro and Council Bluffs area.",
+    a: "Matthew Brunken is from Malcolm, Nebraska, and is based in Lincoln, Nebraska. Through Husker Grill Cleaning he also works extensively across the Omaha metro.",
   },
   {
     q: "What company did Matthew Brunken found?",
@@ -212,7 +212,7 @@ export function MatthewBrunkenPage() {
                 <strong>Lincoln, Nebraska</strong>. He is best known as the founder of{" "}
                 <strong>Husker Grill Cleaning</strong>, a mobile service that deep-cleans and
                 repairs residential, estate, and multi-tenant outdoor grills across Omaha,
-                Lincoln, Council Bluffs, and nearby communities.
+                Lincoln, and nearby communities.
               </p>
               <p>
                 Before launching the company, Matthew combined mechanical trades—work as a

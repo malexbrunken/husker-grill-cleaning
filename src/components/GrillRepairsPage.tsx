@@ -153,7 +153,7 @@ export const REPAIR_FAQS = [
     items: [
       {
         q: "Do you repair Weber grills in Omaha and Lincoln?",
-        a: "Yes. Weber is one of our primary repair brands. We repair Weber Genesis, Weber Summit, Weber Spirit, and Weber Q grills throughout Omaha, Lincoln, Council Bluffs, Elkhorn, Ashland, and nearby areas. Common Weber repairs include igniter replacement, burner replacement, regulator and hose replacement, manifold and valve issues, flavorizer bars, grates, lid thermometers, heat distribution problems, low flame, and grills that will not light.",
+        a: "Yes. Weber is one of our primary repair brands. We repair Weber Genesis, Weber Summit, Weber Spirit, and Weber Q grills throughout Omaha, Lincoln, Elkhorn, Ashland, and nearby communities. Common Weber repairs include igniter replacement, burner replacement, regulator and hose replacement, manifold and valve issues, flavorizer bars, grates, lid thermometers, heat distribution problems, low flame, and grills that will not light.",
       },
       {
         q: "Do you repair Traeger pellet grills?",
@@ -259,8 +259,8 @@ export function GrillRepairsPage() {
             Husker Grill Cleaning is built around outdoor cooking equipment—not refrigerators,
             washers, or general appliance work. We focus on grill cleaning, performance
             restoration, gas-flow problems, ignition failures, Weber grill repair, and Traeger
-            pellet grill repair throughout Omaha, Lincoln, Council Bluffs, Elkhorn, Ashland,
-            and nearby communities.
+            pellet grill repair throughout Omaha, Lincoln, Elkhorn, Ashland, and nearby
+            communities.
           </p>
           <p className="rep-section-lede">
             Our repair model is intentionally focused. We offer full-service repair on Weber
@@ -362,7 +362,7 @@ export function GrillRepairsPage() {
               ))}
             </dl>
             <p className="rep-price-note">
-              Core service areas include Lincoln, Ashland, Omaha, Elkhorn, and Council Bluffs.
+              Core service areas include Omaha, Lincoln, Elkhorn, Ashland, and nearby communities.
               Parts are additional. Complex repairs are quoted before work continues.
             </p>
           </div>
