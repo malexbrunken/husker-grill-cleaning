@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { BrandPricingCard } from "@/components/BrandPricingCard";
+import { WeberFeaturedPhoto, WeberPhotoGallery } from "@/components/WeberCleaningPhotos";
+import { getBrandPricingCard } from "@/lib/brand-pricing-card";
 import {
   BRAND_PRICING,
   brandDirectAnswer,
@@ -12,94 +15,146 @@ import { repairCoverageSummary, repairPricingDescription, repairRateSummary, sit
 
 const CITIES = ["Omaha", "Lincoln"] as const;
 
+function HeroDetails({
+  brand,
+  answer,
+}: {
+  brand: GrillBrand;
+  answer: string;
+}) {
+  return (
+    <>
+      <div className="bp-answer" data-speakable="true">
+        <p className="bp-answer-label">Quick answer</p>
+        <p className="bp-answer-text">{answer}</p>
+      </div>
+
+      <div className="bp-hero-actions">
+        <a
+          className="btn-primary"
+          href={site.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book {brand.name} Service
+        </a>
+        <a className="btn-secondary" href={`tel:${site.phoneTel}`}>
+          Call {site.phoneDisplay}
+        </a>
+        <Link className="btn-secondary" href="/grill-repairs">
+          All grill repairs
+        </Link>
+      </div>
+
+      <ul className="bp-hero-stats">
+        <li>
+          <strong>${BRAND_PRICING.diagnosticAndTrip}</strong>
+          <span>Diagnostic and trip</span>
+        </li>
+        <li>
+          <strong>${BRAND_PRICING.intervalPrice}</strong>
+          <span>Per {BRAND_PRICING.intervalMinutes} min after</span>
+        </li>
+        <li>
+          <strong>${BRAND_PRICING.freestandingDeep}</strong>
+          <span>Freestanding deep clean</span>
+        </li>
+      </ul>
+    </>
+  );
+}
+
+function ModelsCard({ brand }: { brand: GrillBrand }) {
+  return (
+    <aside className="bp-hero-card" aria-label="Service snapshot">
+      <p className="bp-card-kicker">We service</p>
+      <h2 className="bp-card-title">{brand.name} models</h2>
+      <ul className="bp-model-list">
+        {brand.models.map((m) => (
+          <li key={m}>{m}</li>
+        ))}
+      </ul>
+      <p className="bp-card-meta">
+        Fuel: {brand.fuelTypes.join(" · ")}
+        <br />
+        Service level:{" "}
+        {brand.serviceLevel === "full"
+          ? "Full-service (incl. many electronics)"
+          : brand.serviceLevel === "advanced"
+            ? "Advanced mechanical / heat system"
+            : brand.serviceLevel === "premium-builtin"
+              ? "Premium built-in & freestanding"
+              : "Deep clean + mechanical repair"}
+      </p>
+      <div className="bp-city-pills" aria-label="Cities served">
+        {CITIES.map((c) => (
+          <span key={c} className="bp-pill">
+            {c}, NE
+          </span>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
 export function BrandPage({ brand }: { brand: GrillBrand }) {
   const faqs = buildBrandFaqs(brand);
   const answer = brandDirectAnswer(brand);
   const otherBrands = grillBrands.filter((b) => b.slug !== brand.slug);
   const sampleTails = brandLongTails(brand).slice(0, 8);
+  const pricingCard = getBrandPricingCard(brand);
 
   return (
     <article className="bp-page">
       {/* HERO + direct answer (AEO) */}
       <header className="bp-hero">
-        <div className="bp-inner bp-hero-grid">
-          <div>
-            <p className="eyebrow gold">
-              {brand.name} · Omaha &amp; Lincoln, NE
-            </p>
-            <h1>
-              {brand.name} Grill Cleaning &amp; Repair in Omaha &amp; Lincoln
-            </h1>
-            <p className="bp-entity">{brand.entityLine}</p>
-
-            <div className="bp-answer" data-speakable="true">
-              <p className="bp-answer-label">Quick answer</p>
-              <p className="bp-answer-text">{answer}</p>
-            </div>
-
-            <div className="bp-hero-actions">
-              <a
-                className="btn-primary"
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book {brand.name} Service
-              </a>
-              <a className="btn-secondary" href={site.phoneTel}>
-                Call {site.phoneDisplay}
-              </a>
-              <Link className="btn-secondary" href="/grill-repairs">
-                All grill repairs
-              </Link>
-            </div>
-
-            <ul className="bp-hero-stats">
-              <li>
-                <strong>${BRAND_PRICING.diagnosticAndTrip}</strong>
-                <span>Diagnostic and trip</span>
-              </li>
-              <li>
-                <strong>${BRAND_PRICING.intervalPrice}</strong>
-                <span>Per {BRAND_PRICING.intervalMinutes} min after</span>
-              </li>
-              <li>
-                <strong>${BRAND_PRICING.freestandingDeep}</strong>
-                <span>Freestanding deep clean</span>
-              </li>
-            </ul>
-          </div>
-
-          <aside className="bp-hero-card" aria-label="Service snapshot">
-            <p className="bp-card-kicker">We service</p>
-            <h2 className="bp-card-title">{brand.name} models</h2>
-            <ul className="bp-model-list">
-              {brand.models.map((m) => (
-                <li key={m}>{m}</li>
-              ))}
-            </ul>
-            <p className="bp-card-meta">
-              Fuel: {brand.fuelTypes.join(" · ")}
-              <br />
-              Service level:{" "}
-              {brand.serviceLevel === "full"
-                ? "Full-service (incl. many electronics)"
-                : brand.serviceLevel === "advanced"
-                  ? "Advanced mechanical / heat system"
-                  : brand.serviceLevel === "premium-builtin"
-                    ? "Premium built-in & freestanding"
-                    : "Deep clean + mechanical repair"}
-            </p>
-            <div className="bp-city-pills" aria-label="Cities served">
-              {CITIES.map((c) => (
-                <span key={c} className="bp-pill">
-                  {c}, NE
-                </span>
-              ))}
-            </div>
-          </aside>
+        <div
+          className={`bp-inner bp-hero-grid${pricingCard ? " bp-hero-grid--priced" : ""}`}
+        >
+          {pricingCard ? (
+            <>
+              <div className="bp-hero-intro">
+                <p className="eyebrow gold">
+                  {brand.name} · Omaha &amp; Lincoln, NE
+                </p>
+                <h1>
+                  {brand.name} Grill Cleaning &amp; Repair in Omaha &amp; Lincoln
+                </h1>
+                <p className="bp-entity">{brand.entityLine}</p>
+              </div>
+              <BrandPricingCard model={pricingCard} />
+              {brand.name === "Weber" ? <WeberFeaturedPhoto /> : null}
+              <div className="bp-hero-follow">
+                <HeroDetails brand={brand} answer={answer} />
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <p className="eyebrow gold">
+                  {brand.name} · Omaha &amp; Lincoln, NE
+                </p>
+                <h1>
+                  {brand.name} Grill Cleaning &amp; Repair in Omaha &amp; Lincoln
+                </h1>
+                <p className="bp-entity">{brand.entityLine}</p>
+                <HeroDetails brand={brand} answer={answer} />
+              </div>
+              <ModelsCard brand={brand} />
+            </>
+          )}
         </div>
       </header>
+
+      {brand.name === "Weber" ? <WeberPhotoGallery /> : null}
+
+      {pricingCard ? (
+        <section className="bp-models-below" aria-label={`${brand.name} models`}>
+          <div className="bp-inner">
+            <ModelsCard brand={brand} />
+          </div>
+        </section>
+      ) : null}
 
       {/* Key takeaways for AI extraction */}
       <section className="bp-takeaways" aria-labelledby="bp-takeaways-title">
