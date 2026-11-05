@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     "grill igniter repair",
     "low flame grill repair",
     "regulator replacement grill",
-    "Council Bluffs grill repair",
   ],
   alternates: {
     canonical: path,
@@ -93,7 +92,6 @@ function RepairJsonLd() {
     areaServed: [
       { "@type": "City", name: "Omaha", containedInPlace: { "@type": "State", name: "Nebraska" } },
       { "@type": "City", name: "Lincoln", containedInPlace: { "@type": "State", name: "Nebraska" } },
-      { "@type": "City", name: "Council Bluffs", containedInPlace: { "@type": "State", name: "Iowa" } },
     ],
     offers: [
       {
