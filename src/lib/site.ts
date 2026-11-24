@@ -43,9 +43,14 @@ export const site = {
      */
     reviewUrl:
       "https://www.google.com/maps?cid=6804432358231856931&hl=en#lrd=0x0:0x5e6e332daa955723,3",
-    /** Service-area embed. No street query, so the map is not pinned to an address. */
+    /**
+     * GBP Share > Embed a map. This is the iframe Google serves for
+     * maps.google.com/maps?cid=6804432358231856931&output=embed.
+     * The pb value is the CID (4s…), so the card is the business listing
+     * and "View larger map" opens that listing. No street query.
+     */
     embedUrl:
-      "https://maps.google.com/maps?cid=6804432358231856931&hl=en&z=9&output=embed",
+      "https://www.google.com/maps/embed?pb=!1m3!3m2!1m1!4s6804432358231856931",
   },
   social: {
     facebook: "https://www.facebook.com/huskergrillcleaning",
