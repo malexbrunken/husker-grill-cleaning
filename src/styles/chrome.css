@@ -255,7 +255,8 @@
 .footer-map {
   position: relative;
   width: 100%;
-  height: 240px;
+  /* 340px keeps Google's place card (business name + Open in Maps). Shorter frames collapse to a pin. */
+  height: 340px;
   margin-bottom: 2rem;
   border-radius: 16px;
   overflow: hidden;
@@ -269,18 +270,6 @@
   width: 100%;
   height: 100%;
   border: 0;
-}
-
-.footer-map-placeholder {
-  margin: 0;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  color: #64748b;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-  font-weight: 700;
 }
 
 .site-footer-grid {
@@ -580,10 +569,6 @@
 
   .site-footer-grid {
     grid-template-columns: 1fr;
-  }
-
-  .footer-map {
-    height: 200px;
   }
 
   .btn-schedule-header {
