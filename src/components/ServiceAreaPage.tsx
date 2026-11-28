@@ -7,7 +7,7 @@ import {
   serviceAreaHrefForLabel,
   serviceAreaPath,
 } from "@/lib/service-areas";
-import { formatPlace, repairCoverageSummary, repairPricing, repairRateSummary, site } from "@/lib/site";
+import { formatPlace, repairPricing, repairPricingDescription, site } from "@/lib/site";
 
 const PROOF = [
   {
@@ -44,7 +44,7 @@ export function buildAreaFaqs(area: ServiceArea) {
   return [
     {
       q: `How much is grill cleaning in ${city}, ${st}?`,
-      a: `In ${city}, a one-time freestanding / pedestal deep clean is ${money(p.freestandingDeep.amount)} + tax. Built-in outdoor kitchen deep cleans are ${money(p.builtInDeep.amount)} + tax. Maintenance cleaning (for grills we have already deep cleaned) is ${money(p.maintenance.amount)} + tax. Semi-annual care is ${money(p.semiAnnual.amount)} per year + tax for two cleans. Additional grills on the same visit are ${money(p.multiGrillDiscount.amount)} off each after the first.`,
+      a: `In ${city}, a one-time freestanding / pedestal deep clean is ${money(p.freestandingDeep.amount)} + tax. Built-in outdoor kitchen deep cleans are ${money(p.builtInDeep.amount)} + tax. Maintenance cleaning, a second or later cleaning in the same year, is ${money(p.maintenance.amount)} + tax. Semi-annual care is ${money(p.semiAnnual.amount)} per year + tax for two cleans. Additional grills on the same visit are ${money(p.multiGrillDiscount.amount)} off each after the first.`,
     },
     {
       q: `Do you offer mobile grill cleaning in ${city}, Nebraska?`,
@@ -64,7 +64,7 @@ export function buildAreaFaqs(area: ServiceArea) {
     },
     {
       q: `Can you repair my grill in ${city} as well as clean it?`,
-      a: `Yes for cleaning customers—if we clean it, we can repair it. ${repairRateSummary()} ${repairCoverageSummary()}`,
+      a: `Yes for cleaning customers—if we clean it, we can repair it. ${repairPricingDescription()}`,
     },
     {
       q: `How long does grill cleaning take in ${city}?`,
@@ -117,7 +117,7 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
               </li>
               <li>
                 <strong>{money(p.repairDiagnostic.amount)}</strong>
-                <span>Diagnostic and trip</span>
+                <span>Diagnostic charge</span>
               </li>
             </ul>
           </div>
@@ -241,15 +241,17 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
             <div>
               <strong>{money(p.repairDiagnostic.amount)}</strong>
               <span>
-                diagnostic and trip charge, including up to {repairPricing.includedMinutes}{" "}
-                minutes if the part is on hand
+                diagnostic charge. ${repairPricing.diagnosticCredit} is credited if you
+                proceed with the repair
               </span>
             </div>
             <div>
               <strong>
-                {money(p.repairInterval.amount)} / {repairPricing.intervalMinutes} min
+                {money(p.repairLaborIncrement.amount)} / {repairPricing.laborIncrementMinutes} min
               </strong>
-              <span>after the included time</span>
+              <span>
+                repair labor (${repairPricing.laborHourly}/hour)
+              </span>
             </div>
           </div>
 
@@ -290,7 +292,7 @@ export function ServiceAreaPage({ area }: { area: ServiceArea }) {
               <h3>Grill repair</h3>
               <p>
                 Ignition, low flame, regulators, burners, and many Weber / Traeger issues.{" "}
-                {repairRateSummary()}
+                {repairPricingDescription()}
               </p>
               <Link href="/grill-repairs">Repair guide →</Link>
             </article>

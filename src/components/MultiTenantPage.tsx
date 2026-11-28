@@ -119,7 +119,7 @@ const TRUST_PILLS = [
   {
     icon: "🔧",
     title: "Repair Certified",
-    body: "Not just cleaners — we diagnose, quote, and repair. Free repair estimate with every cleaning.",
+    body: "Not just cleaners — we diagnose, quote, and repair during the cleaning visit.",
   },
 ] as const;
 
@@ -135,7 +135,7 @@ const STANDARD_ITEMS = [
   "Full firebox disassembly — every burner, grate, and flavorizer bar removed",
   "Truck-mounted hot bath dissolves years of baked-on carbon and grease",
   "Certified technician performs gas safety inspection on every unit",
-  "Free repair estimate included — same visit, no extra trip charge",
+  "Repair quote during the clean. A return trip with parts is $30",
   "Fully insured with documentation provided for your records",
   "Detailed photo reporting so you see the transformation",
 ] as const;
@@ -232,8 +232,8 @@ const FAQS = [
     a: "Yes. Our $349 rate covers standard built-in gas grills regardless of brand (Weber, Napoleon, Bull, Lynx, and more). Oversized or custom outdoor kitchen configurations may require a brief phone assessment.",
   },
   {
-    q: "What does the free repair estimate include?",
-    a: "During the cleaning, our Certified Advanced Grill Service Technician inspects all gas components, igniters, burners, and valves. If anything needs attention, we provide a firm quote for parts and labor—no extra trip charge and no pressure to approve on the spot.",
+    q: "What does a repair quote during cleaning include?",
+    a: "During the cleaning, our Certified Advanced Grill Service Technician inspects gas components, igniters, burners, and valves. If anything needs attention, we quote parts and labor. A $50 repair add-on applies when a Weber or Traeger cleaning is booked for the same visit. Repairs on other grills booked with a cleaning are a custom quote. If we have to come back with parts, the return trip charge is $30.",
   },
   {
     q: "Do we need to provide water or power?",
@@ -245,7 +245,7 @@ const FAQS = [
   },
   {
     q: "How often should community grills be professionally cleaned?",
-    a: "For high-use amenity grills, we recommend a professional deep clean twice per year—pre-season and post-season. We also offer custom maintenance schedules for large communities. (Note: our residential $199 maintenance touch-up is not available for multi-tenant apartment grills.)",
+    a: "For high-use amenity grills, we recommend a professional deep clean twice per year—pre-season and post-season. We also offer custom maintenance schedules for large communities. (Note: our residential $229 maintenance cleaning is not available for multi-tenant apartment grills.)",
   },
   {
     q: "Can you work around our residents' schedules?",
@@ -280,7 +280,7 @@ export function MultiTenantPage() {
             </p>
             <div>
               <strong>Per built-in grill</strong>
-              <span>Multi-tenant &amp; HOA pricing · Free repair estimate included</span>
+              <span>Multi-tenant &amp; HOA pricing · Repair quote during the clean</span>
             </div>
           </div>
 
@@ -416,12 +416,13 @@ export function MultiTenantPage() {
             </ul>
 
             <div className="mt-repair-callout">
-              <h4>Free Repair Estimate Included</h4>
+              <h4>Repair Quote During the Clean</h4>
               <p>
                 When we clean your built-in grills, we inspect every component. If we find
                 worn igniters, corroded burners, or failing valves, you&apos;ll receive a
-                firm repair quote—no extra trip charge, no pressure. If we clean it, we can
-                repair it.
+                quote for parts and labor. Repairs booked with a cleaning are a custom
+                quote except the $50 Weber or Traeger add-on. If we have to come back with
+                parts, the return trip charge is $30.
               </p>
             </div>
           </article>

@@ -74,31 +74,133 @@ export const businessId = `${site.domain}/#business`;
 
 /**
  * Repair pricing — single source of truth.
- * Diagnostic and trip charge includes up to 30 minutes when the part is on hand.
+ * A $159 diagnostic charge applies. If the customer proceeds, $99 is credited
+ * toward the repair. Labor is $99/hour, billed in 20-minute increments of $33.
  */
 export const repairPricing = {
-  diagnosticAndTrip: 149,
-  includedMinutes: 30,
-  intervalMinutes: 15,
-  intervalPrice: 30,
-  coveredByDiagnosticPlusPart: [
-    "regulator replacement",
-    "hot rod replacement on Traeger or Green Mountain Grills",
-    "igniter module replacement on Weber",
-  ],
+  diagnostic: 159,
+  diagnosticCredit: 99,
+  laborHourly: 99,
+  laborIncrementMinutes: 20,
+  laborIncrementPrice: 33,
+  returnTrip: 30,
+  /** Same-visit add-on when a Weber or Traeger cleaning is booked together. */
+  sameVisitAddon: 50,
+  /** Charged for Council Bluffs and York. Not a served-city listing. */
+  outOfTerritoryTrip: 30,
 } as const;
+
+export const SAME_VISIT_REPAIR_BRANDS = ["Weber", "Traeger"] as const;
 
 export function repairRateSummary(): string {
   const p = repairPricing;
-  return `$${p.diagnosticAndTrip} diagnostic and trip charge, includes up to ${p.includedMinutes} minutes of work if the part is on hand; after that $${p.intervalPrice} per ${p.intervalMinutes}-minute interval.`;
+  return `$${p.diagnostic} diagnostic charge. If you proceed with the repair, $${p.diagnosticCredit} of it is credited toward the repair. Repair labor is $${p.laborHourly}/hour, billed in ${p.laborIncrementMinutes}-minute increments of $${p.laborIncrementPrice}.`;
 }
 
-export function repairCoverageSummary(): string {
-  return `Regulator replacement, hot rod replacement on Traeger or Green Mountain Grills, and igniter module replacement on Weber are covered by the $${repairPricing.diagnosticAndTrip} plus only the part cost.`;
+export function partsPerkSummary(): string {
+  return "We carry common Traeger and Weber parts on hand, and you may supply your own parts.";
+}
+
+export function returnTripSummary(): string {
+  return `If we have to come back with parts, the return trip charge is $${repairPricing.returnTrip}.`;
+}
+
+export function sameVisitAddonSummary(): string {
+  return `A $${repairPricing.sameVisitAddon} repair add-on when booked with a cleaning on the same visit applies to Weber and Traeger grills. Repairs on all other grills booked with a cleaning are a custom quote.`;
+}
+
+/** Neutral list. These repairs are not included in the diagnostic charge. */
+export function commonRepairsNote(): string {
+  return "Common repairs include regulator replacement, hot rod replacement on Traeger and Green Mountain Grills, and igniter module replacement on Weber.";
 }
 
 export function repairPricingDescription(): string {
-  return `${repairRateSummary()} ${repairCoverageSummary()}`;
+  return `${repairRateSummary()} ${partsPerkSummary()} ${returnTripSummary()} ${sameVisitAddonSummary()}`;
+}
+
+export function sameVisitAddonApplies(brandName?: string): boolean {
+  if (!brandName) return true;
+  return (SAME_VISIT_REPAIR_BRANDS as readonly string[]).includes(brandName);
+}
+
+type RepairOffer = Record<string, unknown>;
+
+/** JSON-LD offers that match the current repair terms. */
+export function repairSchemaOffers(
+  pageUrl?: string,
+  brandName?: string,
+): RepairOffer[] {
+  const p = repairPricing;
+  const prefix = brandName ? `${brandName} ` : "";
+  const link = pageUrl ? { url: pageUrl } : {};
+  const offers: RepairOffer[] = [
+    {
+      "@type": "Offer",
+      name: `${prefix}repair diagnostic charge`,
+      price: String(p.diagnostic),
+      priceCurrency: "USD",
+      ...link,
+      description: `$${p.diagnostic} diagnostic charge. If the customer proceeds with the repair, $${p.diagnosticCredit} is credited toward the repair.`,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: String(p.diagnostic),
+        priceCurrency: "USD",
+        unitText: "diagnostic charge",
+      },
+    },
+    {
+      "@type": "Offer",
+      name: `${prefix}repair labor`,
+      price: String(p.laborIncrementPrice),
+      priceCurrency: "USD",
+      ...link,
+      description: `Repair labor is $${p.laborHourly}/hour, billed in ${p.laborIncrementMinutes}-minute increments of $${p.laborIncrementPrice}.`,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: String(p.laborIncrementPrice),
+        priceCurrency: "USD",
+        unitText: `${p.laborIncrementMinutes} minutes`,
+        referenceQuantity: {
+          "@type": "QuantitativeValue",
+          value: p.laborIncrementMinutes,
+          unitCode: "MIN",
+        },
+      },
+    },
+    {
+      "@type": "Offer",
+      name: `${prefix}return trip with parts`,
+      price: String(p.returnTrip),
+      priceCurrency: "USD",
+      ...link,
+      description: returnTripSummary(),
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: String(p.returnTrip),
+        priceCurrency: "USD",
+        unitText: "return trip with parts",
+      },
+    },
+  ];
+
+  if (sameVisitAddonApplies(brandName)) {
+    offers.push({
+      "@type": "Offer",
+      name: `${prefix}repair add-on with same-visit cleaning`,
+      price: String(p.sameVisitAddon),
+      priceCurrency: "USD",
+      ...link,
+      description: sameVisitAddonSummary(),
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: String(p.sameVisitAddon),
+        priceCurrency: "USD",
+        unitText: "repair labor with same-visit Weber or Traeger cleaning, plus parts",
+      },
+    });
+  }
+
+  return offers;
 }
 
 /** "Gretna, NE" — trims so a trailing space on the city cannot render as "Gretna , NE". */

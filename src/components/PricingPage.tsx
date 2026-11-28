@@ -27,7 +27,7 @@ export function PricingPage() {
         </div>
       </section>
 
-      <PricingOfferings sectionHeading="h2" />
+      <PricingOfferings sectionHeading="h2" showTerritoryFee />
 
       <section className="pricing-closing" aria-labelledby="pricing-closing-heading">
         <div className="pricing-page-inner pricing-closing-inner">

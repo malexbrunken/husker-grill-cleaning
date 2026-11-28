@@ -21,10 +21,13 @@ export const WEBER_OVERSIZE_CLEAN = 329;
 export const BRAND_PRICING = {
   freestandingDeep: 299,
   builtInDeep: 349,
-  diagnosticAndTrip: repairPricing.diagnosticAndTrip,
-  includedMinutes: repairPricing.includedMinutes,
-  intervalMinutes: repairPricing.intervalMinutes,
-  intervalPrice: repairPricing.intervalPrice,
+  diagnostic: repairPricing.diagnostic,
+  diagnosticCredit: repairPricing.diagnosticCredit,
+  laborHourly: repairPricing.laborHourly,
+  laborIncrementMinutes: repairPricing.laborIncrementMinutes,
+  laborIncrementPrice: repairPricing.laborIncrementPrice,
+  returnTrip: repairPricing.returnTrip,
+  sameVisitAddon: repairPricing.sameVisitAddon,
 } as const;
 
 export type BrandProblem = {

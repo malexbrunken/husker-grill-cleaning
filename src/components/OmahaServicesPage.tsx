@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { neighborhoodServiceAreaLinks } from "@/lib/service-areas";
-import { repairCoverageSummary, repairPricing, repairRateSummary, omahaNeighborhoods, site } from "@/lib/site";
+import {
+  commonRepairsNote,
+  partsPerkSummary,
+  repairPricing,
+  repairPricingDescription,
+  sameVisitAddonSummary,
+  omahaNeighborhoods,
+  site,
+} from "@/lib/site";
 
 const SHOTS = {
   heroMain:
@@ -41,7 +49,7 @@ const SERVICES = [
   },
   {
     title: "Grill Repair",
-    body: `If we clean it, we can repair it. ${repairRateSummary()}`,
+    body: `If we clean it, we can repair it. ${sameVisitAddonSummary()}`,
     href: "/grill-repairs",
     cta: "Repair details",
   },
@@ -102,7 +110,7 @@ export const OMAHA_FAQS = [
   },
   {
     q: "Can you repair my grill in Omaha as well as clean it?",
-    a: `Yes for cleaning customers—if we clean it, we can repair it. ${repairRateSummary()} ${repairCoverageSummary()} We prioritize Weber, Traeger, Green Mountain, Yoder, Memphis, Bull, and Napoleon.`,
+    a: `Yes for cleaning customers—if we clean it, we can repair it. ${repairPricingDescription()} ${commonRepairsNote()} We prioritize Weber, Traeger, Green Mountain, Yoder, Memphis, Bull, and Napoleon.`,
   },
   {
     q: "Do I need to be home for Omaha grill cleaning?",
@@ -317,26 +325,24 @@ export function OmahaServicesPage() {
             </p>
             <ul className="oma-price-points">
               <li>
-                <strong>${repairPricing.diagnosticAndTrip}</strong>
+                <strong>${repairPricing.diagnostic}</strong>
                 <span>
-                  Diagnostic and trip charge, including up to {repairPricing.includedMinutes}{" "}
-                  minutes if the part is on hand
+                  Diagnostic charge. ${repairPricing.diagnosticCredit} is credited if you
+                  proceed with the repair
                 </span>
               </li>
               <li>
                 <strong>
-                  ${repairPricing.intervalPrice} / {repairPricing.intervalMinutes} min
+                  ${repairPricing.laborIncrementPrice} / {repairPricing.laborIncrementMinutes} min
                 </strong>
-                <span>Additional labor after the included time</span>
+                <span>Repair labor (${repairPricing.laborHourly}/hour)</span>
               </li>
               <li>
-                <strong>${repairPricing.diagnosticAndTrip} + part</strong>
-                <span>
-                  Regulator replacement, Traeger or Green Mountain hot rod, and Weber igniter
-                  module
-                </span>
+                <strong>${repairPricing.returnTrip}</strong>
+                <span>Return trip if we come back with parts</span>
               </li>
             </ul>
+            <p>{partsPerkSummary()}</p>
             <Link href="/grill-repairs" className="btn-prestige">
               Full Repair Guide
             </Link>

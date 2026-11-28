@@ -8,19 +8,22 @@ import { repairPricing, site } from "@/lib/site";
 export const AREA_PRICING = {
   freestandingDeep: { amount: 299, label: "Freestanding / pedestal deep clean" },
   builtInDeep: { amount: 349, label: "Built-in outdoor kitchen deep clean" },
-  maintenance: { amount: 199, label: "Maintenance cleaning (after a prior deep clean)" },
+  maintenance: {
+    amount: 229,
+    label: "Maintenance cleaning (second or later cleaning in the same year)",
+  },
   semiAnnual: { amount: 599, label: "Semi-annual care (two cleans / year)" },
   multiGrillDiscount: {
     amount: 50,
     label: "Off each additional grill on the same visit",
   },
   repairDiagnostic: {
-    amount: repairPricing.diagnosticAndTrip,
-    label: "Diagnostic and trip charge",
+    amount: repairPricing.diagnostic,
+    label: "Diagnostic charge",
   },
-  repairInterval: {
-    amount: repairPricing.intervalPrice,
-    label: `Each additional ${repairPricing.intervalMinutes} minutes`,
+  repairLaborIncrement: {
+    amount: repairPricing.laborIncrementPrice,
+    label: `Repair labor per ${repairPricing.laborIncrementMinutes} minutes`,
   },
 } as const;
 

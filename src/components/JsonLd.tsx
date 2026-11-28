@@ -2,8 +2,7 @@ import { servedCities } from "@/lib/service-areas";
 import {
   businessId,
   faqs,
-  repairPricing,
-  repairPricingDescription,
+  repairSchemaOffers,
   site,
 } from "@/lib/site";
 
@@ -74,36 +73,26 @@ export function JsonLd() {
         },
         {
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Maintenance Cleaning" },
-          price: "199",
+          itemOffered: {
+            "@type": "Service",
+            name: "Maintenance Cleaning",
+            description:
+              "Second or later cleaning in the same year. About 2 hours on site.",
+          },
+          price: "229",
           priceCurrency: "USD",
         },
-        {
+        ...repairSchemaOffers().map((offer) => ({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Grill repair diagnostic and trip",
-            description: repairPricingDescription(),
+            name: offer.name,
+            description: offer.description,
           },
-          price: String(repairPricing.diagnosticAndTrip),
-          priceCurrency: "USD",
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Additional grill repair labor",
-            description: `Charged after the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, when the part is on hand.`,
-          },
-          price: String(repairPricing.intervalPrice),
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: String(repairPricing.intervalPrice),
-            priceCurrency: "USD",
-            unitText: `${repairPricing.intervalMinutes} minutes`,
-          },
-        },
+          price: offer.price,
+          priceCurrency: offer.priceCurrency,
+          priceSpecification: offer.priceSpecification,
+        })),
       ],
     },
   };
