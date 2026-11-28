@@ -60,9 +60,19 @@ export function JsonLd() {
             "@type": "Service",
             name: "One-Time Deep Clean",
             description:
-              "Freestanding and pedestal grills $299+tax; built-in grills $349+tax",
+              "Freestanding and pedestal grills $299+tax; built-in grills $399+tax",
           },
           price: "299",
+          priceCurrency: "USD",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Built-in grill deep clean",
+            description: "Built-in and island grills $399+tax",
+          },
+          price: "399",
           priceCurrency: "USD",
         },
         {

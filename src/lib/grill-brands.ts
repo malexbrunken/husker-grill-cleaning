@@ -1,6 +1,7 @@
 import { documentTitle } from "@/lib/seo";
 import { AREA_PRICING } from "@/lib/service-areas";
 import {
+  grateSchedulingNote,
   repairPricing,
   repairPricingDescription,
   repairRateSummary,
@@ -20,7 +21,7 @@ export const WEBER_OVERSIZE_CLEAN = 329;
 
 export const BRAND_PRICING = {
   freestandingDeep: 299,
-  builtInDeep: 349,
+  builtInDeep: 399,
   diagnostic: repairPricing.diagnostic,
   diagnosticCredit: repairPricing.diagnosticCredit,
   laborHourly: repairPricing.laborHourly,
@@ -169,6 +170,10 @@ export function buildBrandFaqs(brand: GrillBrand): BrandFaq[] {
     {
       q: `Can you fix a ${n} grill that will not light the same day as cleaning?`,
       a: `Often yes. Many no-light and low-flame issues are caused by grease, blocked ports, or failed igniter parts we can address during the same mobile visit in Omaha or Lincoln.`,
+    },
+    {
+      q: `When should I book ${n} grill cleaning?`,
+      a: grateSchedulingNote,
     },
   ];
 }

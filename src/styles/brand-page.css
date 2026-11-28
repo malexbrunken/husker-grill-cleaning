@@ -164,6 +164,13 @@
   color: #f0d78c;
 }
 
+.bp-schedule-note {
+  margin: 0.75rem 0 0;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .bp-price-actions {
   display: grid;
   gap: 0.55rem;

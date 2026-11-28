@@ -7,7 +7,7 @@ import { repairPricing, site } from "@/lib/site";
  */
 export const AREA_PRICING = {
   freestandingDeep: { amount: 299, label: "Freestanding / pedestal deep clean" },
-  builtInDeep: { amount: 349, label: "Built-in outdoor kitchen deep clean" },
+  builtInDeep: { amount: 399, label: "Built-in outdoor kitchen deep clean" },
   maintenance: {
     amount: 229,
     label: "Maintenance cleaning (second or later cleaning in the same year)",

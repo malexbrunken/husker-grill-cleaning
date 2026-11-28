@@ -228,8 +228,8 @@ const FAQS = [
     a: "Absolutely. We specialize in multi-unit properties and can clean every built-in grill on your property in a single, efficient visit. Volume pricing is available for communities with 4+ units.",
   },
   {
-    q: "Is the $349 price the same for all built-in grill brands?",
-    a: "Yes. Our $349 rate covers standard built-in gas grills regardless of brand (Weber, Napoleon, Bull, Lynx, and more). Oversized or custom outdoor kitchen configurations may require a brief phone assessment.",
+    q: "Is the $399 price the same for all built-in grill brands?",
+    a: "Yes. Our $399 rate covers standard built-in gas grills regardless of brand (Weber, Napoleon, Bull, Lynx, and more). Oversized or custom outdoor kitchen configurations may require a brief phone assessment.",
   },
   {
     q: "What does a repair quote during cleaning include?",
@@ -276,7 +276,7 @@ export function MultiTenantPage() {
 
           <div className="mt-price-chip" aria-label="Multi-tenant pricing">
             <p className="mt-price-chip-amount">
-              $349 <small>+ tax</small>
+              $399 <small>+ tax</small>
             </p>
             <div>
               <strong>Per built-in grill</strong>
@@ -395,7 +395,7 @@ export function MultiTenantPage() {
                   For apartment complexes, townhome communities, and HOA common areas
                 </p>
                 <p className="price-main">
-                  $349 <small>+ tax per grill</small>
+                  $399 <small>+ tax per grill</small>
                 </p>
                 <p className="mt-price-note">
                   No hidden fees. No surprise upcharges. Volume pricing available for
