@@ -3,9 +3,8 @@ import { GrillRepairsPage, REPAIR_FAQS } from "@/components/GrillRepairsPage";
 import { documentTitle } from "@/lib/seo";
 import {
   businessId,
-  repairPricing,
-  repairPricingDescription,
   repairRateSummary,
+  repairSchemaOffers,
   site,
 } from "@/lib/site";
 
@@ -93,22 +92,7 @@ function RepairJsonLd() {
       { "@type": "City", name: "Omaha", containedInPlace: { "@type": "State", name: "Nebraska" } },
       { "@type": "City", name: "Lincoln", containedInPlace: { "@type": "State", name: "Nebraska" } },
     ],
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Grill repair diagnostic and trip",
-        price: String(repairPricing.diagnosticAndTrip),
-        priceCurrency: "USD",
-        description: repairPricingDescription(),
-      },
-      {
-        "@type": "Offer",
-        name: "Additional grill repair labor",
-        price: String(repairPricing.intervalPrice),
-        priceCurrency: "USD",
-        description: `After the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, $${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes} minutes when the part is on hand.`,
-      },
-    ],
+    offers: repairSchemaOffers(`${site.domain}${path}`),
     brand: [{ "@type": "Brand", name: "Weber" }, { "@type": "Brand", name: "Traeger" }],
   };
 

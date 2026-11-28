@@ -27,7 +27,7 @@ import {
   brandPricingCardOffers,
   getBrandPricingCard,
 } from "@/lib/brand-pricing-card";
-import { businessId, repairPricing, repairPricingDescription, site } from "@/lib/site";
+import { businessId, repairPricingDescription, repairSchemaOffers, site } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -317,22 +317,7 @@ function BrandJsonLd({ slug }: { slug: string }) {
             availability: "https://schema.org/InStock",
             url: pageUrl,
           },
-          {
-            "@type": "Offer",
-            name: `${brand.name} repair diagnostic and trip`,
-            price: String(repairPricing.diagnosticAndTrip),
-            priceCurrency: "USD",
-            description: repairPricingDescription(),
-            url: pageUrl,
-          },
-          {
-            "@type": "Offer",
-            name: `${brand.name} additional repair labor`,
-            price: String(repairPricing.intervalPrice),
-            priceCurrency: "USD",
-            description: `After the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, $${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes} minutes when the part is on hand.`,
-            url: pageUrl,
-          },
+          ...repairSchemaOffers(pageUrl, brand.name),
         ],
   };
 

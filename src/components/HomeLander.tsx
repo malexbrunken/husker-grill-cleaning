@@ -429,7 +429,7 @@ export function HomeLander() {
                 <li>Full firebox disassembly for a complete deep clean</li>
                 <li>All components removed, soaked, and properly treated</li>
                 <li>Certified repair technician on every job</li>
-                <li>Repairs handled same visit—no extra trip charge</li>
+                <li>Weber and Traeger same-visit repair add-on is $50 plus parts</li>
               </ul>
             </div>
           </div>
@@ -452,7 +452,7 @@ export function HomeLander() {
               <div className="cost-item us">
                 <span className="price">$299+</span>
                 <span className="label">Husker Grill</span>
-                <span className="range">Deep clean + repairs included</span>
+                <span className="range">Deep clean from $299</span>
               </div>
             </div>
           </div>

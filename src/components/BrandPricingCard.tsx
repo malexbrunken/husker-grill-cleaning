@@ -33,18 +33,21 @@ export function BrandPricingCard({ model }: { model: BrandPricingCardModel }) {
         <p className="bp-price-kicker">Repair</p>
         <p className="bp-price-repair-amount">${model.diagnosticAmount}</p>
         <p>
-          Diagnostic and trip charge. Includes up to {model.includedMinutes}{" "}
-          minutes of work if the part is on hand, then ${model.intervalPrice} per{" "}
-          {model.intervalMinutes} minutes.
+          Diagnostic charge. If you proceed with the repair, $
+          {model.diagnosticCredit} of it is credited toward the repair. Labor is $
+          {model.laborHourly}/hour, billed in {model.laborIncrementMinutes}-minute
+          increments of ${model.laborIncrementPrice}. If we have to come back with
+          parts, the return trip charge is ${model.returnTrip}.
         </p>
-        <p>Included in the ${model.diagnosticAmount} plus the part cost:</p>
+        <p>Common repairs:</p>
         <ul>
-          {model.coveredRepairs.map((repair) => (
+          {model.commonRepairs.map((repair) => (
             <li key={repair}>
               {repair.charAt(0).toUpperCase() + repair.slice(1)}
             </li>
           ))}
         </ul>
+        <p>We carry common Traeger and Weber parts, and you may supply your own.</p>
         {model.sameVisitAddOn ? (
           <p className="bp-price-addon">
             <strong>${model.sameVisitAddOn.amount} plus parts</strong>{" "}

@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { brandPath, getGrillBrandByName, grillBrands } from "@/lib/grill-brands";
-import { repairCoverageSummary, repairPricing, repairRateSummary, site } from "@/lib/site";
+import {
+  commonRepairsNote,
+  partsPerkSummary,
+  repairPricing,
+  repairPricingDescription,
+  returnTripSummary,
+  sameVisitAddonSummary,
+  site,
+} from "@/lib/site";
 
 /** Brands we take stand-alone when a tech is free; full electronics on Weber/Traeger. */
 export const PRIORITY_REPAIR_BRANDS = [
@@ -14,9 +22,9 @@ export const PRIORITY_REPAIR_BRANDS = [
 ] as const;
 
 const HERO_STATS = [
-  { value: `$${repairPricing.diagnosticAndTrip}`, label: "Diagnostic and trip" },
-  { value: `${repairPricing.includedMinutes} min`, label: "Included if the part is on hand" },
-  { value: `$${repairPricing.intervalPrice}`, label: `Per ${repairPricing.intervalMinutes} minutes after` },
+  { value: `$${repairPricing.diagnostic}`, label: "Diagnostic charge" },
+  { value: `$${repairPricing.laborHourly}/hr`, label: "Repair labor" },
+  { value: `$${repairPricing.laborIncrementPrice}`, label: `Per ${repairPricing.laborIncrementMinutes} minutes` },
 ] as const;
 
 const SERVICE_CHIPS = [
@@ -31,44 +39,53 @@ const SERVICE_CHIPS = [
 const PRICE_CARDS = [
   {
     icon: "🔧",
-    price: `$${repairPricing.diagnosticAndTrip}`,
-    title: "Diagnostic and Trip",
-    body: repairRateSummary(),
+    price: `$${repairPricing.diagnostic}`,
+    title: "Diagnostic Charge",
+    body: `$${repairPricing.diagnostic} to diagnose the grill. If you proceed with the repair, $${repairPricing.diagnosticCredit} is credited toward the repair.`,
     badge: null,
   },
   {
     icon: "⏱️",
-    price: `$${repairPricing.intervalPrice}`,
-    title: `Per ${repairPricing.intervalMinutes} Minutes`,
-    body: `After the ${repairPricing.includedMinutes} minutes included in the diagnostic and trip charge, labor is $${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes}-minute interval when the part is on hand.`,
+    price: `$${repairPricing.laborIncrementPrice}`,
+    title: `Per ${repairPricing.laborIncrementMinutes} Minutes`,
+    body: `Repair labor is $${repairPricing.laborHourly}/hour, billed in ${repairPricing.laborIncrementMinutes}-minute increments of $${repairPricing.laborIncrementPrice}.`,
     badge: null,
   },
   {
     icon: "🚚",
-    price: "$99+",
-    title: "Return Installation",
-    body: "If a non-stock part must be ordered, return installation starts at $99 plus parts. We quote parts and the return visit before moving forward.",
+    price: `$${repairPricing.returnTrip}`,
+    title: "Return Trip",
+    body: returnTripSummary(),
     badge: null,
   },
 ] as const;
 
 const PRICE_ROWS = [
   {
-    label: "Diagnostic and trip charge",
-    value: `$${repairPricing.diagnosticAndTrip} (up to ${repairPricing.includedMinutes} minutes if the part is on hand)`,
+    label: "Diagnostic charge",
+    value: `$${repairPricing.diagnostic} ($${repairPricing.diagnosticCredit} credited if you proceed)`,
   },
   {
-    label: "Additional repair labor",
-    value: `$${repairPricing.intervalPrice} per ${repairPricing.intervalMinutes} minutes`,
+    label: "Repair labor",
+    value: `$${repairPricing.laborHourly}/hour, $${repairPricing.laborIncrementPrice} per ${repairPricing.laborIncrementMinutes} minutes`,
   },
   {
-    label: "Regulator, Traeger or Green Mountain hot rod, Weber igniter module",
-    value: `$${repairPricing.diagnosticAndTrip} plus the part`,
+    label: "Parts",
+    value: "Common Traeger and Weber parts on hand; you may supply your own",
   },
-  { label: "Return installation when a part must be sourced", value: "from $99 + parts" },
-  { label: "Other-brand repair evaluation", value: "by quote" },
-  { label: "Travel within core service area", value: "included" },
-  { label: "Travel outside core service area", value: "quoted" },
+  {
+    label: "Return trip if we come back with parts",
+    value: `$${repairPricing.returnTrip}`,
+  },
+  {
+    label: "Weber or Traeger repair with a same-visit cleaning",
+    value: `$${repairPricing.sameVisitAddon} plus parts`,
+  },
+  {
+    label: "Other grills repaired with a cleaning",
+    value: "custom quote",
+  },
+  { label: "Travel within the Lincoln and Omaha metros", value: "included" },
 ] as const;
 
 const WEBER_TRAEGER_ITEMS = [
@@ -93,7 +110,7 @@ const OTHER_BRAND_ITEMS = [
   },
   {
     title: "Quoted separately",
-    body: "Obscure or discontinued parts, non-stock brand-specific components, complex built-in disassembly, and return installation visits.",
+    body: "Obscure or discontinued parts, non-stock brand-specific components, complex built-in disassembly, and a return trip with parts.",
   },
   {
     title: "Generally not offered",
@@ -170,7 +187,7 @@ export const REPAIR_FAQS = [
     items: [
       {
         q: "Should I schedule cleaning and repair together?",
-        a: `Usually, yes—especially if the grill is more than a few seasons old or has heavy buildup. Many ignition, low-flame, flare-up, and heat problems are caused or worsened by grease, blocked ports, debris, corrosion, and restricted airflow. When repair is performed during a deep clean, the grill is already open and accessible. ${repairRateSummary()} ${repairCoverageSummary()}`,
+        a: `Usually, yes—especially if the grill is more than a few seasons old or has heavy buildup. Many ignition, low-flame, flare-up, and heat problems are caused or worsened by grease, blocked ports, debris, corrosion, and restricted airflow. When repair is performed during a deep clean, the grill is already open and accessible. ${repairPricingDescription()}`,
       },
       {
         q: "Do you repair non-Weber or non-Traeger grills?",
@@ -178,7 +195,7 @@ export const REPAIR_FAQS = [
       },
       {
         q: "Do you charge a return visit if a part has to be ordered?",
-        a: "Yes. If a part is not on the truck and a return visit is required, return installation starts at $99 plus parts. We quote the part and return installation before moving forward. This policy keeps cleaning-attached repairs and common Weber/Traeger repairs priced fairly while still accepting repairs that require ordering a specific part.",
+        a: `Yes. ${partsPerkSummary()} ${returnTripSummary()} ${commonRepairsNote()}`,
       },
       {
         q: "Can a dirty grill prevent accurate diagnosis?",
@@ -237,7 +254,7 @@ export function GrillRepairsPage() {
             grill is already disassembled, safer to diagnose, and easier to restore.
           </p>
           <p className="rep-value-price">
-            {repairRateSummary()} {repairCoverageSummary()}
+            {sameVisitAddonSummary()} {partsPerkSummary()}
           </p>
           <div className="rep-hero-actions">
             <Link href={site.bookingPath} className="btn-prestige">
@@ -338,11 +355,8 @@ export function GrillRepairsPage() {
           <article className="rep-policy-card">
             <h3>Parts and Return-Visit Policy</h3>
             <p>
-              We stock and source many common Weber and Traeger parts, but no service company
-              can carry every part for every grill brand. If your repair requires a non-stock
-              part, we quote the part and return installation before moving forward. Return
-              trips are billed separately so we can keep pricing fair for cleaning customers
-              and same-visit repairs.
+              {partsPerkSummary()} If a part is not on the truck, we quote it before ordering.{" "}
+              {returnTripSummary()}
             </p>
           </article>
 

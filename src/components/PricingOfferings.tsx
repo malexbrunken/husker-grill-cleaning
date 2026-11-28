@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ElementType } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
-import { site } from "@/lib/site";
+import { AREA_PRICING } from "@/lib/service-areas";
+import { repairPricing, sameVisitAddonSummary, site } from "@/lib/site";
 
 /** Pedestal / cart / freestanding — grill + smoker. */
 export const FREESTANDING_IMAGES = [
@@ -128,9 +129,12 @@ function GrillTypeCard({
  */
 export function PricingOfferings({
   sectionHeading: SectionHeading = "h2",
+  showTerritoryFee = false,
 }: {
   /** Section titles (deep clean, semi-annual, more ways, repairs). Home uses h3 under the lander h2. */
   sectionHeading?: ElementType;
+  /** Pricing page only. Names places that are not in the service-area list. */
+  showTerritoryFee?: boolean;
 }) {
   return (
     <>
@@ -175,8 +179,7 @@ export function PricingOfferings({
             <div className="repair-note-dark">
               <strong>Need repairs during your deep clean?</strong>
               <br />
-              Add repair labor for <strong>$50 + parts</strong>—same rate for pedestal /
-              cart / freestanding <em>and</em> built-in grills when done with your clean.
+              {sameVisitAddonSummary()}
               <span className="repair-note-fine">
                 If we clean it, we can repair it. Repairs are reserved for our cleaning
                 customers. When a technician is free, we may also take stand-alone repair
@@ -262,10 +265,10 @@ export function PricingOfferings({
               <span className="seasonal-label">By Appointment</span>
               <h3>Maintenance Cleaning</h3>
               <p className="price-main compact">
-                $199 <small>+ tax</small>
+                ${AREA_PRICING.maintenance.amount} <small>+ tax</small>
               </p>
               <p className="price-note">
-                Available as a <strong>second cleaning of the year</strong> when you only
+                A <strong>second or later cleaning in the same year</strong> when you only
                 need a touch-up—not a full deep clean. Same price for freestanding and
                 built-in residential grills.
               </p>
@@ -273,11 +276,11 @@ export function PricingOfferings({
                 Not available for multi-tenant / apartment community grills.
               </p>
               <ul>
-                <li>Light grate &amp; flavorizer bar cleaning</li>
+                <li>Moderate grate &amp; flavorizer bar cleaning</li>
                 <li>Firebox vacuuming</li>
                 <li>Drip tray &amp; grease tray cleaning</li>
                 <li>Exterior degreasing &amp; quick polish</li>
-                <li>~90 minutes on site</li>
+                <li>About 2 hours on site</li>
               </ul>
               <Link href={site.bookingPath} className="btn-outline-light">
                 Book Maintenance
@@ -356,13 +359,9 @@ export function PricingOfferings({
                 <div>
                   <h3>Best value: clean + repair</h3>
                   <span className="prominent-price">
-                    <span>$50+</span> repair add-on
+                    <span>${repairPricing.sameVisitAddon}</span> repair add-on
                   </span>
-                  <p>
-                    Add repair labor to a scheduled deep clean for{" "}
-                    <strong>$50 + parts</strong>—same add-on for freestanding and built-in
-                    grills. Parts are extra.
-                  </p>
+                  <p>{sameVisitAddonSummary()} Parts are extra on that add-on.</p>
                 </div>
               </div>
 
@@ -373,14 +372,16 @@ export function PricingOfferings({
                 <div>
                   <h3>Stand-alone service visit</h3>
                   <span className="prominent-price">
-                    <span>$149</span> trip charge
+                    <span>${repairPricing.diagnostic}</span> diagnostic charge
                   </span>
                   <p>
-                    Includes travel, diagnosis, and initial on-site labor window. Additional
-                    labor billed hourly as needed. Parts extra. No second trip charge when
-                    we return to install ordered parts—just parts and labor.
+                    If you proceed with the repair, ${repairPricing.diagnosticCredit} is
+                    credited toward the repair. Labor is ${repairPricing.laborHourly}/hour,
+                    billed in {repairPricing.laborIncrementMinutes}-minute increments of $
+                    {repairPricing.laborIncrementPrice}. We carry common Traeger and Weber
+                    parts on hand, and you may supply your own parts. If we have to come
+                    back with parts, the return trip charge is ${repairPricing.returnTrip}.
                   </p>
-                  <span className="fine-print">Labor after diagnosis: $120/hour.</span>
                 </div>
               </div>
 
@@ -399,6 +400,13 @@ export function PricingOfferings({
               </div>
             </div>
 
+            {showTerritoryFee ? (
+              <p className="price-feature-footnote muted-copy">
+                Out-of-territory trip fee: ${repairPricing.outOfTerritoryTrip} for Council
+                Bluffs and York. Other areas outside the Lincoln and Omaha metros may also
+                have an out-of-territory trip fee.
+              </p>
+            ) : null}
             <div className="pricing-repairs-cta">
               <Link href={site.bookingPath} className="btn-prestige">
                 Schedule Repair or Clean

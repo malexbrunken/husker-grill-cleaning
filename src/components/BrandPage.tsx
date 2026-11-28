@@ -11,7 +11,7 @@ import {
   grillBrands,
   type GrillBrand,
 } from "@/lib/grill-brands";
-import { repairCoverageSummary, repairPricingDescription, repairRateSummary, site } from "@/lib/site";
+import { repairPricingDescription, repairRateSummary, site } from "@/lib/site";
 
 const CITIES = ["Omaha", "Lincoln"] as const;
 
@@ -48,12 +48,12 @@ function HeroDetails({
 
       <ul className="bp-hero-stats">
         <li>
-          <strong>${BRAND_PRICING.diagnosticAndTrip}</strong>
-          <span>Diagnostic and trip</span>
+          <strong>${BRAND_PRICING.diagnostic}</strong>
+          <span>Diagnostic charge</span>
         </li>
         <li>
-          <strong>${BRAND_PRICING.intervalPrice}</strong>
-          <span>Per {BRAND_PRICING.intervalMinutes} min after</span>
+          <strong>${BRAND_PRICING.laborIncrementPrice}</strong>
+          <span>Per {BRAND_PRICING.laborIncrementMinutes} min of labor</span>
         </li>
         <li>
           <strong>${BRAND_PRICING.freestandingDeep}</strong>
@@ -355,21 +355,21 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
                 )}
                 <tr>
                   <td>
-                    Diagnostic and trip charge (includes up to{" "}
-                    {BRAND_PRICING.includedMinutes} minutes if the part is on hand)
+                    Diagnostic charge (${BRAND_PRICING.diagnosticCredit} credited if you
+                    proceed with the repair)
                   </td>
-                  <td>${BRAND_PRICING.diagnosticAndTrip}</td>
+                  <td>${BRAND_PRICING.diagnostic}</td>
                 </tr>
                 <tr>
                   <td>
-                    Additional labor after that, per {BRAND_PRICING.intervalMinutes}{" "}
-                    minutes
+                    Repair labor (${BRAND_PRICING.laborHourly}/hour, in{" "}
+                    {BRAND_PRICING.laborIncrementMinutes}-minute increments)
                   </td>
-                  <td>${BRAND_PRICING.intervalPrice}</td>
+                  <td>${BRAND_PRICING.laborIncrementPrice}</td>
                 </tr>
                 <tr>
-                  <td>{repairCoverageSummary()}</td>
-                  <td>${BRAND_PRICING.diagnosticAndTrip} + part</td>
+                  <td>Return trip if we come back with parts</td>
+                  <td>${BRAND_PRICING.returnTrip}</td>
                 </tr>
               </tbody>
             </table>
