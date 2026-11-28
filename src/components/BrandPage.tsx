@@ -11,7 +11,7 @@ import {
   grillBrands,
   type GrillBrand,
 } from "@/lib/grill-brands";
-import { repairPricingDescription, repairRateSummary, site } from "@/lib/site";
+import { grateSchedulingNote, repairPricingDescription, repairRateSummary, site } from "@/lib/site";
 
 const CITIES = ["Omaha", "Lincoln"] as const;
 
@@ -375,7 +375,7 @@ export function BrandPage({ brand }: { brand: GrillBrand }) {
             </table>
           </div>
           <p className="bp-price-note">
-            Same menu in Omaha and Lincoln. Multi-grill visits: $50 off each
+            {grateSchedulingNote} Same menu in Omaha and Lincoln. Multi-grill visits: $50 off each
             additional grill. See{" "}
             <Link href="/pricing">full pricing</Link> and{" "}
             <Link href="/grill-repairs">repair details</Link>.

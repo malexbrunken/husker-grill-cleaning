@@ -203,6 +203,9 @@ export function repairSchemaOffers(
   return offers;
 }
 
+export const grateSchedulingNote =
+  "We always take your grates off site to decarbonize them in our proprietary cleaning tank, so please book on a day you won't need the grill that evening.";
+
 /** "Gretna, NE" — trims so a trailing space on the city cannot render as "Gretna , NE". */
 export function formatPlace(city: string, region: string): string {
   return `${city.trim().replace(/\s+,/g, ",")}, ${region.trim()}`;
@@ -311,7 +314,7 @@ export const faqs = [
   },
   {
     q: "How soon can I cook?",
-    a: "Immediately. The unit is re-seasoned and ready for a sear the moment we finish.",
+    a: grateSchedulingNote,
   },
   {
     q: "Broken or worn parts?",

@@ -1,5 +1,5 @@
 import type { BrandPricingCardModel } from "@/lib/brand-pricing-card";
-import { site } from "@/lib/site";
+import { grateSchedulingNote, site } from "@/lib/site";
 
 /**
  * Prominent cleaning and repair prices for a brand lander.
@@ -69,6 +69,7 @@ export function BrandPricingCard({ model }: { model: BrandPricingCardModel }) {
           Call {site.phoneDisplay}
         </a>
       </div>
+      <p className="bp-schedule-note">{grateSchedulingNote}</p>
     </aside>
   );
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ElementType } from "react";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { AREA_PRICING } from "@/lib/service-areas";
-import { repairPricing, sameVisitAddonSummary, site } from "@/lib/site";
+import { grateSchedulingNote, repairPricing, sameVisitAddonSummary, site } from "@/lib/site";
 
 /** Pedestal / cart / freestanding — grill + smoker. */
 export const FREESTANDING_IMAGES = [
@@ -170,7 +170,7 @@ export function PricingOfferings({
               <GrillTypeCard
                 title="Built-In Grill"
                 help="Dropped into an outdoor kitchen island or counter with surrounding stone, granite, or cabinetry. About half of the grills we clean are built-ins."
-                price="$349"
+                price="$399"
                 images={BUILT_IN_IMAGES}
                 scheduleLabel="Schedule Built-In Clean"
               />
@@ -197,7 +197,7 @@ export function PricingOfferings({
 
             <p className="price-feature-footnote muted-copy">
               Not sure which type you have? Send a photo when you book—we&apos;ll confirm
-              before we arrive.
+              before we arrive. {grateSchedulingNote}
             </p>
           </article>
         </div>

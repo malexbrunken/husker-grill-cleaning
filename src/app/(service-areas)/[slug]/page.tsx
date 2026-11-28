@@ -211,7 +211,7 @@ function AreaJsonLd({ slug }: { slug: string }) {
               {
                 "@type": "Offer",
                 name: "Built-in grill deep clean",
-                price: "349",
+                price: "399",
                 priceCurrency: "USD",
               },
             ],
@@ -312,7 +312,7 @@ function BrandJsonLd({ slug }: { slug: string }) {
           {
             "@type": "Offer",
             name: `Built-in ${brand.name} deep clean`,
-            price: "349",
+            price: "399",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
             url: pageUrl,
